@@ -1,64 +1,63 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import { News } from "../../components/NewsItem";
 import "./style.css";
 export const HomePage = () => {
+
   return (
-    <div classname="containerr">
-      <div classname="content">
-        <div classname="filter__block">
-          <p className="filter_text">Фильтрация</p>
-          <ul>
-            <li classname="filter_item">
-              <img classname="checkbox" src="" alt="" />
-              <span classname="checkbox__text">Спорт</span>
-            </li>
-            <li classname="filter_item">
-              <img classname="checkbox" src="" alt="" />
-              <span classname="checkbox__text">Политика</span>
-            </li>
-            <li classname="filter_item">
-              <img classname="checkbox" src="" alt="" />
-              <span classname="checkbox__text">Звезды</span>
-            </li>
-            <li classname="filter_item">
-              <img classname="checkbox" src="" alt="" />
-              <span classname="checkbox__text">Искусство</span>
-            </li>
-            <li classname="filter_item">
-              <img classname="checkbox" src="" alt="" />
-              <span classname="checkbox__text">Мода</span>
-            </li>
-          </ul>
-          <div classname="registration_btn">
-            <button classname="registration_button">Применить</button>
-          </div>
-        </div>
-        <div classname="news__block">
-          <div classname="news__item">
-            <div classname="news__img">
-              <img classname="news__img" src="" alt="" />
-            </div>
-            <div classname="news__info">
-              <div classname="to__favorites">
-                <p>29.11.2022</p>
-                <div classname="heart__icon">
-                  <img src="" alt="" />
-                </div>
+    <>
+      <Header />
+      <div className="containerr">
+        <div className="content">
+          <div className="filter__block">
+            <p className="filter_text">Фильтрация</p>
+            <div className="checkboxs">
+              <label class="checkboxWrap">
+                Sport
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
+
+              <label class="checkboxWrap">
+                Политика
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
+
+              <label class="checkboxWrap">
+                Звезды
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
+
+              <label class="checkboxWrap">
+                <span className="checkbox-text">Искусство</span>
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
+
+              <label class="checkboxWrap">
+                Мода
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
               </div>
-              <h2>Заголовок новости</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
-                Class aptent taciti sociosqu ad litora torquent per conubia
-                nostra, per inceptos himenaeos.
-              </p>
-              <a href="#">Читать дальше</a>
-              <div classname="share">
-                <img src="" alt="" />
+              <div className="registration_btn">
+              <button className="registration_button">Применить</button>
               </div>
             </div>
+          
+        
+          <div className="news__content">
+          <News/>
+          <News/>
+          <News/>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };

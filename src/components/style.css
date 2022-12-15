@@ -1,0 +1,146 @@
+.containerr{
+    max-width: 1090px;
+    margin: 0 auto;
+}
+
+/* header */
+.header{
+    background-image: url("../assets/img/headerBG.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height:  200px;
+}
+.containerr{
+    max-width: 1090px;
+    margin: 0 auto;
+}
+.header__icons {
+    position: relative;
+}
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+}
+.icon{
+padding-right: 27px;
+}
+
+.title{
+    text-transform: uppercase;
+    color:#fff;
+    font-size: 50px;
+    text-align: center;
+}
+
+/* Страница новости NewsItem*/
+.content{
+   
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.news__content{
+    width: 75%;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+.news__item{
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid  #D9D9D9;
+}
+
+.news__item:first-child{
+    padding-top: 0;
+}
+.news__info{
+    line-height: 30px;
+    width: 66%;
+    text-align: left;
+  
+}
+.text_info{
+    line-height: 25px;
+    font-size: 16px;
+}
+.news__image{
+    width: 100%;
+    height: 100vh;
+}
+.to__favorites{
+    display: flex;
+justify-content:space-between;
+}
+
+.like__icon:active{
+background-color: red;
+}
+/* footer гл стр */
+.footer{
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    background-color: #151515;
+    width: 100%;
+    height: 192px;
+    
+}
+.footer__inner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 270px;
+    margin: 0 auto;
+}
+.footer__icon{
+    margin: 35px auto;
+}
+.footer__text{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 17px;
+}
+.profil__link{
+    text-decoration: none;
+    color: #fff;
+}
+.favoritenews_link{
+    text-decoration: none;
+    color: #fff;
+}
+/* footer гл стр */
+.footer{
+    bottom: 0;
+    left: 0;
+    background-color: #151515;
+    width: 100%;
+    height: 192px;
+    
+}
+.footer__inner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 305px;
+    margin: 0 auto;
+}
+.footer__icon{
+    margin: 35px auto;
+}
+.footer__text{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 17px;
+   
+}
+

@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import "./style.css";
-import Logo from "../assets/img/header-logo.png";
-import MenuIcon from "../assets/img/menu.png";
-import SearchIcon from "../assets/img/search.png";
-import ProfileIcon from "../assets/img/Profile-icon.png";
-import {Link, useLocation} from 'react-router-dom'
-function Header() {
-  const [showProfile, SetShowProfile] = useState(false);
-  const [showMenu, SetShowMenu] = useState(false);
-  const location = useLocation()
-  return (
-    <>
-      <header className="header">
-        <div className="containerr">
-          <div className="header__inner">
-            <div className="header__logo">
-             <Link to={'/'}> <img src={Logo} alt="" /></Link>
+import '../pages/FavoriteNews'
+import MenuIcon from "../assets/img/menu-second.png";
+import SearchIcon from "../assets/img/search-second.png";
+import ProfileIcon from "../assets/img/profile-second.png";
+import MegalabLogo from "../assets/img/megalab-logo.png";
+import { useState } from 'react';
+import { Link, useLocation } from "react-router-dom";
+export const SecondHeader = () => {
+    const [showProfile, SetShowProfile] = useState(false);
+    const [showMenu, SetShowMenu] = useState(false);
+    const location = useLocation()
+    return (
+        <header class="header__favorites_news">
+        <div class="containerr">
+          <div class="header__inner">
+            <div class="header__logo">
+            <Link to={'/'}>  <img src={MegalabLogo} alt="" /></Link>
+             
             </div>
-            <div className="header__icons">
-              <img className="icon" src={SearchIcon} alt="" />
+            <div class="header__icons">
+              <img class="icon icon_grey" src={SearchIcon} alt="" />
               <img
                 className="icon"
                 onClick={() =>{
@@ -37,9 +37,9 @@ function Header() {
                 src={MenuIcon}
                 alt=""
               />
-              {showProfile && (
+               {showProfile && (
                 <div class="modal__menu">
-                  <Link
+                             <Link
                     class="profile"
                     onClick={() => {
                       location('profile')
@@ -67,11 +67,7 @@ function Header() {
               )}
             </div>
           </div>
-          <h1 className="title">Новости</h1>
         </div>
       </header>
-    </>
-  );
+    )
 }
-
-export default Header;

@@ -1,0 +1,12 @@
+/* .header__favorites_news{
+ background-color: rgb(222, 118, 118);
+} */
+
+.news__info--favorite_block{
+width: 75%;
+}
+.title__favorite-new{
+    font-size: 35px;
+    padding-bottom:10px ;
+    text-align: left;
+}

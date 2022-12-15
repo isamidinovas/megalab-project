@@ -1,0 +1,45 @@
+
+.news__block{
+    text-align: left;
+}
+.reply{
+    display: flex;
+    justify-content: space-between;
+    max-width: 180px;
+}
+.news__title{
+   padding: 10px 0 10px 0;
+}
+.text_info{
+    padding: 10px 0 10px 0;
+}
+.back_btn{
+    padding: 10px 0 10px 0;
+}
+.comment__block{
+    padding-bottom: 20px;
+}
+.comment{
+    font-weight: 700;
+    font-size: 20px;
+    padding: 20px 0;
+}
+.user__nick{
+    font-weight: 700;
+    font-size: 18px;
+}
+/* Модалка для ответа к комментарии */
+.answer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    padding: 15px 0;
+  
+}
+.comment_input{
+    width: 274px;
+    height: 27px;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+}

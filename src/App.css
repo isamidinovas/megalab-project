@@ -4,8 +4,13 @@
 }
 body{
   background: #F5F5F5;
+  font-family: 'Ubuntu', sans-serif;
 }
 .App {
   text-align: center;
 }
 
+.containerr{
+  max-width: 1090px;
+  margin: 0 auto;
+}
