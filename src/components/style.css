@@ -80,13 +80,11 @@ padding-right: 27px;
 justify-content:space-between;
 }
 
-.like__icon:active{
-background-color: red;
-}
+
 /* footer гл стр */
 .footer{
     bottom: 0;
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     background-color: #151515;
     width: 100%;

@@ -7,9 +7,12 @@ import ShareIcon from "../../assets/img/share.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import LikeIcon from "../../assets/img/like-icon.png";
 import { Link } from "react-router-dom";
+import { ShareModal } from "../../components/share-modal";
 
 export const NewsItem = () => {
   const [showComment, setShowComment] = useState(false);
+  const [showShare, setShowShare] = useState(false);
+
   return (
     <>
       <Header />
@@ -73,8 +76,16 @@ export const NewsItem = () => {
                 feugiat maximus. Mauris consequat tellus id tempus aliquet.
               </p>
               <a href="#">
-                <img src={ShareIcon} alt="" />
+                <img
+                  className="share-icon"
+                  src={ShareIcon}
+                  alt=""
+                  onClick={() => {
+                    setShowShare(!showShare);
+                  }}
+                />
               </a>
+              {showShare && <ShareModal setShowShare={setShowShare} />}
               <div className="comment__block">
                 <p className="comment">Комментарии</p>
                 <p className="user__nick">Олег Петров</p>

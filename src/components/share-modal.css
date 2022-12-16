@@ -1,0 +1,64 @@
+/*Модалка инонки поделиться */
+
+.share__block{
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 4px 20px;
+    max-width: 387px;
+    height: 240px;
+    width: 100%;
+    font-size: 18px;
+    color: black;
+    left: 278px;
+    box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
+    position: absolute;
+    background-color: #fff;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.share-icon{
+    position: relative;
+}
+
+.share__header{
+    display: flex;
+    justify-content: space-between;
+ 
+}
+.social_networks{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+.social_network{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: 
+    #FBF9FB;
+}
+.closeBtn{
+    cursor: pointer;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    color: #2c3e50;
+    background: white;
+}
+.copy__input{
+    width: 340px;
+    outline: none;
+    padding-left: 8px;
+    height: 40px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    background: url("../assets/img/copy-icon.png") no-repeat scroll 96% 11px ;
+}
+.link__block{
+    padding-top: 38px;
+}

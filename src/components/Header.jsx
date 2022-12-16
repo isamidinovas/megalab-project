@@ -4,26 +4,29 @@ import Logo from "../assets/img/header-logo.png";
 import MenuIcon from "../assets/img/menu.png";
 import SearchIcon from "../assets/img/search.png";
 import ProfileIcon from "../assets/img/Profile-icon.png";
-import {Link, useLocation} from 'react-router-dom'
+import { Link, useLocation } from "react-router-dom";
 function Header() {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
   return (
     <>
       <header className="header">
         <div className="containerr">
           <div className="header__inner">
             <div className="header__logo">
-             <Link to={'/'}> <img src={Logo} alt="" /></Link>
+              <Link to={"/"}>
+                {" "}
+                <img src={Logo} alt="" />
+              </Link>
             </div>
             <div className="header__icons">
               <img className="icon" src={SearchIcon} alt="" />
               <img
                 className="icon"
-                onClick={() =>{
-                  if(showMenu) SetShowMenu(false)
-                  SetShowProfile(!showProfile)
+                onClick={() => {
+                  if (showMenu) SetShowMenu(false);
+                  SetShowProfile(!showProfile);
                 }}
                 src={ProfileIcon}
                 alt=""
@@ -31,26 +34,26 @@ function Header() {
               <img
                 className="icon"
                 onClick={() => {
-                  if(showProfile) SetShowProfile(false)
-                  SetShowMenu(!showMenu)
+                  if (showProfile) SetShowProfile(false);
+                  SetShowMenu(!showMenu);
                 }}
                 src={MenuIcon}
                 alt=""
               />
               {showProfile && (
-                <div class="modal__menu">
+                <div className="modal__menu">
                   <Link
-                    class="profile"
+                    className="profile"
                     onClick={() => {
-                      location('profile')
-                      SetShowProfile(false)
+                      location("profile");
+                      SetShowProfile(false);
                     }}
                     to="/profile"
                   >
                     Мой профиль
                   </Link>
                   <a
-                    class="exit__btn"
+                    className="exit__btn"
                     onClick={() => SetShowProfile(false)}
                     href="#"
                   >
@@ -60,9 +63,16 @@ function Header() {
               )}
 
               {showMenu && (
-                <div class="favorites_news" onClick={() => SetShowMenu(!showMenu)}>
-                <Link style={{    textDecoration: "none",
-    color: "#000"}} to="/favoritenews">Избранные новости</Link>  
+                <div
+                  className="favorites_news"
+                  onClick={() => SetShowMenu(!showMenu)}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "#000" }}
+                    to="/favoritenews"
+                  >
+                    Избранные новости
+                  </Link>
                 </div>
               )}
             </div>
