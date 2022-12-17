@@ -1,0 +1,23 @@
+.header__favorite{
+padding:5px 0 20px 0
+}
+
+.header__icons {
+    position: relative;
+}
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+}
+.icon{
+padding-right: 27px;
+}
+
+.title{
+    text-transform: uppercase;
+    color:#fff;
+    font-size: 50px;
+    text-align: center;
+}

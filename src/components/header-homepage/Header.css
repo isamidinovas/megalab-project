@@ -1,0 +1,28 @@
+
+.header{
+    background-image: url("../../assets/img/headerBG.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height:  200px;
+}
+.container.container__favorite{
+    max-width: 1090px;
+    margin: 0 auto;
+}
+
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+}
+.icon{
+padding-right: 27px;
+}
+.title{
+    text-transform: uppercase;
+    color:#fff;
+    font-size: 50px;
+    text-align: center;
+}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./style.css";
-import Logo from "../assets/img/header-logo.png";
-import MenuIcon from "../assets/img/menu.png";
-import SearchIcon from "../assets/img/search.png";
-import ProfileIcon from "../assets/img/Profile-icon.png";
+import "./Header.css";
+import Logo from "../../assets/img/header-logo.png";
+import MenuIcon from "../../assets/img/menu.png";
+import SearchIcon from "../../assets/img/search.png";
+import ProfileIcon from "../../assets/img/Profile-icon.png";
 import { Link, useLocation } from "react-router-dom";
 function Header() {
   const [showProfile, SetShowProfile] = useState(false);
@@ -12,7 +12,7 @@ function Header() {
   return (
     <>
       <header className="header">
-        <div className="containerr">
+        <div className="container container__favorite">
           <div className="header__inner">
             <div className="header__logo">
               <Link to={"/"}>

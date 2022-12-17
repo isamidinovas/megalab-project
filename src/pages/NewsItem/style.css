@@ -10,10 +10,10 @@
 .news__title{
    padding: 10px 0 10px 0;
 }
-.text_info{
+.text__info{
     padding: 10px 0 10px 0;
 }
-.back_btn{
+.back__btn{
     padding: 10px 0 10px 0;
 }
 .comment__block{
@@ -33,11 +33,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 600px;
+    max-width: 485px;
     padding: 15px 0;
   
 }
-.comment_input{
+.reply__btn{
+    border: none;
+    text-decoration: underline;
+    color: 
+    #7E5BC2;
+    font-family: 'Ubuntu';
+
+font-size: 16px;
+
+}
+.share__btn{
+    border: none;
+    display: flex;
+    background: none;
+}
+.share__btn.share__btn-newpage {
+    
+}
+.comment__input{
     width: 274px;
     height: 27px;
     border-radius: 10px;

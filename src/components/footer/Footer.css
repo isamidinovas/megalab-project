@@ -1,0 +1,32 @@
+/* footer гл стр */
+.footer{
+   
+    background-color: #151515;
+    width: 100%;
+    height: 192px;
+    
+}
+.footer__inner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width:355px;
+    margin: 0 auto;
+}
+.footer__icon{
+    margin: 35px auto;
+}
+.footer__text{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 17px;
+}
+.profil__link{
+    text-decoration: none;
+    color: #fff;
+}
+.favoritenews_link{
+    text-decoration: none;
+    color: #fff;
+}

@@ -6,7 +6,7 @@
     width: 100%;
     height:  200px;
 }
-.containerr{
+.container.container__favorite{
     max-width: 1090px;
     margin: 0 auto;
 }
@@ -32,7 +32,7 @@ filter */
 .filter__block{
     max-width: 15%
 }
-.filter_text{
+.filter__text{
     font-size: 24px;
     font-weight: 700;
     padding-bottom: 12px;
@@ -47,7 +47,7 @@ ul{
 .checkbox__text{
     font-size: 18px;
 }
-.filter_item{
+.filter__item{
     display: flex;
     align-items: center ;
   padding-bottom: 10px;

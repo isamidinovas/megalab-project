@@ -1,13 +1,20 @@
-import React from "react";
-import "./share-modal.css";
+import React, { useEffect, useRef } from "react";
+import "./shareModal.css";
 import CloseIcon from "../assets/img/close-icon.png";
 import FacebookIcon from "../assets/img/facebook-icon.png";
 import Telegram from "../assets/img/telegram-icon.png";
 import TwitterIcon from "../assets/img/twitter-icon.png";
 import WhatSappIcon from "../assets/img/whatsapp-icon.png";
+import { useOnClickOutside } from "../hooks/useOutsideCliks";
 export const ShareModal = ({ setShowShare }) => {
+  const modalRef = useRef(null);
+
+  const onClickOutside = () => {
+    setShowShare(false);
+  };
+  useOnClickOutside(modalRef, onClickOutside);
   return (
-    <div className="share__block">
+    <div className="share__block share__block-newpage" ref={modalRef}>
       <div className="share__header">
         <p>Поделиться</p>
         <button className="closeBtn" onClick={() => setShowShare(false)}>

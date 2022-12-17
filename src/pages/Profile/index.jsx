@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import { SecondHeader } from "../../components/SecondHeader";
+import { SecondHeader } from "../../components/header/SecondHeader";
 import DefaultIcon from "../../assets/img/default-profile-icon.png";
 import "./style.css";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
-import Footer from "../../components/Footer";
-
+import Footer from "../../components/footer/Footer";
 import LikeIcon from "../../assets/img/like-icon.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
-import {Modal} from "../../components/modal";
+import { Modal } from "../../components/modal";
 import { useSelector } from "react-redux";
+import { ShareModal } from "../../components/shareModal";
 export const Profile = () => {
-  const { profile } = useSelector(state => state)
-  console.log(profile)
+  const { profile } = useSelector((state) => state);
+  console.log(profile);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [showShare, setShowShare] = useState(false);
   const img = selectedImage ? URL.createObjectURL(selectedImage) : DefaultIcon;
   return (
     <>
-      <div className="containerr">
+      <div className="container container__favorite">
         <SecondHeader />
 
         <div className="profile-block">
@@ -52,34 +53,46 @@ export const Profile = () => {
           <div className="info-edit">
             <div className="info-item">
               <span className="info-item_title">Фамилия</span>
-              <input className="info-item_input" defaultValue={profile.surname} type="text" />
+              <input
+                className="info-item_input"
+                defaultValue={profile.surname}
+                type="text"
+              />
             </div>
             <div className="info-item">
               <span className="info-item_title">Имя</span>
-              <input defaultValue={profile.name}  className="info-item_input" type="text" />
+              <input
+                defaultValue={profile.name}
+                className="info-item_input"
+                type="text"
+              />
             </div>
             <div className="info-item">
               <span className="info-item_title">Никнейм</span>
-              <input className="info-item_input" defaultValue={profile.login}  type="text" />
+              <input
+                className="info-item_input"
+                defaultValue={profile.login}
+                type="text"
+              />
             </div>
             <div className="button-wrap">
-              <button class="save-button">Сохранить</button>
+              <button className="save-button">Сохранить</button>
             </div>
           </div>
         </div>
 
-        <main class="main">
-          <div class="containerr">
+        <main className="main">
+          <div className="container container__favorite ">
             <div className="title-button">
-              <h2 class="title__favorite-new">Мои публикации</h2>
-              <button class="save-button" onClick={() => setIsOpen(true)}>
+              <h2 className="title__favorite-new">Мои публикации</h2>
+              <button className="save-button" onClick={() => setIsOpen(true)}>
                 Новая публикация
               </button>
               {isOpen && <Modal setIsOpen={setIsOpen} />}
             </div>
 
-            <div class="content">
-              <div class="news__block">
+            <div className="content">
+              <div className="news__block">
                 <div className="news__item">
                   <div className="news__img">
                     <img className="news__img" src={Rectangle} alt="" />
@@ -87,7 +100,7 @@ export const Profile = () => {
                   <div className="news__info">
                     <div className="to__favorites">
                       <p>29.11.2022</p>
-                      <div className="heart__icon">
+                      <div className="like__icon">
                         <img src={deleteIcon} alt="" />
                       </div>
                     </div>
@@ -106,14 +119,14 @@ export const Profile = () => {
                   </div>
                 </div>
 
-                <div class="news__item">
-                  <div class="news__img">
-                    <img class="news__img" src={Rectangle} alt="" />
+                <div className="news__item">
+                  <div className="news__img">
+                    <img className="news__img" src={Rectangle} alt="" />
                   </div>{" "}
-                  <div class="news__info news__info--favorite_block">
-                    <div class="to__favorites">
+                  <div className="news__info news__info--favorite_block">
+                    <div className="to__favorites">
                       <p>29.11.2022</p>
-                      <div class="like__icon">
+                      <div className="like__icon">
                         <img src={deleteIcon} alt="" />
                       </div>
                     </div>
@@ -125,19 +138,19 @@ export const Profile = () => {
                       per conubia nostra, per inceptos himenaeos.
                     </p>
                     <Link to="/new">Читать дальше</Link>
-                    <div class="share">
+                    <div className="share">
                       <img src={ShareIcon} alt="" />
                     </div>
                   </div>
                 </div>
-                <div class="news__item">
-                  <div class="news__img">
-                    <img class="news__img" src={Rectangle} alt="" />
+                <div className="news__item">
+                  <div className="news__img">
+                    <img className="news__img" src={Rectangle} alt="" />
                   </div>
-                  <div class="news__info news__info--favorite_block">
-                    <div class="to__favorites">
+                  <div className="news__info news__info--favorite_block">
+                    <div className="to__favorites">
                       <p>29.11.2022</p>
-                      <div class="like__icon">
+                      <div className="like__icon">
                         <img src={deleteIcon} alt="" />
                       </div>
                     </div>
@@ -149,9 +162,17 @@ export const Profile = () => {
                       per conubia nostra, per inceptos himenaeos.
                     </p>
                     <Link to="/new">Читать дальше</Link>
-                    <div class="share">
-                      <img src={ShareIcon} alt="" />
-                    </div>
+                    <button className="share__btn ">
+                      <img
+                        className="share__icon"
+                        src={ShareIcon}
+                        alt=""
+                        onClick={() => {
+                          setShowShare(!showShare);
+                        }}
+                      />
+                    </button>
+                    {showShare && <ShareModal setShowShare={setShowShare} />}
                   </div>
                 </div>
               </div>

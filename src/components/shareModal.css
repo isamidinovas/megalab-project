@@ -12,6 +12,27 @@
     left: 278px;
     box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
     position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.share__block.share__block-newpage{
+    z-index: 1;
+position:relative;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 4px 20px;
+    max-width: 387px;
+    height: 240px;
+    width: 100%;
+    font-size: 18px;
+    color: black;
+    left: 285px;
+    top:200px;
+
+    box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
+    position: absolute;
     background-color: #fff;
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);

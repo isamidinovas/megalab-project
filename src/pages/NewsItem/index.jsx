@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./style.css";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header-homepage/Header";
 import arrowLeftIcon from "../../assets/img/arrow-left-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import LikeIcon from "../../assets/img/like-icon.png";
 import { Link } from "react-router-dom";
-import { ShareModal } from "../../components/share-modal";
+import { ShareModal } from "../../components/shareModal";
 
 export const NewsItem = () => {
   const [showComment, setShowComment] = useState(false);
@@ -17,22 +17,22 @@ export const NewsItem = () => {
     <>
       <Header />
       <main className="main">
-        <div className="containerr">
+        <div className="container container__favorite">
           <div className="news__block">
             <Link to="/">
-              <img className="back_btn" src={arrowLeftIcon} alt="" />
+              <img className="back__btn" src={arrowLeftIcon} alt="" />
             </Link>
 
             <div className="to__favorites">
               <p>29.11.2022</p>
-              <div className="heart__icon">
+              <div className="like__icon">
                 <img src={LikeIcon} alt="" />
               </div>
             </div>
 
-            <div className="news_content">
+            <div className="news__content">
               <h2 className="news__title">Заголовок новости</h2>
-              <p className="text_info">
+              <p className="text__info">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
                 vulputate libero et velit interdum, ac aliquet odio mattis.
                 className aptent taciti sociosqu ad litora torquent per conubia
@@ -41,8 +41,7 @@ export const NewsItem = () => {
               <div className="news__img">
                 <img className="news__image" src={Rectangle} alt="" />
               </div>
-
-              <p className="text_info">
+              <p className="text__info">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
                 eu turpis molestie, dictum est a, mattis tellus. Sed dignissim,
                 metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
@@ -75,16 +74,16 @@ export const NewsItem = () => {
                 purus vitae justo pharetra consequat. Mauris id mi ut arcu
                 feugiat maximus. Mauris consequat tellus id tempus aliquet.
               </p>
-              <a href="#">
+              <button className="share__btn ">
                 <img
-                  className="share-icon"
+                  className="share__icon"
                   src={ShareIcon}
                   alt=""
                   onClick={() => {
                     setShowShare(!showShare);
                   }}
                 />
-              </a>
+              </button>
               {showShare && <ShareModal setShowShare={setShowShare} />}
               <div className="comment__block">
                 <p className="comment">Комментарии</p>
@@ -97,23 +96,23 @@ export const NewsItem = () => {
                 </p>
                 <div className="reply">
                   <p>30.11.2022</p>
-                  <a
+                  <button
+                    className="reply__btn"
                     onClick={() => {
                       setShowComment(!showComment);
                     }}
-                    href="#"
                   >
                     Ответить
-                  </a>
+                  </button>
                 </div>
               </div>
 
               {showComment && (
                 <div className="answer">
                   <p>Вы</p>
-                  <input className="comment_input" type="text" name="" id="" />
-                  <div className="registration_btn">
-                    <button className="registration_button">Ответить</button>
+                  <input className="comment__input" type="text" name="" id="" />
+                  <div className="registration__btn">
+                    <button className="registration__button">Ответить</button>
                   </div>
                 </div>
               )}

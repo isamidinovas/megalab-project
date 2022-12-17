@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 import LikeIcon from "../assets/img/like-icon.png";
 import Rectangle from "../assets/img/Rectangle.png";
 import ShareIcon from "../assets/img/share.png";
 import { Link } from "react-router-dom";
+import { ShareModal } from "./shareModal";
+
 export const News = () => {
+  const [shareModal, setShareModal] = useState(false);
   return (
     <div className="news__item">
       <div className="news__img">
@@ -13,7 +16,7 @@ export const News = () => {
       <div className="news__info">
         <div className="to__favorites">
           <p>29.11.2022</p>
-          <div className="heart__icon">
+          <div className="like__icon">
             <img className="like__icon" src={LikeIcon} alt="" />
           </div>
         </div>
@@ -26,9 +29,10 @@ export const News = () => {
         </p>
 
         <Link to="/new">Читать дальше</Link>
-        <div className="share">
+        <div className="share" onClick={() => setShareModal(!shareModal)}>
           <img src={ShareIcon} alt="" />
         </div>
+        {shareModal && <ShareModal setShowShare={setShareModal} />}
       </div>
     </div>
   );

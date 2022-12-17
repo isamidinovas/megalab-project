@@ -49,7 +49,7 @@ export const Modal = ({ setIsOpen }) => {
             </div>
 
             <div className="button-wrap2">
-              <button class="save-button">Сохранить</button>
+              <button className="save-button">Сохранить</button>
             </div>
           </div>
         </div>
