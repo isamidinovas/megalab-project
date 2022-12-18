@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+
 import "./style.css";
 import logo from "../../assets/img/logo.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authenticateUser } from "../../store/Profile/profile.slice";
+
 export const RegistrationPage = () => {
+  const [userData, setUserdata] = useState({
+    nickname: "",
+    name: "",
+    last_name: "",
+    password: "",
+    password2: "",
+  });
+
+  function onChange(e) {
+    const { name, value } = e.target;
+
+    setUserdata((previousValue) => {
+      return {
+        ...previousValue,
+        [name]: value,
+      };
+    });
+  }
+
+  const dispatch = useDispatch();
+  const handleClick = (e) => {
+    e.preventDefault();
+    
+    dispatch(authenticateUser(userData));
+  };
   return (
     <div className="registration">
       <div className="container">
@@ -12,33 +41,62 @@ export const RegistrationPage = () => {
             <form className="registration__form">
               <div className="registration__item">
                 <p>Фамилия</p>
-                <input type="text" className="registration__input" />
+                <input
+                  onChange={(e) => onChange(e)}
+                  name="last_name"
+                  type="text"
+                  className="registration__input"
+                />
               </div>
               <div className="registration__item">
                 <p>Имя</p>
-                <input type="text" className="registration__input" />
+                <input
+                  onChange={(e) => onChange(e)}
+                  name="name"
+                  type="text"
+                  className="registration__input"
+                />
               </div>
               <div className="registration__item">
                 <p>Никнейм</p>
-                <input type="text" className="registration__input" />
+                <input
+                  onChange={(e) => onChange(e)}
+                  name="nickname"
+                  type="text"
+                  className="registration__input"
+                />
               </div>
               <div className="registration__item">
                 <p>Пароль</p>
-                <input type="text" className="registration__input" />
+                <input
+                  onChange={(e) => onChange(e)}
+                  name="password"
+                  type="text"
+                  className="registration__input"
+                />
               </div>
               <div className="registration__item">
                 <p className="registration__name">Подтверждение пароля</p>
-                <input type="text" className="registration__input" />
+                <input
+                  onChange={(e) => onChange(e)}
+                  name="password2"
+                  type="text"
+                  className="registration__input"
+                />
               </div>
               <div className="registration__btn">
-                <button className="registration__button" type="submit">
+                <button
+                  onClick={handleClick}
+                  className="registration__button"
+                  type="submit"
+                >
                   Регистрация
                 </button>
               </div>
               <p className="sign__in">
                 Уже есть логин? <Link to="/login">Войти</Link>
               </p>
-            </form>{" "}
+            </form>
           </div>
         </div>
       </div>

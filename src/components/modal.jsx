@@ -1,14 +1,16 @@
 import React from "react";
+
 import "./modal.css";
 import download from "../assets/img/download.png";
-import CloseIcon from "../assets/img/x.png";
+import CloseIcon from "../assets/img/x.png"
+
 export const Modal = ({ setIsOpen }) => {
   return (
     <div className="darkBG">
       <div className="centered">
         <div className="modal">
           <button onClick={() => setIsOpen(false)} className="closeBtn">
-            {" "}
+           
             <img src={CloseIcon} alt="" />
           </button>
           <div className="info-edit">
