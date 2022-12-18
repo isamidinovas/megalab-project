@@ -1,10 +1,6 @@
-import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { newsItemState } from "./news.state";
-
-
-
-
 
 export const newsSlice = createSlice({
   name: "news",
@@ -32,9 +28,7 @@ export const newsSlice = createSlice({
       });
     },
   },
-  
 });
 export const newsReducer = newsSlice.reducer;
 
 export const { addNew, addToFavorites } = newsSlice.actions;
-

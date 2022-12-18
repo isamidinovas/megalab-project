@@ -7,7 +7,7 @@
     height:  200px;
 }
 .container.container__favorite{
-    max-width: 1090px;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
@@ -30,7 +30,8 @@ padding-right: 27px;
 /* 
 filter */
 .filter__block{
-    max-width: 15%
+    max-width: 15%;
+  
 }
 .filter__text{
     font-size: 24px;
@@ -178,3 +179,16 @@ border-radius: 5px;
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+/* Стили для News */
+  .content{
+   
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.news__content{
+    width: 75%;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,24 +1,3 @@
-.container.container__favorite{
-    max-width: 1140px;
-    margin: 0 auto;
-}
-
-
-
-/* Страница новости NewsItem*/
-.content{
-   
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-}
-.news__content{
-    width: 75%;
-    flex-direction: column;
-    display: flex;
-    justify-content: space-between;
-}
-
 .news__item{
     display: flex;
     justify-content: flex-start;
@@ -42,8 +21,6 @@
     height: 100vh;
 }
 .to__favorites{
-display: flex;
+    display: flex;
 justify-content:space-between;
 }
-
-

@@ -78,7 +78,7 @@ position:relative;
     height: 40px;
     border: 1px solid #D9D9D9;
     border-radius: 10px;
-    background: url("../assets/img/copy-icon.png") no-repeat scroll 96% 11px ;
+    background: url("../../assets/img/copy-icon.png") no-repeat scroll 96% 11px ;
 }
 .link__block{
     padding-top: 38px;

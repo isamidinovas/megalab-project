@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/Header";
-import { News } from "../../components/NewsItem";
+import { News } from "../../components/newsItem/NewsItem";
 import "./style.css";
 export const HomePage = () => {
+  const news = useSelector((state) => state.news);
   return (
     <>
       <Header />
@@ -13,34 +14,34 @@ export const HomePage = () => {
           <div className="filter__block">
             <p className="filter__text">Фильтрация</p>
             <div className="checkboxs">
-              <label class="checkboxWrap">
+              <label className="checkboxWrap">
                 Sport
                 <input type="checkbox" />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
 
-              <label class="checkboxWrap">
+              <label className="checkboxWrap">
                 Политика
                 <input type="checkbox" />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
 
-              <label class="checkboxWrap">
+              <label className="checkboxWrap">
                 Звезды
                 <input type="checkbox" />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
 
-              <label class="checkboxWrap">
+              <label className="checkboxWrap">
                 <span className="checkbox__text">Искусство</span>
                 <input type="checkbox" />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
 
-              <label class="checkboxWrap">
+              <label className="checkboxWrap">
                 Мода
                 <input type="checkbox" />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
             </div>
             <div className="registration_btn">
@@ -49,9 +50,9 @@ export const HomePage = () => {
           </div>
 
           <div className="news__content">
-            <News />
-            <News />
-            <News />
+            {news.map((item) => (
+              <News key={item.title} item={item} />
+            ))}
           </div>
         </div>
       </div>

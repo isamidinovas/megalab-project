@@ -9,9 +9,9 @@ import LikeIcon from "../../assets/img/like-icon.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
-import { Modal } from "../../components/modal";
+import { Modal } from "../../components/addPostModal/modal";
 import { useSelector } from "react-redux";
-import { ShareModal } from "../../components/shareModal";
+import { ShareModal } from "../../components/shareModal/shareModal";
 export const Profile = () => {
   const { profile } = useSelector((state) => state);
   console.log(profile);

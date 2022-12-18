@@ -7,7 +7,7 @@ import ShareIcon from "../../assets/img/share.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import LikeIcon from "../../assets/img/like-icon.png";
 import { Link } from "react-router-dom";
-import { ShareModal } from "../../components/shareModal";
+import { ShareModal } from "../../components/shareModal/shareModal";
 
 export const NewsItem = () => {
   const [showComment, setShowComment] = useState(false);
