@@ -18,6 +18,20 @@ export const authenticateUser = createAsyncThunk(
   }
 );
 
+export const loginUser = createAsyncThunk(
+  "user/login",
+  async ({ nickname, password }) => {
+    const response = await axios.post(
+      "https://megalab.pythonanywhere.com/login/",
+      {
+        nickname,
+        password,
+      }
+    );
+    return response.data;
+  }
+);
+
 export const profileSlice = createSlice({
   name: "news",
   initialState: {
@@ -29,6 +43,9 @@ export const profileSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(authenticateUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
     });
   },
