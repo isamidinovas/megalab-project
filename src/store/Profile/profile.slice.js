@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +11,7 @@ export const authenticateUser = createAsyncThunk(
   async ({ name, nickname, last_name, password, password2 }) => {
     const response = await axios.post(
       "https://megalab.pythonanywhere.com/registration/",
+
       {
         nickname,
         name,
@@ -15,6 +20,10 @@ export const authenticateUser = createAsyncThunk(
         password2,
       }
     );
+    if (!response.status) {
+      throw new Error("Server error");
+    }
+    console.log("respons", response);
     console.log("test registration", response.data);
     return response.data;
   }
@@ -29,7 +38,7 @@ export const loginUser = createAsyncThunk(
         password,
       })
       .catch((el) => {
-        console.log(el);
+        console.log("el", el);
       });
     console.log("test login", response.data);
     return response.data;
@@ -46,20 +55,27 @@ export const profileSlice = createSlice({
     photo: "logo",
     userToken: undefined,
     errorMessage: "",
+    registrationErrMessage: "",
+    status: null,
   },
 
   extraReducers: (builder) => {
     builder.addCase(authenticateUser.fulfilled, (state, action) => {
       state.user = action.payload;
+      state.registrationErrMessage = "";
+      state.status = "resolved";
+    });
+    builder.addCase(authenticateUser.rejected, (state, action) => {
+      state.status = "rejected";
+      state.registrationErrMessage = "Fill in all the fields!";
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log("loginUser.fulfilled", action.payload);
       state.userToken = action.payload;
       state.errorMessage = "";
+      state.status = "resolved";
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log("loginUser.error", action.payload);
-      state.errorMessage = "password or name incorrect";
+      state.errorMessage = "Password or name incorrect!";
     });
   },
 });

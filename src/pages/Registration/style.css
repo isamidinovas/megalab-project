@@ -37,6 +37,7 @@
 }
 
 .registration__input{
+    padding-left: 7px;
     max-width: 230px;
     height: 25px;
     border-radius: 10px;
@@ -66,4 +67,9 @@
 .sign__in{
     padding-top: 20px;
     text-align: center;
+}
+.registration__err{
+    color: red;
+    font-size: 13px;
+      padding-top: 5px;
 }

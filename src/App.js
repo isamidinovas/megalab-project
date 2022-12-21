@@ -16,30 +16,30 @@ function App() {
     return false;
   });
   const tr = useSelector((state) => state.profile);
-  console.log(tr);
+  // console.log(tr);
   const [userNickname, setUserNickname] = useState("");
   return (
     <Router>
       {/* <Provider store={store}> */}
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/new" element={<NewsItem />} />
-            <Route path="/registration" element={<RegistrationPage />} />
-            <Route
-              path="/login"
-              element={
-                <Login
-                  setIsLoggendIn={setIsLoggendIn}
-                  isLoggendIn={isLoggendIn}
-                  setUserNickname={setUserNickname}
-                />
-              }
-            ></Route>
-            <Route path="/favoritenews" element={<FavoriteNews />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/new" element={<NewsItem />} />
+          <Route path="/registration" element={<RegistrationPage />} />
+          <Route
+            path="/login"
+            element={
+              <Login
+                setIsLoggendIn={setIsLoggendIn}
+                isLoggendIn={isLoggendIn}
+                setUserNickname={setUserNickname}
+              />
+            }
+          ></Route>
+          <Route path="/favoritenews" element={<FavoriteNews />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
       {/* </Provider> */}
     </Router>
   );

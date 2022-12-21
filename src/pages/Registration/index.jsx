@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-
+import { useSelector } from "react-redux";
 import "./style.css";
 import logo from "../../assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../../store/Profile/profile.slice";
+import Swal from "sweetalert2";
 
 export const RegistrationPage = () => {
+  const { status, registrationErrMessage } = useSelector(
+    (state) => state.profile
+  );
+
   const [userData, setUserdata] = useState({
     nickname: "",
     name: "",
@@ -14,7 +19,7 @@ export const RegistrationPage = () => {
     password: "",
     password2: "",
   });
-
+  const navigate = useNavigate();
   function onChange(e) {
     const { name, value } = e.target;
 
@@ -31,6 +36,7 @@ export const RegistrationPage = () => {
     e.preventDefault();
 
     dispatch(authenticateUser(userData));
+
   };
   return (
     <div className="registration">
@@ -74,7 +80,7 @@ export const RegistrationPage = () => {
                 <input
                   onChange={(e) => onChange(e)}
                   name="password"
-                  type="text"
+                  type="password"
                   required
                   pattern="\d [0-9]+[A-Za-z]"
                   className="registration__input"
@@ -99,6 +105,11 @@ export const RegistrationPage = () => {
                 >
                   Регистрация
                 </button>
+                <p className="registration__err">{registrationErrMessage}</p>
+                {status === "resolved" &&
+                  Swal.fire("вы успешно зарегистрированы", "", "success").then(
+                    navigate("/login")
+                  )}
               </div>
               <p className="sign__in">
                 Уже есть логин? <Link to="/login">Войти</Link>

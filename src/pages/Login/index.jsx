@@ -62,7 +62,7 @@ export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
                 <input
                   name="password"
                   onChange={(e) => onChange(e)}
-                  type="text"
+                  type="password"
                   required
                   className="registration__input"
                 />
@@ -76,7 +76,7 @@ export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
                 >
                   Войти
                 </button>
-                <p>{errorMessage}</p>
+                <p className="registration__err">{errorMessage}</p>
               </div>
             </form>
           </div>
