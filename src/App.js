@@ -7,24 +7,40 @@ import { Login } from "./pages/Login";
 import { NewsItem } from "./pages/NewsItem";
 import { RegistrationPage } from "./pages/Registration";
 import { Profile } from "./pages/Profile";
-import { Provider } from "react-redux";
-import {store} from './store/store'
+import { Provider, useSelector } from "react-redux";
+import { store } from "./store/store";
+import { useState } from "react";
 function App() {
+  const [isLoggendIn, setIsLoggendIn] = useState(() => {
+    if (localStorage.getItem("isLoggedIn") === "true") return true;
+    return false;
+  });
+  const tr = useSelector((state) => state.profile);
+  console.log(tr);
+  const [userNickname, setUserNickname] = useState("");
   return (
     <Router>
-      <Provider store={store}>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/new" element={<NewsItem />} />
-          <Route path="/registration" element={<RegistrationPage />} />
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/favoritenews" element={<FavoriteNews />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </div>
-      </Provider>
-     
+      {/* <Provider store={store}> */}
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/new" element={<NewsItem />} />
+            <Route path="/registration" element={<RegistrationPage />} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  setIsLoggendIn={setIsLoggendIn}
+                  isLoggendIn={isLoggendIn}
+                  setUserNickname={setUserNickname}
+                />
+              }
+            ></Route>
+            <Route path="/favoritenews" element={<FavoriteNews />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
+      {/* </Provider> */}
     </Router>
   );
 }

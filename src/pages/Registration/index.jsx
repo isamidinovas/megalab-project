@@ -29,7 +29,7 @@ export const RegistrationPage = () => {
   const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
-    
+
     dispatch(authenticateUser(userData));
   };
   return (
@@ -45,6 +45,7 @@ export const RegistrationPage = () => {
                   onChange={(e) => onChange(e)}
                   name="last_name"
                   type="text"
+                  required
                   className="registration__input"
                 />
               </div>
@@ -54,6 +55,7 @@ export const RegistrationPage = () => {
                   onChange={(e) => onChange(e)}
                   name="name"
                   type="text"
+                  required
                   className="registration__input"
                 />
               </div>
@@ -63,6 +65,7 @@ export const RegistrationPage = () => {
                   onChange={(e) => onChange(e)}
                   name="nickname"
                   type="text"
+                  required
                   className="registration__input"
                 />
               </div>
@@ -72,6 +75,8 @@ export const RegistrationPage = () => {
                   onChange={(e) => onChange(e)}
                   name="password"
                   type="text"
+                  required
+                  pattern="\d [0-9]+[A-Za-z]"
                   className="registration__input"
                 />
               </div>
@@ -81,6 +86,8 @@ export const RegistrationPage = () => {
                   onChange={(e) => onChange(e)}
                   name="password2"
                   type="text"
+                  required
+                  pattern="\d [0-9]+[A-Za-z]"
                   className="registration__input"
                 />
               </div>
