@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SecondHeader } from "../../components/header/SecondHeader";
 import DefaultIcon from "../../assets/img/default-profile-icon.png";
+import { accountUser } from "../../store/Profile/profile.slice";
 import "./style.css";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
@@ -10,15 +11,25 @@ import Rectangle from "../../assets/img/Rectangle.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { Modal } from "../../components/addPostModal/modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ShareModal } from "../../components/shareModal/shareModal";
 export const Profile = () => {
-  const { profile } = useSelector((state) => state);
-  console.log(profile);
+  const { userInfo } = useSelector((state) => state.profile);
+  console.log("TEST2", userInfo);
+  const [userData, setUserdata] = useState({
+    nickname: "",
+    name: "",
+    last_name: "",
+  });
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const img = selectedImage ? URL.createObjectURL(selectedImage) : DefaultIcon;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(accountUser(userData));
+  }, [dispatch]);
   return (
     <>
       <div className="container container__favorite">
@@ -55,14 +66,14 @@ export const Profile = () => {
               <span className="info-item_title">Фамилия</span>
               <input
                 className="info-item_input"
-                defaultValue={profile.surname}
+                defaultValue={userInfo.last_name}
                 type="text"
               />
             </div>
             <div className="info-item">
               <span className="info-item_title">Имя</span>
               <input
-                defaultValue={profile.name}
+                defaultValue={userInfo.name}
                 className="info-item_input"
                 type="text"
               />
@@ -71,7 +82,7 @@ export const Profile = () => {
               <span className="info-item_title">Никнейм</span>
               <input
                 className="info-item_input"
-                defaultValue={profile.login}
+                defaultValue={userInfo.nickname}
                 type="text"
               />
             </div>

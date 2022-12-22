@@ -15,7 +15,6 @@ export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
     nickname: "",
     password: "",
   });
-  console.log("userToken", errorMessage);
 
   useEffect(() => {
     if (userToken) navigate("/");

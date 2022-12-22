@@ -4,6 +4,7 @@ import {
   isRejectedWithValue,
 } from "@reduxjs/toolkit";
 import axios from "axios";
+import { act } from "react-dom/test-utils";
 import { useNavigate } from "react-router-dom";
 
 export const authenticateUser = createAsyncThunk(
@@ -37,6 +38,9 @@ export const loginUser = createAsyncThunk(
         nickname,
         password,
       })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+      })
       .catch((el) => {
         console.log("el", el);
       });
@@ -45,14 +49,36 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const accountUser = createAsyncThunk("user/account", async () => {
+  const token = localStorage.getItem("token");
+  console.log("token", token);
+  const response = await axios.get("https://megalab.pythonanywhere.com/user/", {
+    headers: {
+      Authorization: `token ${token}`,
+    },
+  });
+
+  if (!response.status) {
+    throw new Error("Server error");
+  }
+  console.log("respons DATTA", response);
+  console.log("test  DTATA registration", response.data);
+  return response.data;
+});
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState: {
-    id: 1,
-    name: "Symbat",
-    surname: "Isamidinove",
-    login: "symbat_fronted",
-    photo: "logo",
+    userInfo: {
+      id: 1,
+      name: "",
+      last_name: "",
+      nickname: "",
+      profile_image: "logo",
+      surname: "",
+      login: "",
+      photo: "logo",
+    },
     userToken: undefined,
     errorMessage: "",
     registrationErrMessage: "",
@@ -76,6 +102,10 @@ export const profileSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.errorMessage = "Password or name incorrect!";
+    });
+    builder.addCase(accountUser.fulfilled, (state, action) => {
+      console.log("State", state);
+      state.userInfo = action.payload;
     });
   },
 });

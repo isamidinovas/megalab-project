@@ -36,7 +36,6 @@ export const RegistrationPage = () => {
     e.preventDefault();
 
     dispatch(authenticateUser(userData));
-
   };
   return (
     <div className="registration">
