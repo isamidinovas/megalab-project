@@ -66,6 +66,32 @@ export const accountUser = createAsyncThunk("user/account", async () => {
   return response.data;
 });
 
+// export const updateToDo = createAsyncThunk('toDo/updateToDo', async ({ user, toDoId, updateAttributes }) => {
+//   const response = await axiosPrivate.put('/to-dos/update', { userId: user?.user?.id, firebaseUid: user?.user?.firebase_uid, toDoId: toDoId, updateAttributes},  { headers: { 'Authorization': user?.idToken }, withCredentials: true })
+//   const data = response.data
+//   return {data, user}
+// })
+
+export const updateUserIndo = createAsyncThunk(
+  "user/update",
+  async ({ nickname, name, last_name, profile_image }) => {
+    const token = localStorage.getItem("token");
+    const respons = await axios.put(
+      "https://megalab.pythonanywhere.com/user/",
+      {
+        nickname,
+        name,
+        last_name,
+        profile_image,
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      }
+    );
+    return respons.data;
+  }
+);
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState: {
