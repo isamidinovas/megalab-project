@@ -1,0 +1,6 @@
+yesterday:
+- Сделала Get запрос для User Data на странице профиля
+today: 
+-Поработать с Put запросом 
+problems:
+- нет
