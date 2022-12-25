@@ -16,7 +16,7 @@ function App() {
     return false;
   });
   const tr = useSelector((state) => state.profile);
-  // console.log(tr);
+  // (tr);
   const [userNickname, setUserNickname] = useState("");
   return (
     <Router>
@@ -37,7 +37,7 @@ function App() {
             }
           ></Route>
           <Route path="/favoritenews" element={<FavoriteNews />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </div>
       {/* </Provider> */}

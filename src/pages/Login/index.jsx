@@ -17,8 +17,9 @@ export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
   });
 
   useEffect(() => {
+    "use effect", userToken;
     if (userToken) navigate("/");
-  }, [userToken, errorMessage]);
+  }, [userToken]);
 
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");

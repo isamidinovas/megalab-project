@@ -1,11 +1,5 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  isRejectedWithValue,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { act } from "react-dom/test-utils";
-import { useNavigate } from "react-router-dom";
 
 export const authenticateUser = createAsyncThunk(
   "user/authenticate",
@@ -24,8 +18,6 @@ export const authenticateUser = createAsyncThunk(
     if (!response.status) {
       throw new Error("Server error");
     }
-    console.log("respons", response);
-    console.log("test registration", response.data);
     return response.data;
   }
 );
@@ -33,36 +25,27 @@ export const authenticateUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "user/login",
   async ({ nickname, password }) => {
-    const response = await axios
-      .post("https://megalab.pythonanywhere.com/login/", {
+    const response = await axios.post(
+      "https://megalab.pythonanywhere.com/login/",
+      {
         nickname,
         password,
-      })
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-      })
-      .catch((el) => {
-        console.log("el", el);
-      });
-    console.log("test login", response.data);
+      }
+    );
     return response.data;
   }
 );
 
 export const accountUser = createAsyncThunk("user/account", async () => {
   const token = localStorage.getItem("token");
-  console.log("token", token);
   const response = await axios.get("https://megalab.pythonanywhere.com/user/", {
     headers: {
       Authorization: `token ${token}`,
     },
   });
-
   if (!response.status) {
     throw new Error("Server error");
   }
-  console.log("respons DATTA", response);
-  console.log("test  DTATA registration", response.data);
   return response.data;
 });
 
@@ -72,19 +55,17 @@ export const accountUser = createAsyncThunk("user/account", async () => {
 //   return {data, user}
 // })
 
-export const updateUserIndo = createAsyncThunk(
-  "user/update",
-  async ({ nickname, name, last_name, profile_image }) => {
+export const editUserInfo = createAsyncThunk(
+  "user/edit",
+  async (data) => {
     const token = localStorage.getItem("token");
     const respons = await axios.put(
       "https://megalab.pythonanywhere.com/user/",
+     data,
       {
-        nickname,
-        name,
-        last_name,
-        profile_image,
         headers: {
           Authorization: `token ${token}`,
+          "Content-Type": "multipart/form-data",
         },
       }
     );
@@ -94,16 +75,13 @@ export const updateUserIndo = createAsyncThunk(
 
 export const profileSlice = createSlice({
   name: "profile",
+  userId: "",
   initialState: {
     userInfo: {
-      id: 1,
       name: "",
       last_name: "",
       nickname: "",
-      profile_image: "logo",
-      surname: "",
-      login: "",
-      photo: "logo",
+      profile_image: "",
     },
     userToken: undefined,
     errorMessage: "",
@@ -113,7 +91,10 @@ export const profileSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(authenticateUser.fulfilled, (state, action) => {
+      const { id } = action.payload;
+      localStorage.setItem("userId", id);
       state.user = action.payload;
+      state.userId = id;
       state.registrationErrMessage = "";
       state.status = "resolved";
     });
@@ -122,6 +103,7 @@ export const profileSlice = createSlice({
       state.registrationErrMessage = "Fill in all the fields!";
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      localStorage.setItem("token", action.payload.token);
       state.userToken = action.payload;
       state.errorMessage = "";
       state.status = "resolved";
@@ -130,7 +112,9 @@ export const profileSlice = createSlice({
       state.errorMessage = "Password or name incorrect!";
     });
     builder.addCase(accountUser.fulfilled, (state, action) => {
-      console.log("State", state);
+      state.userInfo = action.payload;
+    });
+    builder.addCase(editUserInfo.fulfilled, (state, action) => {
       state.userInfo = action.payload;
     });
   },

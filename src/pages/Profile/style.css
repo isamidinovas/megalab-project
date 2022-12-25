@@ -1,17 +1,20 @@
-.profile-block {
+.profile__block {
     display: flex;
     margin-top: 40px;
     width: 50%;
     gap: 40px;
 }
-.info-item{ 
+.profile_img{
+    border-radius: 50%;
+}
+.info__item{ 
     display: flex;
     vertical-align: middle;
     text-align: center;
     gap: 28px;
     margin-top: 20px;
 }
-.info-item_title{
+.info__title{
     font-family: 'Ubuntu';
     font-weight: 400;
     font-size: 16px;
@@ -20,7 +23,7 @@
     width: 20%;
     text-align: left;
 }
-.icon-delete{
+.icon__delete{
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 400;
@@ -29,7 +32,7 @@
      color: #000000;
      cursor: pointer;
 }
-.icon-add {
+.icon__add {
     font-family: 'Ubuntu';
 font-style: normal;
 font-weight: 400;
@@ -39,7 +42,7 @@ cursor: pointer;
 padding-right: 5px;
 color: #000000;
 }
-.info-item_input {
+.info__input {
     width: 272px;
     outline: none;
     padding-left: 8px;
@@ -48,17 +51,17 @@ color: #000000;
     border-radius: 10px;
     background: url('../../assets/img/edit.png') no-repeat scroll 96% 11px;
 }
-.button-wrap{
+.button__wrap{
     display: flex;
     justify-content: flex-end;
     margin-top: 30px;
 }
-.title-button {
+.title__button {
     margin-top: 26px;
     display: flex;
     justify-content: space-between;
 }
-.save-button {
+.save__button {
     font-size: 15px;
     color: #fff;
     cursor: pointer;

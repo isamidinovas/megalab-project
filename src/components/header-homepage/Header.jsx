@@ -4,10 +4,11 @@ import Logo from "../../assets/img/header-logo.png";
 import MenuIcon from "../../assets/img/menu.png";
 import SearchIcon from "../../assets/img/search.png";
 import ProfileIcon from "../../assets/img/Profile-icon.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, NavLink } from "react-router-dom";
 function Header() {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
+  const userId = localStorage.getItem('userId')
   const location = useLocation();
   return (
     <>
@@ -42,16 +43,16 @@ function Header() {
               />
               {showProfile && (
                 <div className="modal__menu">
-                  <Link
+                  <NavLink
                     className="profile"
                     onClick={() => {
                       location("profile");
                       SetShowProfile(false);
                     }}
-                    to="/profile"
+                    to={`/profile/${userId}`}
                   >
                     Мой профиль
-                  </Link>
+                  </NavLink>
                   <a
                     className="exit__btn"
                     onClick={() => SetShowProfile(false)}
