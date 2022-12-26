@@ -1,0 +1,6 @@
+yesterday:
+-поработать с постом
+today: 
+-Отображение информации на Homepage
+problems:
+-нет
