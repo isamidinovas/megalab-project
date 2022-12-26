@@ -19,6 +19,7 @@ export const RegistrationPage = () => {
     password: "",
     password2: "",
   });
+  console.log("userDAta", userData);
   const navigate = useNavigate();
   function onChange(e) {
     const { name, value } = e.target;

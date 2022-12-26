@@ -1,11 +1,41 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/Header";
 import { News } from "../../components/newsItem/NewsItem";
+import { newsShow } from "../../store/News/news.slice";
+
 import "./style.css";
 export const HomePage = () => {
-  const news = useSelector((state) => state.news);
+  const [news, setNews] = useState("");
+  const { newsInfo } = useSelector((state) => state.news);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("RE");
+  //   dispatch(newsShow());
+  // }, [dispatch]);
+  // const news = useSelector((state) => state.news);
+  // console.log(newsInfo);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    fetch("https://megalab.pythonanywhere.com/post/", {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+
+        //  else {
+        //   alert("something is wrong" + res.status);
+        //   // goAuthpage();
+        //   // navigate("/auth")
+        // }
+      })
+      .then((data) => setNews(data));
+  }, []);
   return (
     <>
       <Header />
@@ -50,9 +80,9 @@ export const HomePage = () => {
           </div>
 
           <div className="news__content">
-            {news.map((item) => (
-              <News key={item.title} item={item} />
-            ))}
+            {/* {news.map((item) => (
+              <News key={item.id} item={item} />
+            ))} */}
           </div>
         </div>
       </div>

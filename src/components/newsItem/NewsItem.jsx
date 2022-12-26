@@ -23,7 +23,7 @@ export const News = ({ item }) => {
           </div>
         </div>
         <h2>{item.title}</h2>
-        <p>{item.content}</p>
+        <p>{item.text}</p>
 
         <Link to="/new">Читать дальше</Link>
         <button className="share__btn ">

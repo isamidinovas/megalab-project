@@ -3,6 +3,7 @@ import "./Footer.css";
 import Logo from "../../assets/img/header-logo.png";
 import { Link } from "react-router-dom";
 function Footer() {
+  const userId = localStorage.getItem("userId");
   return (
     <footer className="footer">
       <div className="footer__inner">
@@ -10,7 +11,7 @@ function Footer() {
           <img src={Logo} alt="" />
         </div>
         <div className="footer__text">
-          <Link to="/profile" className="profil__link">
+          <Link to={`/profile/${userId}`} className="profil__link">
             Мой профиль
           </Link>
           <Link to="/favoritenews" className="profil__link">

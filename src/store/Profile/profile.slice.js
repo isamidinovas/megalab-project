@@ -46,6 +46,7 @@ export const accountUser = createAsyncThunk("user/account", async () => {
   if (!response.status) {
     throw new Error("Server error");
   }
+
   return response.data;
 });
 
@@ -55,23 +56,20 @@ export const accountUser = createAsyncThunk("user/account", async () => {
 //   return {data, user}
 // })
 
-export const editUserInfo = createAsyncThunk(
-  "user/edit",
-  async (data) => {
-    const token = localStorage.getItem("token");
-    const respons = await axios.put(
-      "https://megalab.pythonanywhere.com/user/",
-     data,
-      {
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-    return respons.data;
-  }
-);
+export const editUserInfo = createAsyncThunk("user/edit", async (data) => {
+  const token = localStorage.getItem("token");
+  const respons = await axios.put(
+    "https://megalab.pythonanywhere.com/user/",
+    data,
+    {
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return respons.data;
+});
 
 export const profileSlice = createSlice({
   name: "profile",

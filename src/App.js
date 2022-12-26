@@ -18,6 +18,7 @@ function App() {
   const tr = useSelector((state) => state.profile);
   // (tr);
   const [userNickname, setUserNickname] = useState("");
+  const userId = localStorage.getItem("userId");
   return (
     <Router>
       {/* <Provider store={store}> */}
@@ -37,7 +38,7 @@ function App() {
             }
           ></Route>
           <Route path="/favoritenews" element={<FavoriteNews />} />
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path={`/profile/${userId}`} element={<Profile />} />
         </Routes>
       </div>
       {/* </Provider> */}

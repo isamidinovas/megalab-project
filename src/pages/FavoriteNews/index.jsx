@@ -7,6 +7,7 @@ import { News } from "../../components/newsItem/NewsItem";
 
 export const FavoriteNews = () => {
   const news = useSelector((state) => state.news);
+
   return (
     <div className="favorite__block">
       <SecondHeader />
@@ -15,11 +16,11 @@ export const FavoriteNews = () => {
           <h2 className="title__favorite-new">Избранные новости</h2>
           <div className="content">
             <div className="news__block">
-              {news.map((item) => (
+              {/* {news.map((item) => (
                 <>
                   <News key={item.title} item={item} />
                 </>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>

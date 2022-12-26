@@ -8,7 +8,7 @@ import { Link, useLocation, NavLink } from "react-router-dom";
 function Header() {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
-  const userId = localStorage.getItem('userId')
+  const userId = localStorage.getItem("userId");
   const location = useLocation();
   return (
     <>

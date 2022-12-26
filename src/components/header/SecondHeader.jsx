@@ -10,6 +10,7 @@ export const SecondHeader = () => {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
   const location = useLocation();
+  const userId = localStorage.getItem("userId");
   return (
     <header className="header__favorite">
       <div className="container container__favorite">
@@ -48,7 +49,7 @@ export const SecondHeader = () => {
                     location("profile");
                     SetShowProfile(false);
                   }}
-                  to="/profile"
+                  to={`/profile/${userId}`}
                 >
                   Мой профиль
                 </Link>
