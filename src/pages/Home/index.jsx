@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
@@ -7,35 +8,32 @@ import { newsShow } from "../../store/News/news.slice";
 
 import "./style.css";
 export const HomePage = () => {
-  const [news, setNews] = useState("");
+  const [news, setNews] = useState([]);
   const { newsInfo } = useSelector((state) => state.news);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   console.log("RE");
-  //   dispatch(newsShow());
-  // }, [dispatch]);
-  // const news = useSelector((state) => state.news);
-  // console.log(newsInfo);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("https://megalab.pythonanywhere.com/post/", {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    })
+    const response = axios
+      .get("https://megalab.pythonanywhere.com/post/", {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      })
       .then((res) => {
         if (res.status === 200) {
-          return res.json();
+          return res.data;
         }
-
-        //  else {
-        //   alert("something is wrong" + res.status);
-        //   // goAuthpage();
-        //   // navigate("/auth")
-        // }
       })
-      .then((data) => setNews(data));
+      .catch(() => {
+        throw new Error("Server error");
+      })
+      .then((data) => {
+        setNews(data);
+      });
+
+    return response.data;
   }, []);
+
   return (
     <>
       <Header />
@@ -78,12 +76,15 @@ export const HomePage = () => {
               <button className="registration__button">Применить</button>
             </div>
           </div>
-
-          <div className="news__content">
-            {/* {news.map((item) => (
-              <News key={item.id} item={item} />
-            ))} */}
-          </div>
+          {news.length > 0 ? (
+            <div className="news__content">
+              {news.map((item) => (
+                <News key={item.id} item={item} />
+              ))}
+            </div>
+          ) : (
+            <h2 className="loaded">Идет загрузка...</h2>
+          )}
         </div>
       </div>
       <Footer />

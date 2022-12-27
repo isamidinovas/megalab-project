@@ -1,4 +1,6 @@
-
+.loaded{
+    margin: 30px auto;
+}
 .header{
     background-image: url("../../assets/img/headerBG.png");
     background-repeat: no-repeat;

@@ -24,3 +24,13 @@
     display: flex;
 justify-content:space-between;
 }
+
+.btn{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.btn--secondary{
+    background-color: red;
+  
+}
