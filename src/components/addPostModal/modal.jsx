@@ -60,6 +60,7 @@ export const Modal = ({ setIsOpen }) => {
                 name="title"
                 className="modal-input"
                 type="text"
+                value={postData.title}
               />
             </div>
             <div className="modal-content-item">
@@ -69,6 +70,7 @@ export const Modal = ({ setIsOpen }) => {
                 name="short_desc"
                 className="modal-input"
                 type="text"
+                value={postData.short_desc}
               />
             </div>
             <div className="modal-content-item">
@@ -77,15 +79,24 @@ export const Modal = ({ setIsOpen }) => {
                 onChange={(e) => onChange(e)}
                 name="text"
                 className="text-area"
+                value={postData.text}
               />
             </div>
             <div className="modal-content-item">
               <span className="modal-item_title">Выбрать категорию</span>
               <select className="select-category" name="tag" id="">
-                <option value="sdf">#начили</option>
-                <option value="sdf">#жизнь</option>
-                <option value="sdf">#законджунгли</option>
-                <option value="sdf">#миржесток</option>
+                <option name="tag" value={postData.tag}>
+                  #начили
+                </option>
+                <option name="tag" value={postData.tag}>
+                  #жизнь
+                </option>
+                <option name="tag" value={postData.tag}>
+                  #законджунгли
+                </option>
+                <option name="tag" value={postData.tag}>
+                  #миржесток
+                </option>
               </select>
             </div>
 

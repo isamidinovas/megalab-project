@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { SecondHeader } from "../../components/header/SecondHeader";
+import { Modal } from "../../components/addPostModal/modal";
+import { useDispatch, useSelector } from "react-redux";
+import { NewPost } from "../../components/NewPostItem";
+import Footer from "../../components/footer/Footer";
 import DefaultIcon from "../../assets/img/default-profile-icon.png";
 import { accountUser } from "../../store/Profile/profile.slice";
 import { editUserInfo } from "../../store/Profile/profile.slice";
 import "./style.css";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
-import Footer from "../../components/footer/Footer";
-import LikeIcon from "../../assets/img/like-icon.png";
-import Rectangle from "../../assets/img/Rectangle.png";
-import ShareIcon from "../../assets/img/share.png";
-import { Link, useParams } from "react-router-dom";
-import { Modal } from "../../components/addPostModal/modal";
-import { useDispatch, useSelector } from "react-redux";
-import { ShareModal } from "../../components/shareModal/shareModal";
 
 export const Profile = () => {
   const { userInfo } = useSelector((state) => state.profile);
@@ -45,7 +41,6 @@ export const Profile = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [showShare, setShowShare] = useState(false);
   const img = userInfo.profile_image
     ? `https://megalab.pythonanywhere.com${userInfo.profile_image}`
     : DefaultIcon;
@@ -162,88 +157,8 @@ export const Profile = () => {
 
             <div className="content">
               <div className="news__block">
-                <div className="news__item">
-                  <div className="news__img">
-                    <img className="news__img" src={Rectangle} alt="" />
-                  </div>
-                  <div className="news__info">
-                    <div className="to__favorites">
-                      <p>29.11.2022</p>
-                      <div className="like__icon">
-                        <img src={deleteIcon} alt="" />
-                      </div>
-                    </div>
-                    <h2>Заголовок новости</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis. Class aptent taciti sociosqu ad litora torquent
-                      per conubia nostra, per inceptos himenaeos.
-                    </p>
-
-                    <Link to="/new">Читать дальше</Link>
-                    <div className="share">
-                      <img src={ShareIcon} alt="" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="news__item">
-                  <div className="news__img">
-                    <img className="news__img" src={Rectangle} alt="" />
-                  </div>{" "}
-                  <div className="news__info news__info--favorite_block">
-                    <div className="to__favorites">
-                      <p>29.11.2022</p>
-                      <div className="like__icon">
-                        <img src={deleteIcon} alt="" />
-                      </div>
-                    </div>
-                    <h2>Заголовок новости</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis. Class aptent taciti sociosqu ad litora torquent
-                      per conubia nostra, per inceptos himenaeos.
-                    </p>
-                    <Link to="/new">Читать дальше</Link>
-                    <div className="share">
-                      <img src={ShareIcon} alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="news__item">
-                  <div className="news__img">
-                    <img className="news__img" src={Rectangle} alt="" />
-                  </div>
-                  <div className="news__info news__info--favorite_block">
-                    <div className="to__favorites">
-                      <p>29.11.2022</p>
-                      <div className="like__icon">
-                        <img src={deleteIcon} alt="" />
-                      </div>
-                    </div>
-                    <h2>Заголовок новости</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis. Class aptent taciti sociosqu ad litora torquent
-                      per conubia nostra, per inceptos himenaeos.
-                    </p>
-                    <Link to="/new">Читать дальше</Link>
-                    <button className="share__btn ">
-                      <img
-                        className="share__icon"
-                        src={ShareIcon}
-                        alt=""
-                        onClick={() => {
-                          setShowShare(!showShare);
-                        }}
-                      />
-                    </button>
-                    {showShare && <ShareModal setShowShare={setShowShare} />}
-                  </div>
-                </div>
+                <NewPost />
+                <NewPost />
               </div>
             </div>
           </div>
