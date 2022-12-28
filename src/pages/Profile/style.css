@@ -4,6 +4,13 @@
     width: 50%;
     gap: 40px;
 }
+.content{
+   
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .profile_img{
     border-radius: 50%;
 }

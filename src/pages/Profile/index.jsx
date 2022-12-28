@@ -7,13 +7,14 @@ import Footer from "../../components/footer/Footer";
 import DefaultIcon from "../../assets/img/default-profile-icon.png";
 import { accountUser } from "../../store/Profile/profile.slice";
 import { editUserInfo } from "../../store/Profile/profile.slice";
+
 import "./style.css";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
 
 export const Profile = () => {
+  const post = useSelector((store) => store.post);
   const { userInfo } = useSelector((state) => state.profile);
-
   const [userInfos, setUserInfos] = useState({
     nickname: userInfo.nickname,
     name: userInfo.name,
@@ -157,8 +158,11 @@ export const Profile = () => {
 
             <div className="content">
               <div className="news__block">
-                <NewPost />
-                <NewPost />
+                {post.length ? (
+                  <NewPost key={userInfo.id} post={post} />
+                ) : (
+                  <h2>Публикаций пока нет</h2>
+                )}
               </div>
             </div>
           </div>

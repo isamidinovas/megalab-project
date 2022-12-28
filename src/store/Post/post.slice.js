@@ -31,8 +31,9 @@ export const postCreate = createAsyncThunk(
 
 export const postSlice = createSlice({
   name: "post",
-  initialState: {
-    postInfo: {
+  userId: "",
+  initialState: [
+    {
       id: 1,
       date: "",
       title: "",
@@ -43,17 +44,18 @@ export const postSlice = createSlice({
       comment: "",
       short_desc: "",
     },
-  },
+  ],
 
   extraReducers: (builder) => {
     builder.addCase(postCreate.fulfilled, (state, action) => {
+      // console.log("actiona", action);
+      state.push(action.payload);
       const { id } = action.payload;
       localStorage.setItem("userId", id);
       state.user = action.payload;
       state.userId = id;
       localStorage.setItem("token", action.payload.token);
       state.userToken = action.payload;
-      state.postInfo = action.payload;
     });
   },
 });

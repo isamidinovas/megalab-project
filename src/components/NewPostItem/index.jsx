@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import "./style.css";
 import Rectangle from "../../assets/img/Rectangle.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal/shareModal";
-export const NewPost = () => {
+import { useSelector } from "react-redux";
+import { store } from "../../store/store";
+export const NewPost = ({ post }) => {
+  console.log("postIsNewPostItem", post);
   const [showShare, setShowShare] = useState(false);
   return (
     <div className="news__item">
@@ -18,13 +22,8 @@ export const NewPost = () => {
             <img src={deleteIcon} alt="" />
           </div>
         </div>
-        <h2>Заголовок новости</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate libero et velit interdum, ac aliquet odio mattis. Class
-          aptent taciti sociosqu ad litora torquent per conubia nostra, per
-          inceptos himenaeos.
-        </p>
+        <h2>{post.title}</h2>
+        <p>{post.text}</p>
 
         <Link to="/new">Читать дальше</Link>
         <button className="share__btn ">
