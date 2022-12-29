@@ -3,17 +3,28 @@ import "./modal.css";
 import { postCreate } from "../../store/Post/post.slice";
 import download from "../../assets/img/download.png";
 import CloseIcon from "../../assets/img/x.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Modal = ({ setIsOpen }) => {
+  const post = useSelector((state) => state.post);
   const [postData, setPostData] = useState({
     title: "",
     text: "",
-    tag: "",
+    tag: "r",
     image: "",
     short_desc: "",
   });
   console.log("postData", postData);
+
+  function handleSelectImage(image) {
+    let formData = new FormData();
+    formData.set("image", post.image, image.name);
+    formData.set("title", post.title);
+    formData.set("text", post.text);
+    formData.set("tag", post.tag);
+
+    dispatch(postCreate(formData));
+  }
   function onChange(e) {
     const { name, value } = e.target;
 
@@ -26,8 +37,9 @@ export const Modal = ({ setIsOpen }) => {
   }
   const dispatch = useDispatch();
   const handleClick = (e) => {
+    console.log("uhdfhfhfhfhfhhfhfhfhhf", postData);
+    setIsOpen(false);
     e.preventDefault();
-
     dispatch(postCreate(postData));
   };
   return (
@@ -45,7 +57,9 @@ export const Modal = ({ setIsOpen }) => {
                   Добавить фото <img src={download} />
                 </label>
                 <input
-                  onChange={(e) => onChange(e)}
+                  onChange={(event) => {
+                    handleSelectImage(event.target.files[0]);
+                  }}
                   id="filePicker"
                   name="image"
                   style={{ visibility: "hidden" }}
@@ -99,7 +113,9 @@ export const Modal = ({ setIsOpen }) => {
                 </option>
               </select>
             </div>
-
+            <div className="modal-content-tag">
+              <span className="modal-item_title">#Не выбрано</span>
+            </div>
             <div className="button-wrap2">
               <button className="save__button" onClick={handleClick}>
                 Сохранить

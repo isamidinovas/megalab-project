@@ -5,15 +5,15 @@ import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal/shareModal";
-import { useSelector } from "react-redux";
-import { store } from "../../store/store";
+
 export const NewPost = ({ post }) => {
   console.log("postIsNewPostItem", post);
+  const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
   return (
     <div className="news__item">
       <div className="news__img">
-        <img className="news__img" src={Rectangle} alt="" />
+        <img className="news__img" src={img} alt="" />
       </div>
       <div className="news__info">
         <div className="to__favorites">
@@ -25,7 +25,7 @@ export const NewPost = ({ post }) => {
         <h2>{post.title}</h2>
         <p>{post.text}</p>
 
-        <Link to="/new">Читать дальше</Link>
+        <Link to={"/new"}> Читать дальше</Link>
         <button className="share__btn ">
           <img
             className="share__icon"

@@ -1,44 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export const postCreate = createAsyncThunk(
-  "post/create",
-  async ({ id, title, text, image, tag, short_desc }) => {
-    const token = localStorage.getItem("token");
-    console.log("token", token);
-    const response = await axios.post(
-      "https://megalab.pythonanywhere.com/post/",
-      {
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
+import { postsService } from "../../service/index.js";
+export const getNewsThunk = createAsyncThunk("getNews", async () => {
+  return postsService.getPosts();
+});
+export const postCreate = createAsyncThunk("post/create", async (data) => {
+  const token = localStorage.getItem("token");
+  console.log("token2222222", data);
+  const response = await axios.post(
+    "https://megalab.pythonanywhere.com/post/",
+    data,
+    {
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "multipart/form-data",
       },
-      {
-        id,
-        title,
-        text,
-        image,
-        tag,
-        short_desc,
-      }
-    );
+    }
+  );
 
-    console.log("resp data", response.data);
-    return response.data;
-  }
-);
+  return response.data;
+});
 
 export const postSlice = createSlice({
   name: "post",
   userId: "",
   initialState: [
     {
-      id: 1,
+      id: "",
       date: "",
       title: "",
       text: "",
-      image: null,
+      image: "",
       tag: "",
       is_liked: false,
       comment: "",
@@ -48,14 +40,12 @@ export const postSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(postCreate.fulfilled, (state, action) => {
-      // console.log("actiona", action);
+      const payload = action.payload;
       state.push(action.payload);
-      const { id } = action.payload;
-      localStorage.setItem("userId", id);
-      state.user = action.payload;
-      state.userId = id;
-      localStorage.setItem("token", action.payload.token);
-      state.userToken = action.payload;
+    });
+    builder.addCase(getNewsThunk.fulfilled, (state, action) => {
+      console.log("getNewsThunk.fulfilled", action.payload);
+      state.newsList = action.payload;
     });
   },
 });

@@ -79,3 +79,6 @@ color: #000000;
     background-color: #7E5BC2;
     border-radius: 10px;
 }
+.save__button:hover{
+    background-color: #59379e;
+}

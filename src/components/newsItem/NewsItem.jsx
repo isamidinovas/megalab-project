@@ -16,7 +16,7 @@ export const News = ({ item }) => {
     btn: true,
     "btn--secondary": is_liked,
   });
-  console.log("isl", is_liked);
+ 
   const news = useSelector((state) => state.news);
   const [showShare, setShowShare] = useState(false);
   return (
@@ -41,7 +41,8 @@ export const News = ({ item }) => {
         <h2>{item.title}</h2>
         <p>{item.text}</p>
 
-        <Link to="/new">Читать дальше</Link>
+        {/* <Link to="/new">Читать дальше</Link> */}
+        <Link to={"/new"}> Читать дальше</Link>
         <button className="share__btn ">
           <img
             className="share__icon"

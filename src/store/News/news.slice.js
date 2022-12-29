@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { postsService } from "../../service";
+export const getNewsThunk = createAsyncThunk("getNews", async () => {
+  return postsService.getPosts();
+});
 export const newsSlice = createSlice({
   name: "news",
   initialState: {
-    newsInfo: {
+    newsList: {
       id: 1,
       date: "",
       title: "",
@@ -16,12 +19,14 @@ export const newsSlice = createSlice({
       short_desc: "",
     },
   },
+  extraReducers: (builder) => {
 
-  //   extraReducers: (builder) => {
-  //     builder.addCase(newsShow.fulfilled, (state, action) => {
-  //       state.newsInfo = action.payload;
-  //     });
-  //   },
+    builder.addCase(getNewsThunk.fulfilled, (state, action) => {
+      console.log("getNewsThunk.fulfilled", action.payload);
+      state.newsList = action.payload;
+    });
+  },
+ 
 });
 
 export const newsReducer = newsSlice.reducer;

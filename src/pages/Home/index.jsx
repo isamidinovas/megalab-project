@@ -5,33 +5,15 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/Header";
 import { News } from "../../components/newsItem/NewsItem";
 import { newsShow } from "../../store/News/news.slice";
+import { getNewsThunk } from "../../store/Post/post.slice";
 
 import "./style.css";
 export const HomePage = () => {
   const [news, setNews] = useState([]);
-  const { newsInfo } = useSelector((state) => state.news);
-
+  const { newsList } = useSelector((state) => state.news);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const response = axios
-      .get("https://megalab.pythonanywhere.com/post/", {
-        headers: {
-          Authorization: `token ${token}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          return res.data;
-        }
-      })
-      .catch(() => {
-        throw new Error("Server error");
-      })
-      .then((data) => {
-        setNews(data);
-      });
-
-    return response.data;
+    dispatch(getNewsThunk());
   }, []);
 
   return (
@@ -76,9 +58,9 @@ export const HomePage = () => {
               <button className="registration__button">Применить</button>
             </div>
           </div>
-          {news.length > 0 ? (
+          {newsList.length > 0 ? (
             <div className="news__content">
-              {news.map((item) => (
+              {newsList.map((item) => (
                 <News key={item.id} item={item} />
               ))}
             </div>

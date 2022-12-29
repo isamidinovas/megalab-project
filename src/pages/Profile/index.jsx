@@ -11,10 +11,12 @@ import { editUserInfo } from "../../store/Profile/profile.slice";
 import "./style.css";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
+import { getNewsThunk } from "../../store/Post/post.slice";
 
 export const Profile = () => {
   const post = useSelector((store) => store.post);
   const { userInfo } = useSelector((state) => state.profile);
+  console.log("info", userInfo);
   const [userInfos, setUserInfos] = useState({
     nickname: userInfo.nickname,
     name: userInfo.name,
@@ -49,6 +51,7 @@ export const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(accountUser());
+    // dispatch(getNewsThunk())
   }, [dispatch]);
   const handleClick = () => {
     dispatch(editUserInfo(userInfos));
@@ -72,6 +75,7 @@ export const Profile = () => {
 
     dispatch(editUserInfo(formData));
   }
+  console.log("posts in profile", post);
 
   const formData = new FormData();
   return (
@@ -157,13 +161,15 @@ export const Profile = () => {
             </div>
 
             <div className="content">
-              <div className="news__block">
-                {post.length ? (
-                  <NewPost key={userInfo.id} post={post} />
-                ) : (
-                  <h2>Публикаций пока нет</h2>
-                )}
-              </div>
+              {post.length ? (
+                <div className="news__block">
+                  {post.map((post) => (
+                    <NewPost key={post.id} post={post} />
+                  ))}
+                </div>
+              ) : (
+                <h2 style={{ margin: "0 auto" }}>Публикаций пока нет!</h2>
+              )}
             </div>
           </div>
         </main>

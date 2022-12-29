@@ -17,9 +17,10 @@ export const SecondHeader = () => {
         <div className="header__inner">
           <div className="header__logo">
             <Link to={"/"}>
-              {" "}
               <img src={MegalabLogo} alt="" />
             </Link>
+
+            {/* <Link to={"/new"}> Читать дальше</Link> */}
           </div>
           <div className="header__icons">
             <img className="icon" src={SearchIcon} alt="" />
@@ -53,6 +54,7 @@ export const SecondHeader = () => {
                 >
                   Мой профиль
                 </Link>
+
                 <a
                   className="exit__btn"
                   onClick={() => SetShowProfile(false)}
