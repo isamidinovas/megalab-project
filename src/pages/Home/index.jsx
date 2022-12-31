@@ -10,7 +10,9 @@ import { getNewsThunk } from "../../store/Post/post.slice";
 import "./style.css";
 export const HomePage = () => {
   const [news, setNews] = useState([]);
+  // const { newsList } = useSelector((state) => state.news);
   const { newsList } = useSelector((state) => state.news);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());

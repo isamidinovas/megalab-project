@@ -6,25 +6,26 @@ import CloseIcon from "../../assets/img/x.png";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Modal = ({ setIsOpen }) => {
+  const { newsList } = useSelector((state) => state.news);
   const post = useSelector((state) => state.post);
+
   const [postData, setPostData] = useState({
-    title: "",
-    text: "",
+    title: newsList.title,
+    text: newsList.text,
     tag: "r",
     image: "",
-    short_desc: "",
+    short_desc: newsList.short_desc,
   });
-  console.log("postData", postData);
 
-  function handleSelectImage(image) {
-    let formData = new FormData();
-    formData.set("image", post.image, image.name);
-    formData.set("title", post.title);
-    formData.set("text", post.text);
-    formData.set("tag", post.tag);
+  // function handleSelectImage(image) {
+  //   let formData = new FormData();
+  //   formData.set("image", post.image, image.name);
+  //   formData.set("title", post.title);
+  //   formData.set("text", post.text);
+  //   formData.set("tag", post.tag);
 
-    dispatch(postCreate(formData));
-  }
+  //   dispatch(postCreate(formData));
+  // }
   function onChange(e) {
     const { name, value } = e.target;
 
@@ -37,9 +38,10 @@ export const Modal = ({ setIsOpen }) => {
   }
   const dispatch = useDispatch();
   const handleClick = (e) => {
-    console.log("uhdfhfhfhfhfhhfhfhfhhf", postData);
-    setIsOpen(false);
     e.preventDefault();
+
+    setIsOpen(false);
+
     dispatch(postCreate(postData));
   };
   return (
@@ -57,9 +59,9 @@ export const Modal = ({ setIsOpen }) => {
                   Добавить фото <img src={download} />
                 </label>
                 <input
-                  onChange={(event) => {
-                    handleSelectImage(event.target.files[0]);
-                  }}
+                  // onChange={(event) => {
+                  //   handleSelectImage(event.target.files[0]);
+                  // }}
                   id="filePicker"
                   name="image"
                   style={{ visibility: "hidden" }}

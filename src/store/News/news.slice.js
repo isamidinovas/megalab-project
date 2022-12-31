@@ -20,13 +20,11 @@ export const newsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-
     builder.addCase(getNewsThunk.fulfilled, (state, action) => {
-      console.log("getNewsThunk.fulfilled", action.payload);
+ 
       state.newsList = action.payload;
     });
   },
- 
 });
 
 export const newsReducer = newsSlice.reducer;

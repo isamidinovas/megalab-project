@@ -14,7 +14,7 @@ function Footer() {
           <Link to={`/profile/${userId}`} className="profil__link">
             Мой профиль
           </Link>
-          <Link to="/favoritenews" className="profil__link">
+          <Link to={"/favoritenews"} className="profil__link">
             Избранные новости
           </Link>
         </div>

@@ -6,7 +6,7 @@ export const getNewsThunk = createAsyncThunk("getNews", async () => {
 });
 export const postCreate = createAsyncThunk("post/create", async (data) => {
   const token = localStorage.getItem("token");
-  console.log("token2222222", data);
+  const postIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const response = await axios.post(
     "https://megalab.pythonanywhere.com/post/",
     data,
@@ -18,6 +18,12 @@ export const postCreate = createAsyncThunk("post/create", async (data) => {
     }
   );
 
+  if (response.data.id) {
+    localStorage.setItem(
+      "myPosts",
+      JSON.stringify([...postIds, response.data.id])
+    );
+  }
   return response.data;
 });
 
@@ -44,8 +50,7 @@ export const postSlice = createSlice({
       state.push(action.payload);
     });
     builder.addCase(getNewsThunk.fulfilled, (state, action) => {
-      console.log("getNewsThunk.fulfilled", action.payload);
-      state.newsList = action.payload;
+      state = action.payload;
     });
   },
 });
