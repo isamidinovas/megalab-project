@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./style.css";
 import { SecondHeader } from "../../components/header/SecondHeader";
 import { Modal } from "../../components/addPostModal/modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,17 +8,12 @@ import Footer from "../../components/footer/Footer";
 import DefaultIcon from "../../assets/img/default-profile-icon.png";
 import { accountUser } from "../../store/Profile/profile.slice";
 import { editUserInfo } from "../../store/Profile/profile.slice";
-
-import "./style.css";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import { getNewsThunk, postCreate } from "../../store/Post/post.slice";
 
 export const Profile = () => {
-  const post = useSelector((store) => store.post);
   const myPostsIds = JSON.parse(localStorage.getItem("myPosts"));
-
-  // const { newsList } = useSelector((state) => state.news);
   const { userInfo } = useSelector((state) => state.profile);
   const { newsList } = useSelector((state) => state.news);
 
@@ -37,18 +33,10 @@ export const Profile = () => {
       name: userInfo.name,
       last_name: userInfo.last_name,
     });
-    // setPostData({
-    //   title: post.title,
-    //   text: post.text,
-    //   tag: "r",
-    //   image: "",
-    //   short_desc: post.short_desc,
-    // });
   }, [userInfo]);
 
   function onChange(e) {
     const { name, value } = e.target;
-
     setUserInfos((previousValue) => {
       return {
         ...previousValue,
@@ -56,8 +44,6 @@ export const Profile = () => {
       };
     });
   }
-
-  const [selectedImage, setSelectedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const img = userInfo.profile_image
     ? `https://megalab.pythonanywhere.com${userInfo.profile_image}`
@@ -65,7 +51,6 @@ export const Profile = () => {
 
   useEffect(() => {
     dispatch(accountUser());
-    // dispatch(postCreate());
   }, [dispatch]);
   const handleClick = () => {
     dispatch(editUserInfo(userInfos));
@@ -73,16 +58,6 @@ export const Profile = () => {
   function handleSelectImage(image) {
     let formData = new FormData();
     formData.set("profile_image", image, image.name);
-    formData.set("nickname", userInfo.nickname);
-    formData.set("name", userInfo.name);
-    formData.set("last_name", userInfo.last_name);
-
-    dispatch(editUserInfo(formData));
-  }
-
-  function handleDeleteImage() {
-    let formData = new FormData();
-    formData.set("profile_image", null);
     formData.set("nickname", userInfo.nickname);
     formData.set("name", userInfo.name);
     formData.set("last_name", userInfo.last_name);
@@ -119,7 +94,7 @@ export const Profile = () => {
                   type="file"
                 />
               </div>
-              <div onClick={handleDeleteImage} className="icon-delete">
+              <div className="icon-delete">
                 Удалить <img src={deleteIcon} />
               </div>
             </div>
@@ -179,12 +154,7 @@ export const Profile = () => {
                   {newsList
                     .filter((elem) => myPostsIds.indexOf(elem.id) != -1)
                     .map((post) => (
-                      <NewPost
-                        // postData={postData}
-                        // setPostData={setPostData}
-                        key={post.id}
-                        post={post}
-                      />
+                      <NewPost key={post.id} post={post} />
                     ))}
                 </div>
               ) : (

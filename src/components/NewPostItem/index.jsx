@@ -5,18 +5,8 @@ import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal/shareModal";
-import { useDispatch } from "react-redux";
-import { postCreate } from "../../store/Post/post.slice";
 
 export const NewPost = ({ post }) => {
-  const [postData, setPostData] = useState({
-    title: post.title,
-    text: post.text,
-    tag: "r",
-    image: null,
-    short_desc: post.short_desc,
-  });
-
   // const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
   return (

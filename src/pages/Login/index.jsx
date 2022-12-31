@@ -8,7 +8,6 @@ import { useNavigate, useNavigation } from "react-router-dom";
 
 export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
   const userToken = useSelector((state) => state.profile.userToken);
-
   const errorMessage = useSelector((state) => state.profile.errorMessage);
   const navigate = useNavigate();
 
