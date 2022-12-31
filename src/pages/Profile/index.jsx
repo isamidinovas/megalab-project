@@ -158,7 +158,7 @@ export const Profile = () => {
                     ))}
                 </div>
               ) : (
-                <h2 style={{ margin: "0 auto" }}>Публикаций пока нет!</h2>
+                <h2 style={{ margin: "30px auto" }}>Идёт загрузка...</h2>
               )}
             </div>
           </div>

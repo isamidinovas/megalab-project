@@ -12,7 +12,8 @@ export const HomePage = () => {
   const [news, setNews] = useState([]);
   // const { newsList } = useSelector((state) => state.news);
   const { newsList } = useSelector((state) => state.news);
-
+  console.log("len", newsList);
+  console.log("newsleng", newsList.length );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());

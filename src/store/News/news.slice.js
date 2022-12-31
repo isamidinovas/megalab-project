@@ -21,7 +21,6 @@ export const newsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getNewsThunk.fulfilled, (state, action) => {
- 
       state.newsList = action.payload;
     });
   },

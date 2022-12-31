@@ -5,8 +5,11 @@ import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal/shareModal";
+import { postDelete } from "../../store/Post/post.slice";
+import { useDispatch } from "react-redux";
 
 export const NewPost = ({ post }) => {
+  const dispatch = useDispatch();
   // const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
   return (
@@ -18,7 +21,11 @@ export const NewPost = ({ post }) => {
         <div className="to__favorites">
           <p>29.11.2022</p>
           <div className="like__icon">
-            <img src={deleteIcon} alt="" />
+            <img
+              onClick={() => dispatch(postDelete(post.id))}
+              src={deleteIcon}
+              alt=""
+            />
           </div>
         </div>
         <h2>{post.title}</h2>
