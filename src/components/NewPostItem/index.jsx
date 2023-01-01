@@ -4,11 +4,15 @@ import Rectangle from "../../assets/img/Rectangle.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
-import { ShareModal } from "../shareModal/shareModal";
-import { postDelete } from "../../store/Post/post.slice";
+import { ShareModal } from "../shareModal";
+import { postCreate, postDelete } from "../../store/Post/post.slice";
 import { useDispatch } from "react-redux";
 
 export const NewPost = ({ post }) => {
+  const handleClick = () => {
+    dispatch(postDelete(post.id));
+  };
+
   const dispatch = useDispatch();
   // const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
@@ -22,7 +26,8 @@ export const NewPost = ({ post }) => {
           <p>29.11.2022</p>
           <div className="like__icon">
             <img
-              onClick={() => dispatch(postDelete(post.id))}
+              // onClick={() => dispatch(postDelete(post.id))}
+              onClick={handleClick}
               src={deleteIcon}
               alt=""
             />

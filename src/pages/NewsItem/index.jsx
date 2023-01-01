@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./style.css";
 import Footer from "../../components/footer/Footer";
-import Header from "../../components/header-homepage/Header";
+import Header from "../../components/header-homepage/index";
 import arrowLeftIcon from "../../assets/img/arrow-left-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import LikeIcon from "../../assets/img/like-icon.png";
 import { Link } from "react-router-dom";
-import { ShareModal } from "../../components/shareModal/shareModal";
+import { ShareModal } from "../../components/shareModal";
 
 export const NewsItem = () => {
   const [showComment, setShowComment] = useState(false);

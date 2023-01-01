@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 export const Modal = ({ setIsOpen }) => {
   const { newsList } = useSelector((state) => state.news);
   const post = useSelector((state) => state.post);
-
   const [postData, setPostData] = useState({
     title: newsList.title,
     text: newsList.text,
@@ -41,7 +40,6 @@ export const Modal = ({ setIsOpen }) => {
     e.preventDefault();
 
     setIsOpen(false);
-
     dispatch(postCreate(postData));
   };
   return (

@@ -1,12 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { postsService } from "../../service/index.js";
-export const getNewsThunk = createAsyncThunk("getNews", async () => {
-  return postsService.getPosts();
-});
 export const postCreate = createAsyncThunk("post/create", async (data) => {
   const token = localStorage.getItem("token");
-  console.log("t", token);
   const postIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const response = await axios.post(
     "https://megalab.pythonanywhere.com/post/",
@@ -73,9 +68,6 @@ export const postSlice = createSlice({
     builder.addCase(postCreate.fulfilled, (state, action) => {
       const payload = action.payload;
       state.push(action.payload);
-    });
-    builder.addCase(getNewsThunk.fulfilled, (state, action) => {
-      state = action.payload;
     });
   },
 });

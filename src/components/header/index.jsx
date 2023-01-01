@@ -1,5 +1,5 @@
 import "../../pages/FavoriteNews";
-import "./SecondHeader.css";
+import "./style.css";
 import MenuIcon from "../../assets/img/menu-second.png";
 import SearchIcon from "../../assets/img/search-second.png";
 import ProfileIcon from "../../assets/img/profile-second.png";
@@ -19,8 +19,6 @@ export const SecondHeader = () => {
             <Link to={"/"}>
               <img src={MegalabLogo} alt="" />
             </Link>
-
-            {/* <Link to={"/new"}> Читать дальше</Link> */}
           </div>
           <div className="header__icons">
             <img className="icon" src={SearchIcon} alt="" />

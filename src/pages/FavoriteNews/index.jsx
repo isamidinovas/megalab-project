@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./style.css";
 import Footer from "../../components/footer/Footer";
-import { SecondHeader } from "../../components/header/SecondHeader";
+import { SecondHeader } from "../../components/header";
 import { useSelector } from "react-redux";
-import { News } from "../../components/newsItem/NewsItem";
+import { News } from "../../components/newsItem";
 
 export const FavoriteNews = () => {
   const news = useSelector((state) => state.news);

@@ -1,19 +1,12 @@
-import axios from "axios";
+import "./style.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
-import Header from "../../components/header-homepage/Header";
-import { News } from "../../components/newsItem/NewsItem";
-import { newsShow } from "../../store/News/news.slice";
-import { getNewsThunk } from "../../store/Post/post.slice";
-
-import "./style.css";
+import Header from "../../components/header-homepage/index";
+import { News } from "../../components/newsItem";
+import { getNewsThunk } from "../../store/News/news.slice";
 export const HomePage = () => {
-  const [news, setNews] = useState([]);
-  // const { newsList } = useSelector((state) => state.news);
   const { newsList } = useSelector((state) => state.news);
-  console.log("len", newsList);
-  console.log("newsleng", newsList.length );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());

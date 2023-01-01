@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./shareModal.css";
+import "./style.css";
 import CloseIcon from "../../assets/img/close-icon.png";
 import FacebookIcon from "../../assets/img/facebook-icon.png";
 import Telegram from "../../assets/img/telegram-icon.png";

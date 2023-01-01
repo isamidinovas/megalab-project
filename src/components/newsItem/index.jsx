@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-// import "./NewsItem.css";
-import cn from "classnames";
-import styles from "./NewsItem.css";
+import styles from "./style.css";
 import LikeIcon from "../../assets/img/like-icon.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
-import { ShareModal } from "../../components/shareModal/shareModal";
+import { ShareModal } from "../shareModal";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 
@@ -16,7 +14,7 @@ export const News = ({ item }) => {
     btn: true,
     "btn--secondary": is_liked,
   });
- 
+
   const news = useSelector((state) => state.news);
   const [showShare, setShowShare] = useState(false);
   return (
