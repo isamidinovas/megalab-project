@@ -12,6 +12,7 @@ export const NewPost = ({ post }) => {
   const handleClick = () => {
     dispatch(postDelete(post.id));
   };
+  
 
   const dispatch = useDispatch();
   // const img = `https://megalab.pythonanywhere.com${post.image}`;

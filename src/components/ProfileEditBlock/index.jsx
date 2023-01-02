@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { editUserInfo } from "../../store/Profile/profile.slice";
+import { accountUser, editUserInfo } from "../../store/Profile/profile.slice";
 import download from "../../assets/img/download.png";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import DefaultIcon from "../../assets/img/default-profile-icon.png";
@@ -42,6 +42,9 @@ export const ProfileEditBlock = () => {
       };
     });
   }
+  useEffect(() => {
+    dispatch(accountUser());
+  }, [dispatch]);
 
   const handleClick = () => {
     dispatch(editUserInfo(userInfos));

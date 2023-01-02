@@ -10,7 +10,7 @@
 .news__title{
    padding: 10px 0 10px 0;
 }
-.text__info{
+.news__description{
     padding: 10px 0 10px 0;
 }
 .back__btn{
@@ -24,6 +24,16 @@
     font-size: 20px;
     padding: 20px 0;
 }
+.comment__input{
+    padding-left: 7px;
+    margin-right: 16px;
+    max-width: 290px;
+    height: 25px;
+    border-radius: 10px;
+    font-size: 15px;
+    border: 1px solid #E4DFDC;
+}
+
 .user__nick{
     font-weight: 700;
     font-size: 18px;
@@ -52,9 +62,7 @@ font-size: 16px;
     display: flex;
     background: none;
 }
-.share__btn.share__btn-newpage {
-    
-}
+
 .comment__input{
     width: 274px;
     height: 27px;

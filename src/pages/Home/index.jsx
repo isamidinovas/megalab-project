@@ -1,16 +1,24 @@
 import "./style.css";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/index";
 import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";
+import { likePost } from "../../store/News/news.slice";
+import { useNavigate } from "react-router-dom";
+import { getPostDetail } from "../../store/News/news.slice";
 export const HomePage = () => {
+  const navigate = useNavigate();
   const { newsList } = useSelector((state) => state.news);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
+
+  // const handleClick = useCallback(() => {
+  //   navigate("/:id");
+  // }, [navigate]);
 
   return (
     <>

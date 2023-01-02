@@ -5,23 +5,19 @@ import { Modal } from "../../components/addPostModal/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { NewPost } from "../../components/NewPostItem";
 import Footer from "../../components/footer/Footer";
-import { accountUser } from "../../store/Profile/profile.slice";
 import { getNewsThunk, postCreate } from "../../store/News/news.slice";
 import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 
 export const Profile = () => {
   const myPostsIds = JSON.parse(localStorage.getItem("myPosts"));
   const { newsList } = useSelector((state) => state.news);
+  const post = useSelector((store) => store.post);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
-
+  console.log("ne", myPostsIds);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    dispatch(accountUser());
-  }, [dispatch]);
 
   const formData = new FormData();
   return (
