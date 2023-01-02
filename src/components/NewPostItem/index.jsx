@@ -12,7 +12,6 @@ export const NewPost = ({ post }) => {
   const handleClick = () => {
     dispatch(postDelete(post.id));
   };
-  
 
   const dispatch = useDispatch();
   // const img = `https://megalab.pythonanywhere.com${post.image}`;
@@ -51,5 +50,38 @@ export const NewPost = ({ post }) => {
         {showShare && <ShareModal setShowShare={setShowShare} />}
       </div>
     </div>
+    // <div className="news__item">
+    //   <div className="news__img">
+    //     <img className="news__img" src={Rectangle} alt="" />
+    //   </div>
+    //   <div className="news__info">
+    //     <div className="to__favorites">
+    //       <p>29.11.2022</p>
+    //       <div className="like__icon">
+    //         <img
+    //           // onClick={() => dispatch(postDelete(post.id))}
+    //           onClick={handleClick}
+    //           src={deleteIcon}
+    //           alt=""
+    //         />
+    //       </div>
+    //     </div>
+    //     <h2>{post.title}</h2>
+    //     <p>{post.text}</p>
+
+    //     <Link to={"/new"}> Читать дальше</Link>
+    //     <button className="share__btn ">
+    //       <img
+    //         className="share__icon"
+    //         src={ShareIcon}
+    //         alt=""
+    //         onClick={() => {
+    //           setShowShare(!showShare);
+    //         }}
+    //       />
+    //     </button>
+    //     {showShare && <ShareModal setShowShare={setShowShare} />}
+    //   </div>
+    // </div>
   );
 };

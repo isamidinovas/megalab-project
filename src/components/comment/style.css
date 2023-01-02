@@ -1,0 +1,24 @@
+
+
+.reply{
+    display: flex;
+    justify-content: space-between;
+    max-width: 180px;
+    margin-bottom: 20px;
+}.reply__btn{
+    border: none;
+    text-decoration: underline;
+    color: 
+    #7E5BC2;
+    font-family: 'Ubuntu';
+
+font-size: 16px;
+
+}
+.user__nick{
+    font-weight: 700;
+    font-size: 18px;
+}
+.comment__item{
+    line-height: 28px;
+}

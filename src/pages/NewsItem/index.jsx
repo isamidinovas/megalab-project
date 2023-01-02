@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/index";
+import { Comment } from "../../components/comment";
 import arrowLeftIcon from "../../assets/img/arrow-left-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import Rectangle from "../../assets/img/Rectangle.png";
@@ -10,18 +11,41 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ShareModal } from "../../components/shareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDetail } from "../../store/News/news.slice";
+import { createComment } from "../../store/News/news.slice";
 export const NewsItem = () => {
-  const [showComment, setShowComment] = useState(false);
+  // const [showComment, setShowComment] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const { newsList } = useSelector((state) => state.news);
-  console.log("news", newsList);
+  const id = useSelector((state) => state.news.newsList.id);
+  const comment = useSelector((state) => state.news.newsList.comment);
+  const myCommentsIds = JSON.parse(localStorage.getItem("myComments"));
+
+  console.log("commentId", myCommentsIds);
+
   const newsId = useParams();
   console.log("id", newsId);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPostDetail());
   }, []);
+  const [commentData, setCommentData] = useState({
+    post: 1217,
+    text: "",
+  });
+  function onChange(e) {
+    const { name, value } = e.target;
 
+    setCommentData((previousValue) => {
+      return {
+        ...previousValue,
+        [name]: value,
+      };
+    });
+  }
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(createComment(commentData));
+  };
   return (
     <>
       <Header />
@@ -57,38 +81,52 @@ export const NewsItem = () => {
                 />
               </button>
               {showShare && <ShareModal setShowShare={setShowShare} />}
+
               <div className="comment__block">
-                <p className="comment">Комментарии</p>
+                <h2 className="comment__text">Комментарии</h2>
+                {comment ? (
+                  <div className="comment__item">
+                    {comment.map((item) => (
+                      <Comment key={item.id} item={item} />
+                    ))}
+                  </div>
+                ) : null}
                 <input
                   placeholder="Напишите комментарий"
-                  name="last_name"
+                  name="text"
+                  onChange={(e) => onChange(e)}
                   type="text"
                   required
                   className="comment__input"
                 />
-                <button className="registration__button" type="submit">
+                <button
+                  onClick={handleClick}
+                  className="registration__button"
+                  type="submit"
+                >
                   Ответить
                 </button>
-                {/* <p className="user__nick">{newsList.author}</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  className aptent taciti sociosqu ad litora torquent per
-                  conubia nostra, per inceptos himenaeos.
-                </p> */}
-                {/* <div className="reply">
-                  <p>30.11.2022</p>
-                  <button
-                    className="reply__btn"
-                    onClick={() => {
-                      setShowComment(!showComment);
-                    }}
-                  >
-                    Ответить
-                  </button>
-                </div> */}
+                <div className="comments">
+                  {/* <p className="user__nick">{newsList.author}</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc vulputate libero et velit interdum, ac aliquet odio
+                    mattis. className aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos.
+                  </p>
+                  <div className="reply">
+                    <p>30.11.2022</p>
+                    <button
+                      className="reply__btn"
+                      onClick={() => {
+                        setShowComment(!showComment);
+                      }}
+                    >
+                      Ответить
+                    </button>
+                  </div> */}
+                </div>
               </div>
-
               {/* {showComment && (
                 <div className="answer">
                   <p>Вы</p>

@@ -30,7 +30,6 @@ export const News = ({ item }) => {
           <p>27.12.22</p>
           <button className="btn">
             <img
-      
               src={LikeIcon}
               alt=""
             />

@@ -11,6 +11,7 @@ import { getPostDetail } from "../../store/News/news.slice";
 export const HomePage = () => {
   const navigate = useNavigate();
   const { newsList } = useSelector((state) => state.news);
+  console.log("home", newsList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());

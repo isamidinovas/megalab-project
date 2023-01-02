@@ -16,7 +16,6 @@ export const Profile = () => {
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
-  console.log("ne", myPostsIds);
   const [isOpen, setIsOpen] = useState(false);
 
   const formData = new FormData();
