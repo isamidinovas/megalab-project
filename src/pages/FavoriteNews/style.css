@@ -8,3 +8,11 @@ width: 75%;
     padding-bottom:10px ;
     text-align: left;
 }
+.favorite__content{
+   height: 53vh;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    
+    
+}

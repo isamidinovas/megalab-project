@@ -36,6 +36,10 @@ export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
     e.preventDefault();
     setIsLoggendIn(true);
     dispatch(loginUser(userData));
+    if (!userData.nickname || !userData.password) {
+      alert("Заполните все поля");
+      return;
+    }
   };
 
   return (

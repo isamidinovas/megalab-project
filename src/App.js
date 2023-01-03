@@ -4,7 +4,7 @@ import "./App.css";
 import { FavoriteNews } from "./pages/FavoriteNews";
 import { HomePage } from "./pages/Home";
 import { Login } from "./pages/Login";
-import { NewsItem } from "./pages/NewsItem";
+import { NewsDetail } from "./pages/NewsDetail/index";
 import { RegistrationPage } from "./pages/Registration";
 import { Profile } from "./pages/Profile";
 import { Provider, useSelector } from "react-redux";
@@ -25,7 +25,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/:id" element={<NewsItem />} />
+          <Route path="/:id" element={<NewsDetail />} />
           <Route path="/registration" element={<RegistrationPage />} />
           <Route
             path="/login"

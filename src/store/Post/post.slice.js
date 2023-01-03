@@ -41,29 +41,27 @@ export const postDelete = createAsyncThunk(
   }
 );
 
-
 export const postSlice = createSlice({
   name: "post",
   userId: "",
   initialState: [
-    {
-      id: "",
-      date: "",
-      title: "",
-      text: "",
-      image: "",
-      tag: "",
-      is_liked: false,
-      comment: "",
-      short_desc: "",
-    },
+    // {
+    //   id: "",
+    //   date: "",
+    //   title: "",
+    //   text: "",
+    //   image: "",
+    //   tag: "",
+    //   is_liked: false,
+    //   comment: "",
+    //   short_desc: "",
+    // },
   ],
 
   reducers: {
     removePost(state, action) {
       state.post = state.post.filter((post) => post.id !== action.payload.id);
     },
- 
   },
 
   extraReducers: (builder) => {
@@ -74,7 +72,6 @@ export const postSlice = createSlice({
     // builder.addCase(getNewsThunk.fulfilled, (state, action) => {
     //   state = action.payload;
     // });
-  
   },
 });
 // reducers: {

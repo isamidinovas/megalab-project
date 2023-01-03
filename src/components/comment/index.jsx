@@ -5,7 +5,7 @@ export const Comment = ({ item }) => {
   const [showComment, setShowComment] = useState(false);
   const { newsList } = useSelector((state) => state.news);
   const comment = useSelector((state) => state.news.newsList.comment);
-  console.log("com", item);
+
   return (
     <>
       <p className="user__nick">{item.user.name}</p>
@@ -23,7 +23,7 @@ export const Comment = ({ item }) => {
       </div>
       {showComment && (
         <div className="answer">
-          <p>Вы</p>
+          <p style={{ marginRight: "7px" }}>Вы</p>
           <input className="comment__input" type="text" name="" id="" />
           <div className="registration__btn">
             <button className="registration__button">Ответить</button>

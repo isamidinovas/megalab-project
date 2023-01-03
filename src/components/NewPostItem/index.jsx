@@ -5,7 +5,7 @@ import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal";
-import { postCreate, postDelete } from "../../store/Post/post.slice";
+import { postCreate, postDelete, postSlice } from "../../store/Post/post.slice";
 import { useDispatch } from "react-redux";
 
 export const NewPost = ({ post }) => {
@@ -36,7 +36,7 @@ export const NewPost = ({ post }) => {
         <h2>{post.title}</h2>
         <p>{post.text}</p>
 
-        <Link to={"/new"}> Читать дальше</Link>
+        <Link to={`/${post.id}`}> Читать дальше</Link>
         <button className="share__btn ">
           <img
             className="share__icon"

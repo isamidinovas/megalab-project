@@ -8,6 +8,7 @@ import { authenticateUser } from "../../store/Profile/profile.slice";
 import Swal from "sweetalert2";
 
 export const RegistrationPage = () => {
+  const datas = useSelector((state) => state.profile.userData);
   const { status, registrationErrMessage } = useSelector(
     (state) => state.profile
   );
@@ -37,6 +38,16 @@ export const RegistrationPage = () => {
     e.preventDefault();
 
     dispatch(authenticateUser(userData));
+    if (
+      !userData.nickname ||
+      !userData.name ||
+      !userData.last_name ||
+      !userData.password ||
+      !userData.password2
+    ) {
+      alert("Заполните все поля");
+      return;
+    }
   };
   return (
     <div className="registration">

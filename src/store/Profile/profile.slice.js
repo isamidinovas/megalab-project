@@ -73,6 +73,8 @@ export const profileSlice = createSlice({
       name: "",
       last_name: "",
       nickname: "",
+      password: "",
+      password2: "",
       profile_image: "",
     },
     userToken: undefined,
@@ -92,7 +94,7 @@ export const profileSlice = createSlice({
     });
     builder.addCase(authenticateUser.rejected, (state, action) => {
       state.status = "rejected";
-      state.registrationErrMessage = "Fill in all the fields!";
+      state.registrationErrMessage = "Ошибка";
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       localStorage.setItem("token", action.payload.token);

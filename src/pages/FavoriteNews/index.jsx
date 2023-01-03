@@ -11,20 +11,20 @@ export const FavoriteNews = () => {
   return (
     <div className="favorite__block">
       <SecondHeader />
-      <main className="main">
-        <div className="container container__favorite">
-          <h2 className="title__favorite-new">Избранные новости</h2>
-          <div className="content">
-            <div className="news__block">
-              {/* {news.map((item) => (
+      {/* <main className="main"> */}
+      <div className="container container__favorite">
+        <h2 className="title__favorite-new">Избранные новости</h2>
+        <div className="favorite__content">
+          <div className="news__block">
+            {/* {news.map((item) => (
                 <>
                   <News key={item.title} item={item} />
                 </>
               ))} */}
-            </div>
           </div>
         </div>
-      </main>
+      </div>
+      {/* </main> */}
       <Footer />
     </div>
   );

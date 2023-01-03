@@ -9,24 +9,19 @@ import { likePost } from "../../store/News/news.slice";
 import { useNavigate } from "react-router-dom";
 import { getPostDetail } from "../../store/News/news.slice";
 export const HomePage = () => {
-  const navigate = useNavigate();
   const { newsList } = useSelector((state) => state.news);
-  console.log("home", newsList);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
 
-  // const handleClick = useCallback(() => {
-  //   navigate("/:id");
-  // }, [navigate]);
-
   return (
     <>
       <Header />
       <div className="container container__favorite">
-        <div className="content">
-          <div className="filter__block">
+        <div className="content__inner">
+          <div className="content__filter">
             <p className="filter__text">Фильтрация</p>
             <div className="checkboxs">
               <label className="checkboxWrap">

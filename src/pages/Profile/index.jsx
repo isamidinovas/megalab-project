@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { SecondHeader } from "../../components/header";
-import { Modal } from "../../components/addPostModal/modal";
+import { Modal } from "../../components/addPostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { NewPost } from "../../components/NewPostItem";
 import Footer from "../../components/footer/Footer";
@@ -9,9 +9,10 @@ import { getNewsThunk, postCreate } from "../../store/News/news.slice";
 import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 
 export const Profile = () => {
-  const myPostsIds = JSON.parse(localStorage.getItem("myPosts"));
+  const myPostsIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const { newsList } = useSelector((state) => state.news);
   const post = useSelector((store) => store.post);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());

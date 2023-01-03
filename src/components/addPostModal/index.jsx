@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./modal.css";
+import "./style.css";
 import { postCreate } from "../../store/Post/post.slice";
 import download from "../../assets/img/download.png";
 import CloseIcon from "../../assets/img/x.png";
