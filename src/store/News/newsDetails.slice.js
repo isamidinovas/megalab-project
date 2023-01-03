@@ -29,6 +29,20 @@ export const createComment = createAsyncThunk(
     return response.data;
   }
 );
+
+export const replyComment = createAsyncThunk("comment/reply", async (data) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.post(
+    "https://megalab.pythonanywhere.com/comment/",
+    data,
+    {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  );
+  return response.data;
+});
 export const newsDetailSlice = createSlice({
   name: "newsDetail",
   initialState: {
@@ -41,6 +55,12 @@ export const newsDetailSlice = createSlice({
     });
     builder.addCase(createComment.fulfilled, (state, action) => {
       state.newsDetail.comment = [...state.newsDetail.comment, action.payload];
+    });
+    builder.addCase(replyComment.fulfilled, (state, action) => {
+      state.newsDetail.comment.child = [
+        ...state.newsDetail.comment.child,
+        action.payload,
+      ];
     });
   },
 });

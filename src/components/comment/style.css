@@ -4,7 +4,6 @@
     display: flex;
     justify-content: space-between;
     max-width: 180px;
-    margin-bottom: 20px;
 }.reply__btn{
     border: none;
     background: none;

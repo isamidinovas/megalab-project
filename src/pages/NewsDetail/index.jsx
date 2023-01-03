@@ -16,6 +16,7 @@ export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
   const { id: postId } = useParams();
+  console.log("det", newsDetail);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
@@ -42,15 +43,12 @@ export const NewsDetail = () => {
       <main className="main">
         <div className="container container__favorite">
           <div className="news__block">
-            {/* <Link to={"/"} className="profil__link"> */}
             <img
               className="back__btn"
               src={arrowLeftIcon}
               alt=""
               onClick={() => navigate(-1)}
             />
-            {/* </Link> */}
-
             <div className="to__favorites">
               <p>29.11.2022</p>
               <div className="like__icon">
