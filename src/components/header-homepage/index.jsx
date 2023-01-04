@@ -4,12 +4,22 @@ import Logo from "../../assets/img/header-logo.png";
 import MenuIcon from "../../assets/img/menu.png";
 import SearchIcon from "../../assets/img/search.png";
 import ProfileIcon from "../../assets/img/Profile-icon.png";
-import { Link, useLocation, NavLink } from "react-router-dom";
+import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
+import { logoutUser } from "../../store/Profile/profile.slice";
+import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 function Header() {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
   const userId = localStorage.getItem("userId");
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    Swal.fire("Вы точно хотите выйти из аккаунта?")
+      .then(dispatch(logoutUser()))
+      .then(() => navigate("/registration"));
+  };
   return (
     <>
       <header className="header">
@@ -53,13 +63,9 @@ function Header() {
                   >
                     Мой профиль
                   </NavLink>
-                  <a
-                    className="exit__btn"
-                    onClick={() => SetShowProfile(false)}
-                    href="#"
-                  >
+                  <Link className="exit__btn" onClick={handleClick}>
                     Выйти
-                  </a>
+                  </Link>
                 </div>
               )}
 

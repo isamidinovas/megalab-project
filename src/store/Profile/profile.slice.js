@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const authenticateUser = createAsyncThunk(
   "user/authenticate",
@@ -36,6 +37,21 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk("user/logout", async () => {
+  const token = localStorage.getItem("token");
+  const response = await axios.get(
+    "https://megalab.pythonanywhere.com/logout/",
+    {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  );
+  if (!response.status) {
+    throw new Error("Server error");
+  }
+  return response.data;
+});
 export const accountUser = createAsyncThunk("user/account", async () => {
   const token = localStorage.getItem("token");
   const response = await axios.get("https://megalab.pythonanywhere.com/user/", {
@@ -105,6 +121,13 @@ export const profileSlice = createSlice({
     builder.addCase(loginUser.rejected, (state, action) => {
       state.errorMessage = "Password or name incorrect!";
     });
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      // state.userInfo.name = null;
+      // state.userInfo.last_name = null;
+      // state.userInfo.nickname = null;
+      // state.userInfo.password = null;
+      // state.userInfo.password2 = null;
+    });
     builder.addCase(accountUser.fulfilled, (state, action) => {
       state.userInfo = action.payload;
     });
@@ -113,4 +136,28 @@ export const profileSlice = createSlice({
     });
   },
 });
+// const handleClick = () => {
+//   Swal.fire("Вы точно хотите выйти из аккаунта?").then(
+//     dispatch(logoutUser())
+//       .unwrap() // <-- async Thunk returns a promise, that can be 'unwrapped')
+//       .then(() => navigate("/registration"))
+//   );
+// };
+
+// Swal.fire({
+//   title: "Точно",
+//   text: "You won't be able to revert this!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   confirmButtonText: "Yes, delete it!",
+// }).then((result) => {
+//   navigate("/registration");
+//   if (result.isConfirmed) {
+//     Swal.fire("Deleted!", "Your file has been deleted.", "success").then(
+//       dispatch(logoutUser())
+//     );
+//   }
+// });
 export const profileReducer = profileSlice.reducer;
