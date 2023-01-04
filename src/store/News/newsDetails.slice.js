@@ -57,10 +57,7 @@ export const newsDetailSlice = createSlice({
       state.newsDetail.comment = [...state.newsDetail.comment, action.payload];
     });
     builder.addCase(replyComment.fulfilled, (state, action) => {
-      state.newsDetail.comment.child = [
-        ...state.newsDetail.comment.child,
-        action.payload,
-      ];
+      state.newsDetail = state.newsDetail;
     });
   },
 });

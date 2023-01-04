@@ -4,6 +4,12 @@
     display: flex;
     justify-content: space-between;
     max-width: 180px;
+
+}
+
+.reply__form{
+    display: flex;
+    margin-top: 8px;
 }.reply__btn{
     border: none;
     background: none;
@@ -16,6 +22,7 @@ font-size: 16px;
 
 }
 .user__nick{
+    margin-top: 20px;
     font-weight: 700;
     font-size: 18px;
 }

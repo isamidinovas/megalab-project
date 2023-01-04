@@ -16,7 +16,6 @@ export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
   const { id: postId } = useParams();
-  console.log("det", newsDetail);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
@@ -84,22 +83,23 @@ export const NewsDetail = () => {
                     ))}
                   </div>
                 ) : null}
-                <input
-                  placeholder="Напишите комментарий"
-                  value={commentData}
-                  onChange={(e) => onChange(e)}
-                  type="text"
-                  required
-                  className="comment__input"
-                />
-                <button
-                  onClick={handleClick}
-                  className="registration__button"
-                  type="submit"
-                >
-                  Ответить
-                </button>
-                <div className="comments"></div>
+                <div className="comment__form">
+                  <input
+                    placeholder="Напишите комментарий"
+                    value={commentData}
+                    onChange={(e) => onChange(e)}
+                    type="text"
+                    required
+                    className="comment__input"
+                  />
+                  <button
+                    onClick={handleClick}
+                    className="registration__button"
+                    type="submit"
+                  >
+                    Ответить
+                  </button>
+                </div>
               </div>
             </div>
           </div>
