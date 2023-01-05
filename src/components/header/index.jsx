@@ -19,7 +19,7 @@ export const SecondHeader = () => {
 
   const handleClick = () => {
     Swal.fire("Вы точно хотите выйти из аккаунта?")
-      .then(dispatch(logoutUser()))
+      .then(() => dispatch(logoutUser()))
       .then(() => navigate("/registration"));
   };
 

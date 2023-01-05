@@ -73,3 +73,10 @@
     font-size: 13px;
       padding-top: 5px;
 }
+.check__password{
+    position: relative;
+    bottom: 18px;
+    left: 95px;
+    color: red;
+    font-size: 9px;
+}

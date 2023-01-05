@@ -20,9 +20,12 @@ export const RegistrationPage = () => {
     password: "",
     password2: "",
   });
-
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [password2Error, setPasswordError2] = useState("");
   const navigate = useNavigate();
-  function onChange(e) {
+  const onChange = (e) => {
     const { name, value } = e.target;
 
     setUserdata((previousValue) => {
@@ -31,7 +34,7 @@ export const RegistrationPage = () => {
         [name]: value,
       };
     });
-  }
+  };
 
   const dispatch = useDispatch();
   const handleClick = (e) => {
@@ -47,6 +50,42 @@ export const RegistrationPage = () => {
     ) {
       alert("Заполните все поля");
       return;
+    }
+    if (userData.password != userData.password2) {
+      alert("Пароли не совподают");
+    }
+  };
+
+  const checkPassword = (e) => {
+    const { name, value } = e.target;
+
+    setUserdata((previousValue) => {
+      return {
+        ...previousValue,
+        [name]: value,
+      };
+    });
+    setPassword(e.target.value);
+    if (e.target.value.length < 7) {
+      setPasswordError("Пароль должен быть не меньше 8");
+    } else {
+      setPasswordError("");
+    }
+  };
+  const checkPassword2 = (e) => {
+    const { name, value } = e.target;
+
+    setUserdata((previousValue) => {
+      return {
+        ...previousValue,
+        [name]: value,
+      };
+    });
+    setPassword2(e.target.value);
+    if (e.target.value.length < 7) {
+      setPasswordError2("Пароль должен быть не меньше 8");
+    } else {
+      setPasswordError2("");
     }
   };
   return (
@@ -89,18 +128,26 @@ export const RegistrationPage = () => {
               <div className="registration__item">
                 <p>Пароль</p>
                 <input
-                  onChange={(e) => onChange(e)}
+                  id="pswrd"
+                  // onChange={(e) => onChange(e)}
+                  onChange={(e) => checkPassword(e)}
+                  // onChange={(e)=> onChange(e)}
+                  value={password}
                   name="password"
-                  type="password"
+                  // type="password"
                   required
-                  pattern="\d [0-9]+[A-Za-z]"
+                  // pattern="\d [0-9]+[A-Za-z]"
                   className="registration__input"
                 />
               </div>
+              {passwordError && password && (
+                <p className="check__password">{passwordError}</p>
+              )}
               <div className="registration__item">
                 <p className="registration__name">Подтверждение пароля</p>
                 <input
-                  onChange={(e) => onChange(e)}
+                  onChange={(e) => checkPassword2(e)}
+                  value={password2}
                   name="password2"
                   type="text"
                   required
@@ -108,6 +155,9 @@ export const RegistrationPage = () => {
                   className="registration__input"
                 />
               </div>
+              {password2Error && password2 && (
+                <p className="check__password">{password2Error}</p>
+              )}
               <div className="registration__btn">
                 <button
                   onClick={handleClick}

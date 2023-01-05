@@ -119,14 +119,14 @@ export const profileSlice = createSlice({
       state.status = "resolved";
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      state.errorMessage = "Password or name incorrect!";
+      state.errorMessage = "Пароль или никнейм неправильно ввели !";
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
-      // state.userInfo.name = null;
-      // state.userInfo.last_name = null;
-      // state.userInfo.nickname = null;
-      // state.userInfo.password = null;
-      // state.userInfo.password2 = null;
+      state.userInfo.name = null;
+      state.userInfo.last_name = null;
+      state.userInfo.nickname = null;
+      state.userInfo.password = null;
+      state.userInfo.password2 = null;
     });
     builder.addCase(accountUser.fulfilled, (state, action) => {
       state.userInfo = action.payload;
