@@ -26,11 +26,7 @@ justify-content:space-between;
 }
 
 .btn{
-    border: none;
-    background: none;
+    border: 0;
+    background:none;
     cursor: pointer;
-}
-.btn--secondary{
-    background-color: red;
-  
 }

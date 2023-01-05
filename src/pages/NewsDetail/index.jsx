@@ -12,6 +12,7 @@ import { ShareModal } from "../../components/shareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDetail } from "../../store/News/newsDetails.slice";
 import { createComment } from "../../store/News/newsDetails.slice";
+import { likePost } from "../../store/News/newsDetails.slice";
 export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
@@ -19,6 +20,7 @@ export const NewsDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
+  console.log("liked", newsDetail.is_liked);
   useEffect(() => {
     dispatch(getPostDetail(postId));
   }, []);
@@ -36,6 +38,13 @@ export const NewsDetail = () => {
     dispatch(createComment(newComment));
     setCommentData("");
   };
+
+  const likePostClick = () => {
+    const postID = {
+      post: postId,
+    };
+    dispatch(likePost(postID));
+  };
   return (
     <>
       <Header />
@@ -51,7 +60,7 @@ export const NewsDetail = () => {
             <div className="to__favorites">
               <p>29.11.2022</p>
               <div className="like__icon">
-                <img src={LikeIcon} alt="" />
+                <img onClick={likePostClick} src={LikeIcon} alt="" />
               </div>
             </div>
 
