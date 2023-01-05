@@ -57,7 +57,7 @@ export const SecondHeader = () => {
                 <Link
                   className="profile"
                   onClick={() => {
-                    location("profile");
+                    navigate("profile");
                     SetShowProfile(false);
                   }}
                   to={`/profile/${userId}`}

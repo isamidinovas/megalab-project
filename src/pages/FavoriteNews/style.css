@@ -9,7 +9,6 @@ width: 75%;
     text-align: left;
 }
 .favorite__content{
-   height: 53vh;
         margin-top: 30px;
         display: flex;
         justify-content: space-between;

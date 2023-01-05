@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ import React, { useState, useEffect } from "react";
 import "./style.css";
 import { SecondHeader } from "../../components/header";
 import { Modal } from "../../components/addPostModal";

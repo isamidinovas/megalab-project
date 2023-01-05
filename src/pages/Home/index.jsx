@@ -5,16 +5,18 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/index";
 import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";
-import { likePost } from "../../store/News/news.slice";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
 import { getPostDetail } from "../../store/News/news.slice";
 export const HomePage = () => {
   const { newsList } = useSelector((state) => state.news);
-
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
+
+
 
   return (
     <>
@@ -61,7 +63,7 @@ export const HomePage = () => {
           {newsList.length > 0 ? (
             <div className="news__content">
               {newsList.map((item) => (
-                <News key={item.id} item={item} />
+                <News key={item.id} item={item}  />
               ))}
             </div>
           ) : (

@@ -1,12 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./style.css";
+import { likePost } from "../../store/News/newsDetails.slice";
 import LikeIcon from "../../assets/img/like-icon.png";
 import Rectangle from "../../assets/img/Rectangle.png";
 import ShareIcon from "../../assets/img/share.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { ShareModal } from "../shareModal";
+import { useDispatch } from "react-redux";
 export const News = ({ item }) => {
   const [showShare, setShowShare] = useState(false);
+  const { id: postId } = useParams();
+  const dispatch = useDispatch();
+  const likePostClick = () => {
+    const postID = {
+      post: item.id,
+    };
+    dispatch(likePost(postID));
+  };
+
   return (
     <div className="news__item">
       <div className="news__img">
@@ -16,7 +27,7 @@ export const News = ({ item }) => {
         <div className="to__favorites">
           <p>27.12.22</p>
           <button className="btn">
-            <img src={LikeIcon} alt="" />
+            <img onClick={likePostClick} src={LikeIcon} alt="" />
           </button>
         </div>
         <h2>{item.title}</h2>

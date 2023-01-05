@@ -55,9 +55,10 @@ export const likePost = createAsyncThunk("post/like", async (data) => {
       },
     }
   );
-  console.log("urooo");
   return response.data;
 });
+
+
 export const newsDetailSlice = createSlice({
   name: "newsDetail",
   initialState: {
@@ -77,6 +78,7 @@ export const newsDetailSlice = createSlice({
     builder.addCase(likePost.fulfilled, (state, action) => {
       state.newsDetail = state.newsDetail;
     });
+  
   },
 });
 

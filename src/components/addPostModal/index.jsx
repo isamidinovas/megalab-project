@@ -15,6 +15,7 @@ export const Modal = ({ setIsOpen }) => {
     image: "",
     short_desc: newsList.short_desc,
   });
+  
 
   // function handleSelectImage(image) {
   //   let formData = new FormData();

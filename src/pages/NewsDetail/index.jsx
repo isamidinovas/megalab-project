@@ -20,7 +20,7 @@ export const NewsDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
-  console.log("liked", newsDetail.is_liked);
+
   useEffect(() => {
     dispatch(getPostDetail(postId));
   }, []);
