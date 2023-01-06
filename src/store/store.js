@@ -3,6 +3,7 @@ import { newsReducer } from "./News/news.slice";
 import { newsDetailReducer } from "./News/newsDetails.slice";
 import { postReducer } from "./Post/post.slice";
 import { postLikeReducer } from "./Post/postLike.slice";
+import { tegsReducer } from "./Post/teg.slice";
 import { profileReducer } from "./Profile/profile.slice";
 
 export const store = configureStore({
@@ -12,5 +13,6 @@ export const store = configureStore({
     post: postReducer,
     profile: profileReducer,
     postLike: postLikeReducer,
+    tegs: tegsReducer,
   },
 });

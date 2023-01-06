@@ -123,6 +123,7 @@ export const profileSlice = createSlice({
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
       state.userInfo.name = null;
+
       state.userInfo.last_name = null;
       state.userInfo.nickname = null;
       state.userInfo.password = null;

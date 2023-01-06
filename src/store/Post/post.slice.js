@@ -41,21 +41,26 @@ export const postDelete = createAsyncThunk(
   }
 );
 
+export const getTegList = createAsyncThunk("teglist/get", async () => {
+  const token = localStorage.getItem("token");
+  const response = await axios.get(
+    "https://megalab.pythonanywhere.com/logout/",
+    {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  );
+  if (!response.status) {
+    throw new Error("Server error");
+  }
+  return response.data;
+});
+
 export const postSlice = createSlice({
   name: "post",
   userId: "",
   initialState: [
-    // {
-    //   id: "",
-    //   date: "",
-    //   title: "",
-    //   text: "",
-    //   image: "",
-    //   tag: "",
-    //   is_liked: false,
-    //   comment: "",
-    //   short_desc: "",
-    // },
   ],
 
   reducers: {

@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { postCreate } from "../../store/Post/post.slice";
 import download from "../../assets/img/download.png";
 import CloseIcon from "../../assets/img/x.png";
 import { useDispatch, useSelector } from "react-redux";
+import { getTegList } from "../../store/Post/teg.slice";
 
 export const Modal = ({ setIsOpen }) => {
   const { newsList } = useSelector((state) => state.news);
+  const { tegList } = useSelector((state) => state.tegs);
+
   const post = useSelector((state) => state.post);
   const [postData, setPostData] = useState({
     title: newsList.title,
     text: newsList.text,
-    tag: "r",
+    tag: newsList.tag,
     image: "",
     short_desc: newsList.short_desc,
   });
+  useEffect(() => {
+    dispatch(getTegList());
+  }, []);
+  console.log("tegss", postData.tag);
 
   // function handleSelectImage(image) {
   //   let formData = new FormData();
@@ -98,23 +105,26 @@ export const Modal = ({ setIsOpen }) => {
             </div>
             <div className="modal-content-item">
               <span className="modal-item_title">Выбрать категорию</span>
-              <select className="select-category" name="tag" id="">
-                <option name="tag" value={postData.tag}>
-                  #начили
-                </option>
-                <option name="tag" value={postData.tag}>
-                  #жизнь
-                </option>
-                <option name="tag" value={postData.tag}>
-                  #законджунгли
-                </option>
-                <option name="tag" value={postData.tag}>
-                  #миржесток
-                </option>
-              </select>
+              {tegList.length > 0 ? (
+                <select
+                  onChange={(e) => onChange(e)}
+                  className="select-category"
+                  name="tag"
+                >
+                  {tegList.map((tag) => (
+                    <option name="tag">{tag.name}</option>
+                  ))}
+                </select>
+              ) : null}
             </div>
             <div className="modal-content-tag">
-              <span className="modal-item_title">#Не выбрано</span>
+              <input
+                value={postData.tag}
+                onChange={(e) => onChange(e)}
+                name="tag"
+                className="modal-item_input"
+                placeholder="tag"
+              ></input>
             </div>
             <div className="button-wrap2">
               <button className="save__button" onClick={handleClick}>

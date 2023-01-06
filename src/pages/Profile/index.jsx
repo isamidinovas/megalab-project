@@ -11,14 +11,12 @@ import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 export const Profile = () => {
   const myPostsIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const { newsList } = useSelector((state) => state.news);
-  const post = useSelector((store) => store.post);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
   const [isOpen, setIsOpen] = useState(false);
-
   const formData = new FormData();
   return (
     <>
