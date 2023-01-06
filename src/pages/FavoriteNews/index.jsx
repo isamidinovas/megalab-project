@@ -21,10 +21,8 @@ export const FavoriteNews = () => {
         <div className="favorite__content">
           {likedPosts.length > 0 ? (
             <div className="news__block">
-              {likedPosts.map((item) => (
-                <>
-                  <News key={item.id} item={item} />
-                </>
+              {likedPosts.map((item, index) => (
+                <News key={index} item={item} />
               ))}
             </div>
           ) : (
@@ -32,7 +30,6 @@ export const FavoriteNews = () => {
           )}
         </div>
       </div>
-
       <Footer />
     </div>
   );

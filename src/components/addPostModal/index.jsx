@@ -5,6 +5,7 @@ import download from "../../assets/img/download.png";
 import CloseIcon from "../../assets/img/x.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getTegList } from "../../store/Post/teg.slice";
+import { getNewsThunk } from "../../store/News/news.slice";
 
 export const Modal = ({ setIsOpen }) => {
   const { newsList } = useSelector((state) => state.news);
@@ -48,6 +49,7 @@ export const Modal = ({ setIsOpen }) => {
 
     setIsOpen(false);
     dispatch(postCreate(postData));
+    dispatch(getNewsThunk());
   };
   return (
     <div className="darkBG">

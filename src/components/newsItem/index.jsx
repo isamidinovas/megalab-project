@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./style.css";
 import styles from "./style.css";
-import { likePost } from "../../store/Post/postLike.slice";
+import { getPostLike, likePost } from "../../store/Post/postLike.slice";
 import { unLikePost } from "../../store/Post/postLike.slice";
 import LikeIcon from "../../assets/img/like-icon.png";
 import RedLikeIcon from "../../assets/img/redLike-icon.png";
@@ -21,6 +22,7 @@ export const News = ({ item }) => {
       dispatch(likePost(postID));
     } else {
       dispatch(unLikePost(postID));
+      dispatch(getPostLike());
     }
   };
   return (
@@ -54,7 +56,12 @@ export const News = ({ item }) => {
       </div>
 
       <div className="like__icon">
-        <img onClick={likePostClick} src={LikeIcon} alt="" />
+        <img
+          onClick={likePostClick}
+          src={LikeIcon}
+          alt=""
+          className={`favorite ${item.is_liked ? "active" : "hidden"} `}
+        />
       </div>
     </div>
     // <div className="news__item">

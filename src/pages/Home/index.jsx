@@ -6,6 +6,7 @@ import Header from "../../components/header-homepage/index";
 import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";
 import { getTegList } from "../../store/Post/teg.slice";
+import { Checkbox } from "./components/checkbox";
 
 export const HomePage = () => {
   const { newsList } = useSelector((state) => state.news);
@@ -27,12 +28,8 @@ export const HomePage = () => {
             <p className="filter__text">Фильтрация</p>
             {tegList.length > 0 ? (
               <div className="checkboxs">
-                {tegList.map((teg) => (
-                  <label className="checkboxWrap">
-                    {teg.name}
-                    <input type="checkbox" />
-                    <span className="checkmark"></span>
-                  </label>
+                {tegList.map((teg, index) => (
+                  <Checkbox key={index} teg={teg} />
                 ))}
               </div>
             ) : null}
@@ -42,8 +39,8 @@ export const HomePage = () => {
           </div>
           {newsList.length > 0 ? (
             <div className="news__content">
-              {newsList.map((item) => (
-                <News key={item.id} item={item} />
+              {newsList.map((item, index) => (
+                <News key={index} item={item} />
               ))}
             </div>
           ) : (

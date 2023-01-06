@@ -36,7 +36,6 @@ export const postDelete = createAsyncThunk(
         },
       }
     );
-    dispatch(removePost(id));
     return response.data;
   }
 );
@@ -60,39 +59,21 @@ export const getTegList = createAsyncThunk("teglist/get", async () => {
 export const postSlice = createSlice({
   name: "post",
   userId: "",
-  initialState: [
-  ],
+  initialState: [],
 
-  reducers: {
-    removePost(state, action) {
-      state.post = state.post.filter((post) => post.id !== action.payload.id);
-    },
-  },
+  // reducers: {
+  //   removePost(state, action) {
+  //     state.post = state.post.filter((post) => post.id !== action.payload.id);
+  //   },
+  // },
 
   extraReducers: (builder) => {
     builder.addCase(postCreate.fulfilled, (state, action) => {
       const payload = action.payload;
       state.push(action.payload);
     });
-    // builder.addCase(getNewsThunk.fulfilled, (state, action) => {
-    //   state = action.payload;
-    // });
   },
 });
-// reducers: {
-//   addNew(state, action) {
-//     state.push(action.payload);
-//   },
-//   addToFavorites(state, action) {
-//     state.forEach((item) => {
-//       if (item.id === action.id) {
-//         item.favourite = true;
-//       }
-//     });
-//   },
-// },
-
-// export const newsReducer = newsSlice.reducer;
 
 export const { removePost, likePost } = postSlice.actions;
 export const postReducer = postSlice.reducer;

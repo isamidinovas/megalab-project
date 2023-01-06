@@ -28,3 +28,12 @@ justify-content:space-between;
     background:none;
     cursor: pointer;
 }
+
+
+
+.favorite.active {
+Color: red
+}
+.favorite.hidden {
+Color: black
+}

@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal";
 import { postCreate, postDelete, postSlice } from "../../store/Post/post.slice";
 import { useDispatch } from "react-redux";
+import { getNewsThunk } from "../../store/News/news.slice";
 
 export const NewPost = ({ post }) => {
   const handleClick = () => {
     dispatch(postDelete(post.id));
-  };
+     };
 
   const dispatch = useDispatch();
   // const img = `https://megalab.pythonanywhere.com${post.image}`;
