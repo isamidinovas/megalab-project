@@ -15,7 +15,6 @@ export const Modal = ({ setIsOpen }) => {
     image: "",
     short_desc: newsList.short_desc,
   });
-  
 
   // function handleSelectImage(image) {
   //   let formData = new FormData();
@@ -119,7 +118,7 @@ export const Modal = ({ setIsOpen }) => {
             </div>
             <div className="button-wrap2">
               <button className="save__button" onClick={handleClick}>
-                Сохранить
+                Создать
               </button>
             </div>
           </div>

@@ -17,37 +17,40 @@ export const NewPost = ({ post }) => {
   // const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
   return (
-    <div className="news__item">
-      <div className="news__img">
-        <img className="news__img" src={Rectangle} alt="" />
-      </div>
-      <div className="news__info">
-        <div className="to__favorites">
-          <p>29.11.2022</p>
-          <div className="like__icon">
-            <img
-              // onClick={() => dispatch(postDelete(post.id))}
-              onClick={handleClick}
-              src={deleteIcon}
-              alt=""
-            />
-          </div>
+    <div className="post__item">
+      <div className="post__inner">
+        <div className="post__img">
+          <img className="post__img" src={Rectangle} alt="" />
         </div>
-        <h2>{post.title}</h2>
-        <p>{post.text}</p>
+        <div className="post__info">
+          <div className="to__favorites">
+            <p>29.11.2022</p>
+          </div>
+          <h2>{post.title}</h2>
+          <p>{post.text}</p>
 
-        <Link to={`/${post.id}`}> Читать дальше</Link>
-        <button className="share__btn ">
-          <img
-            className="share__icon"
-            src={ShareIcon}
-            alt=""
-            onClick={() => {
-              setShowShare(!showShare);
-            }}
-          />
-        </button>
-        {showShare && <ShareModal setShowShare={setShowShare} />}
+          <Link to={`/${post.id}`}> Читать дальше</Link>
+          <button className="share__btn ">
+            <img
+              className="share__icon"
+              src={ShareIcon}
+              alt=""
+              onClick={() => {
+                setShowShare(!showShare);
+              }}
+            />
+          </button>
+          {showShare && <ShareModal setShowShare={setShowShare} />}
+        </div>
+      </div>
+
+      <div className="like__icon">
+        <img
+          // onClick={() => dispatch(postDelete(post.id))}
+          onClick={handleClick}
+          src={deleteIcon}
+          alt=""
+        />
       </div>
     </div>
     // <div className="news__item">

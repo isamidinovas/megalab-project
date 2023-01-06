@@ -12,7 +12,8 @@ import { ShareModal } from "../../components/shareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDetail } from "../../store/News/newsDetails.slice";
 import { createComment } from "../../store/News/newsDetails.slice";
-import { likePost } from "../../store/News/newsDetails.slice";
+import { likePost } from "../../store/Post/postLike.slice";
+import { unLikePost } from "../../store/Post/postLike.slice";
 export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
@@ -43,7 +44,11 @@ export const NewsDetail = () => {
     const postID = {
       post: postId,
     };
-    dispatch(likePost(postID));
+    if (newsDetail.is_liked == false) {
+      dispatch(likePost(postID));
+    } else {
+      dispatch(unLikePost(postID));
+    }
   };
   return (
     <>

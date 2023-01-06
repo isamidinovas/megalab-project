@@ -44,21 +44,6 @@ export const replyComment = createAsyncThunk("comment/reply", async (data) => {
   return response.data;
 });
 
-export const likePost = createAsyncThunk("post/like", async (data) => {
-  const token = localStorage.getItem("token");
-  const response = await axios.post(
-    "https://megalab.pythonanywhere.com/like/",
-    data,
-    {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  );
-  return response.data;
-});
-
-
 export const newsDetailSlice = createSlice({
   name: "newsDetail",
   initialState: {
@@ -75,10 +60,6 @@ export const newsDetailSlice = createSlice({
     builder.addCase(replyComment.fulfilled, (state, action) => {
       state.newsDetail = state.newsDetail;
     });
-    builder.addCase(likePost.fulfilled, (state, action) => {
-      state.newsDetail = state.newsDetail;
-    });
-  
   },
 });
 

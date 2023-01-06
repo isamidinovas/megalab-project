@@ -2,9 +2,19 @@
 .news__block{
     text-align: left;
 }
-
+.news__content{
+    margin-right: 22px;
+    width: 75%;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
 .news__title{
    padding: 10px 0 10px 0;
+}
+.news__image{
+    width: 100%;
+    height: 100vh;
 }
 .news__description{
     padding: 10px 0 10px 0;

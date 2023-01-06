@@ -10,14 +10,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getPostDetail } from "../../store/News/news.slice";
 export const HomePage = () => {
   const { newsList } = useSelector((state) => state.news);
-  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
   }, []);
-
-
-
   return (
     <>
       <Header />

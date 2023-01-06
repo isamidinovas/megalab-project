@@ -1,5 +1,4 @@
 
-
 .news__info--favorite_block{
 width: 75%;
 }
@@ -10,8 +9,5 @@ width: 75%;
 }
 .favorite__content{
         margin-top: 30px;
-        display: flex;
-        justify-content: space-between;
-    
-    
+        margin-right: 25px;
 }

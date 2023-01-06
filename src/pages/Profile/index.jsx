@@ -1,4 +1,4 @@
- import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { SecondHeader } from "../../components/header";
 import { Modal } from "../../components/addPostModal";
@@ -39,7 +39,7 @@ export const Profile = () => {
 
             <div className="content">
               {newsList.length ? (
-                <div className="news__block">
+                <div className="post__block">
                   {newsList
                     .filter((elem) => myPostsIds.indexOf(elem.id) != -1)
                     .map((post) => (

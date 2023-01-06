@@ -4,17 +4,3 @@
     display: flex;
     justify-content: space-between;
 }
-.save__button {
-    font-size: 15px;
-    color: #fff;
-    cursor: pointer;
-    text-align: center;
-    border: none;
-    width: 168px;
-    height: 30px;
-    background-color: #7E5BC2;
-    border-radius: 10px;
-}
-.save__button:hover{
-    background-color: #59379e;
-}
