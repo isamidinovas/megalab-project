@@ -8,17 +8,29 @@ import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../store/Profile/profile.slice";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-function Header() {
+import { getPostList } from "../../store/News/newsSearch.slice";
+function Header({ getSearchText }) {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const userId = localStorage.getItem("userId");
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleClick = () => {
     Swal.fire("Вы точно хотите выйти из аккаунта?")
       .then(() => dispatch(logoutUser()))
       .then(() => navigate("/registration"));
+  };
+  const [search, setSearch] = useState("");
+  const click = () => {
+    dispatch(getPostList(search));
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    getSearchText(e.target.value);
   };
   return (
     <>
@@ -27,16 +39,25 @@ function Header() {
           <div className="header__inner">
             <div className="header__logo">
               <Link to={"/"}>
-                {" "}
                 <img src={Logo} alt="" />
               </Link>
             </div>
             <div className="header__icons">
-              <img className="icon" src={SearchIcon} alt="" />
+              <img
+                className="icon"
+                onClick={() => {
+                  if (showProfile) SetShowProfile(false);
+                  else if (showMenu) SetShowMenu(false);
+                  setShowSearch(!showSearch);
+                }}
+                src={SearchIcon}
+                alt=""
+              />
               <img
                 className="icon"
                 onClick={() => {
                   if (showMenu) SetShowMenu(false);
+                  else if (showSearch) setShowSearch(false);
                   SetShowProfile(!showProfile);
                 }}
                 src={ProfileIcon}
@@ -46,11 +67,28 @@ function Header() {
                 className="icon"
                 onClick={() => {
                   if (showProfile) SetShowProfile(false);
+                  else if (showSearch) setShowSearch(false);
                   SetShowMenu(!showMenu);
                 }}
                 src={MenuIcon}
                 alt=""
               />
+              {showSearch && (
+                <div className="favorites_news">
+                  <input
+                    onChange={handleSearch}
+                    className="search__input"
+                    type="text"
+                    placeholder="search"
+                  />
+                  <img
+                    onClick={click}
+                    className="search__img"
+                    src={SearchIcon}
+                    alt=""
+                  />
+                </div>
+              )}
               {showProfile && (
                 <div className="modal__menu">
                   <NavLink
@@ -68,7 +106,6 @@ function Header() {
                   </Link>
                 </div>
               )}
-
               {showMenu && (
                 <div
                   className="favorites_news"

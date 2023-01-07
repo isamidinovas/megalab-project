@@ -1,14 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getNewsThunk = createAsyncThunk("getNews", async () => {
+export const getNewsThunk = createAsyncThunk("getNews", async (action) => {
   const postIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const token = localStorage.getItem("token");
-  const response = await axios.get("https://megalab.pythonanywhere.com/post/", {
-    headers: {
-      Authorization: `token ${token}`,
-    },
-  });
+  // const response = await axios.get("https://megalab.pythonanywhere.com/post/", {
+  const response = await axios.get(
+    `https://megalab.pythonanywhere.com/post/?tag=${action}`,
+    {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  );
+  console.log("data", response.data);
   return response.data;
 });
 export const newsSlice = createSlice({
@@ -20,8 +25,8 @@ export const newsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getNewsThunk.fulfilled, (state, action) => {
       state.newsList = action.payload;
+      console.log(action.payload);
     });
-
   },
 });
 

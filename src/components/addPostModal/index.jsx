@@ -22,7 +22,7 @@ export const Modal = ({ setIsOpen }) => {
   useEffect(() => {
     dispatch(getTegList());
   }, []);
-  console.log("tegss", postData.tag);
+
 
   // function handleSelectImage(image) {
   //   let formData = new FormData();

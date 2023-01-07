@@ -8,7 +8,6 @@ export const getPostLike = createAsyncThunk("postLike/get", async () => {
       Authorization: `token ${token}`,
     },
   });
-  console.log("urooo");
   return response.data;
 });
 
