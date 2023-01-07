@@ -12,16 +12,17 @@ import { getNewsThunk } from "../../store/News/news.slice";
 export const NewPost = ({ post }) => {
   const handleClick = () => {
     dispatch(postDelete(post.id));
-     };
+  };
 
   const dispatch = useDispatch();
-  // const img = `https://megalab.pythonanywhere.com${post.image}`;
+  const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
   return (
     <div className="post__item">
       <div className="post__inner">
         <div className="post__img">
-          <img className="post__img" src={Rectangle} alt="" />
+          {/* <img className="post__img" src={Rectangle} alt="" /> */}
+          <img className="post__img" src={img} alt="" />
         </div>
         <div className="post__info">
           <div className="to__favorites">
