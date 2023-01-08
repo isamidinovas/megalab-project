@@ -40,7 +40,7 @@ export const postDelete = createAsyncThunk(
   }
 );
 
-export const getTegList = createAsyncThunk("teglist/get", async () => {
+export const getTagList = createAsyncThunk("taglist/get", async () => {
   const token = localStorage.getItem("token");
   const response = await axios.get(
     "https://megalab.pythonanywhere.com/logout/",

@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
-export const Checkbox = ({ teg }) => {
+export const Checkbox = ({ tag }) => {
   return (
     <label className="checkboxWrap">
-      {teg.name}
+      {tag.name}
       <input type="checkbox" />
       <span className="checkmark"></span>
     </label>

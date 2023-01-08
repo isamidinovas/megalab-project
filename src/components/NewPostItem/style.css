@@ -18,6 +18,10 @@
     width: 66%;
     text-align: left;
 }
+.post__img{
+    width: 255px;
+    height: 211px;
+}
 .to__favorites{
     display: flex;
     justify-content:space-between;

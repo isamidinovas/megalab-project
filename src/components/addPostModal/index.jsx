@@ -4,35 +4,33 @@ import { postCreate } from "../../store/Post/post.slice";
 import download from "../../assets/img/download.png";
 import CloseIcon from "../../assets/img/x.png";
 import { useDispatch, useSelector } from "react-redux";
-import { getTegList } from "../../store/Post/teg.slice";
+import { getTagList } from "../../store/Post/tag.slice";
 import { getNewsThunk } from "../../store/News/news.slice";
 
 export const Modal = ({ setIsOpen }) => {
   const { newsList } = useSelector((state) => state.news);
-  const { tegList } = useSelector((state) => state.tegs);
+  const { tagList } = useSelector((state) => state.tags);
 
   const post = useSelector((state) => state.post);
   const [postData, setPostData] = useState({
     title: newsList.title,
     text: newsList.text,
     tag: newsList.tag,
-    image: "",
     short_desc: newsList.short_desc,
   });
   useEffect(() => {
-    dispatch(getTegList());
+    dispatch(getTagList());
   }, []);
 
+  function handleSelectImage(image) {
+    let formData = new FormData();
+    formData.set("image", image, image.name);
+    formData.set("title", newsList.title);
+    formData.set("text", newsList.text);
+    formData.set("tag", newsList.tag);
 
-  // function handleSelectImage(image) {
-  //   let formData = new FormData();
-  //   formData.set("image", post.image, image.name);
-  //   formData.set("title", post.title);
-  //   formData.set("text", post.text);
-  //   formData.set("tag", post.tag);
-
-  //   dispatch(postCreate(formData));
-  // }
+    dispatch(postCreate(formData));
+  }
   function onChange(e) {
     const { name, value } = e.target;
 
@@ -49,7 +47,7 @@ export const Modal = ({ setIsOpen }) => {
 
     setIsOpen(false);
     dispatch(postCreate(postData));
-    dispatch(getNewsThunk());
+    // dispatch(getNewsThunk());
   };
   return (
     <div className="darkBG">
@@ -62,14 +60,14 @@ export const Modal = ({ setIsOpen }) => {
             <div className="modal-content-item">
               <span className="modal-item_title">Обложка новости</span>
               <div className="select-photo-wrap">
-                <label htmlFor="filePicker" className="select-photo-lable">
+                <label htmlFor="fileImg" className="select-photo-lable">
                   Добавить фото <img src={download} />
                 </label>
                 <input
-                  // onChange={(event) => {
-                  //   handleSelectImage(event.target.files[0]);
-                  // }}
-                  id="filePicker"
+                  onChange={(event) => {
+                    handleSelectImage(event.target.files[0]);
+                  }}
+                  id="fileImg"
                   name="image"
                   style={{ visibility: "hidden" }}
                   type={"file"}
@@ -107,13 +105,13 @@ export const Modal = ({ setIsOpen }) => {
             </div>
             <div className="modal-content-item">
               <span className="modal-item_title">Выбрать категорию</span>
-              {tegList.length > 0 ? (
+              {tagList.length > 0 ? (
                 <select
                   onChange={(e) => onChange(e)}
                   className="select-category"
                   name="tag"
                 >
-                  {tegList.map((tag) => (
+                  {tagList.map((tag) => (
                     <option name="tag">{tag.name}</option>
                   ))}
                 </select>

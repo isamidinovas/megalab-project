@@ -123,7 +123,7 @@ export const profileSlice = createSlice({
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
       state.userInfo.name = null;
-
+      state.userToken = null;
       state.userInfo.last_name = null;
       state.userInfo.nickname = null;
       state.userInfo.password = null;
@@ -137,28 +137,5 @@ export const profileSlice = createSlice({
     });
   },
 });
-// const handleClick = () => {
-//   Swal.fire("Вы точно хотите выйти из аккаунта?").then(
-//     dispatch(logoutUser())
-//       .unwrap() // <-- async Thunk returns a promise, that can be 'unwrapped')
-//       .then(() => navigate("/registration"))
-//   );
-// };
 
-// Swal.fire({
-//   title: "Точно",
-//   text: "You won't be able to revert this!",
-//   icon: "warning",
-//   showCancelButton: true,
-//   confirmButtonColor: "#3085d6",
-//   cancelButtonColor: "#d33",
-//   confirmButtonText: "Yes, delete it!",
-// }).then((result) => {
-//   navigate("/registration");
-//   if (result.isConfirmed) {
-//     Swal.fire("Deleted!", "Your file has been deleted.", "success").then(
-//       dispatch(logoutUser())
-//     );
-//   }
-// });
 export const profileReducer = profileSlice.reducer;

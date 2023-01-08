@@ -5,18 +5,21 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/index";
 import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";
-import { getTegList } from "../../store/Post/teg.slice";
+import { getTagList } from "../../store/Post/tag.slice";
 import { Checkbox } from "./components/checkbox";
+import { getPostList } from "../../store/News/newsSearch.slice";
 
 export const HomePage = () => {
   const { newsList } = useSelector((state) => state.news);
-  const { tegList } = useSelector((state) => state.tegs);
-  // const [search, setSearch] = useState({
-  //   search: "",
-  //   tag: "",
-  //   author: "",
-  // });
-  const [search, setSearch] = useState("");
+  const userToken = useSelector((state) => state.profile.userToken);
+  const { tagList } = useSelector((state) => state.tags);
+  const { postList } = useSelector((state) => state.search);
+  const [search, setSearch] = useState({
+    search: "",
+    tag: "",
+    author: "",
+  });
+  // const [search, setSearch] = useState("");
 
   const handleSearch = (value) => {
     setSearch(value);
@@ -26,7 +29,7 @@ export const HomePage = () => {
     dispatch(getNewsThunk(search));
   }, [search]);
   useEffect(() => {
-    dispatch(getTegList());
+    dispatch(getTagList());
   }, []);
   return (
     <>
@@ -35,10 +38,10 @@ export const HomePage = () => {
         <div className="content__inner">
           <div className="content__filter">
             <p className="filter__text">Фильтрация</p>
-            {tegList.length > 0 ? (
+            {tagList.length > 0 ? (
               <div className="checkboxs">
-                {tegList.map((teg, index) => (
-                  <Checkbox key={index} teg={teg} />
+                {tagList.map((tag, index) => (
+                  <Checkbox key={index} tag={tag} />
                 ))}
               </div>
             ) : null}
@@ -47,22 +50,6 @@ export const HomePage = () => {
             </div>
           </div>
           {newsList.length > 0 ? (
-            // newsList?.filter((item) => {
-            //   return search?.search === "" &&
-            //     search?.tag === "" &&
-            //     search?.author === ""
-            //     ? item
-            //     : item.search
-            //         ?.toLowerCase()
-            //         .includes(search?.search.toLowerCase()) &&
-            //         item.tag
-            //           ?.toLowerCase()
-            //           .includes(search?.tag.toLowerCase()) &&
-            //         item.author
-            //           ?.toLowerCase()
-            //           .includes(search?.author.toLowerCase());
-            // }
-            // )
             <div className="news__content">
               {newsList.map((item, index) => (
                 <News key={index} item={item} />

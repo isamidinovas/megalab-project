@@ -28,12 +28,13 @@ justify-content:space-between;
     background:none;
     cursor: pointer;
 }
-
-
-
 .favorite.active {
-Color: red
+background-color: red
 }
 .favorite.hidden {
-Color: black
+    background-color:rgb(255, 255, 255);
+}
+.like__icon{
+    width: 40px;
+    height: 40px;
 }

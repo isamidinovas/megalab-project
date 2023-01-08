@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getTegList = createAsyncThunk("teglist/get", async () => {
+export const getTagList = createAsyncThunk("taglist/get", async () => {
   const token = localStorage.getItem("token");
   const response = await axios.get("https://megalab.pythonanywhere.com/tag/", {
     headers: {
@@ -14,17 +14,17 @@ export const getTegList = createAsyncThunk("teglist/get", async () => {
   return response.data;
 });
 
-export const newsSlice = createSlice({
-  name: "tegs",
+export const tagsSlice = createSlice({
+  name: "tags",
   initialState: {
-    tegList: {},
+    tagList: {},
   },
 
   extraReducers: (builder) => {
-    builder.addCase(getTegList.fulfilled, (state, action) => {
-      state.tegList = action.payload;
+    builder.addCase(getTagList.fulfilled, (state, action) => {
+      state.tagList = action.payload;
     });
   },
 });
 
-export const tegsReducer = newsSlice.reducer;
+export const tagsReducer = tagsSlice.reducer;

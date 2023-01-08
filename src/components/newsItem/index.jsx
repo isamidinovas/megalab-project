@@ -13,23 +13,29 @@ import { useDispatch, useSelector } from "react-redux";
 export const News = ({ item }) => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
+  const img = `https://megalab.pythonanywhere.com${item.image}`;
   const dispatch = useDispatch();
+
   const likePostClick = () => {
     const postID = {
       post: item.id,
     };
     if (newsDetail.is_liked == false) {
       dispatch(likePost(postID));
+      console.log("Liked", item.is_liked);
+      dispatch(getPostLike());
     } else {
       dispatch(unLikePost(postID));
+      console.log("UNliked", item.is_liked);
       dispatch(getPostLike());
     }
   };
+
   return (
     <div className="post__item">
       <div className="post__inner">
         <div className="post__img">
-          <img className="post__img" src={Rectangle} alt="" />
+          <img className="post__img" src={img} alt="img" />
         </div>
         <div className="post__info">
           <div className="to__favorites">

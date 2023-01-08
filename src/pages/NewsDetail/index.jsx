@@ -12,7 +12,7 @@ import { ShareModal } from "../../components/shareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDetail } from "../../store/News/newsDetails.slice";
 import { createComment } from "../../store/News/newsDetails.slice";
-import { likePost } from "../../store/Post/postLike.slice";
+import { getPostLike, likePost } from "../../store/Post/postLike.slice";
 import { unLikePost } from "../../store/Post/postLike.slice";
 export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
@@ -21,7 +21,7 @@ export const NewsDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
-
+  const img = `https://megalab.pythonanywhere.com${newsDetail.image}`;
   useEffect(() => {
     dispatch(getPostDetail(postId));
   }, []);
@@ -39,7 +39,9 @@ export const NewsDetail = () => {
     dispatch(createComment(newComment));
     setCommentData("");
   };
-
+  useEffect(() => {
+    dispatch(getPostLike());
+  }, []);
   const likePostClick = () => {
     const postID = {
       post: postId,
@@ -65,7 +67,14 @@ export const NewsDetail = () => {
             <div className="to__favorites">
               <p>29.11.2022</p>
               <div className="like__icon">
-                <img onClick={likePostClick} src={LikeIcon} alt="" />
+                <img
+                  onClick={likePostClick}
+                  src={LikeIcon}
+                  alt=""
+                  className={`favorite ${
+                    newsDetail.is_liked ? "active" : "hidden"
+                  } `}
+                />
               </div>
             </div>
 
@@ -73,7 +82,7 @@ export const NewsDetail = () => {
               <h2 className="news__title">{newsDetail.title}</h2>
               <p className="news__description">{newsDetail.short_desc}</p>
               <div className="news__img">
-                <img className="news__image" src={Rectangle} alt="" />
+                <img className="news__image" src={img} alt="" />
               </div>
               <p className="text__info">{newsDetail.text}</p>
               <button className="share__btn ">

@@ -17,7 +17,7 @@ export const Profile = () => {
     dispatch(getNewsThunk());
   }, []);
   const [isOpen, setIsOpen] = useState(false);
-  const formData = new FormData();
+
   return (
     <>
       <div className="container container__favorite">
@@ -40,8 +40,8 @@ export const Profile = () => {
                 <div className="post__block">
                   {newsList
                     .filter((elem) => myPostsIds.indexOf(elem.id) != -1)
-                    .map((post) => (
-                      <NewPost key={post.id} post={post} />
+                    .map((post, index) => (
+                      <NewPost key={index} post={post} />
                     ))}
                 </div>
               ) : (
