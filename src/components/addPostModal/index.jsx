@@ -8,46 +8,41 @@ import { getTagList } from "../../store/Post/tag.slice";
 import { getNewsThunk } from "../../store/News/news.slice";
 
 export const Modal = ({ setIsOpen }) => {
-  const { newsList } = useSelector((state) => state.news);
   const { tagList } = useSelector((state) => state.tags);
 
-  const post = useSelector((state) => state.post);
-  const [postData, setPostData] = useState({
-    title: newsList.title,
-    text: newsList.text,
-    tag: newsList.tag,
-    short_desc: newsList.short_desc,
-  });
   useEffect(() => {
     dispatch(getTagList());
   }, []);
-
-  function handleSelectImage(image) {
-    let formData = new FormData();
+  const [postData, setPostData] = useState({
+    title: "",
+    text: "",
+    tag: "",
+    image: null,
+    short_desc: "",
+  });
+  let formData = new FormData();
+  const handleSelectImage = (image) => {
     formData.set("image", image, image.name);
-    formData.set("title", newsList.title);
-    formData.set("text", newsList.text);
-    formData.set("tag", newsList.tag);
-
-    dispatch(postCreate(formData));
-  }
-  function onChange(e) {
+    formData.set("title", postData.title);
+    formData.set("text", postData.text);
+    formData.set("short_desc", postData.short_desc);
+    formData.set("tag", postData.tag);
+  };
+  const onChange = (e) => {
     const { name, value } = e.target;
-
     setPostData((previousValue) => {
       return {
         ...previousValue,
         [name]: value,
       };
     });
-  }
+  };
   const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
-
     setIsOpen(false);
-    dispatch(postCreate(postData));
-    // dispatch(getNewsThunk());
+    dispatch(postCreate(formData));
+    dispatch(getNewsThunk());
   };
   return (
     <div className="darkBG">
