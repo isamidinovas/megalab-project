@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getNewsThunk = createAsyncThunk("getNews", async (action) => {
+export const getNewsThunk = createAsyncThunk("getNews", async (tag) => {
   const postIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const token = localStorage.getItem("token");
   // const response = await axios.get("https://megalab.pythonanywhere.com/post/", {
   const response = await axios.get(
-    // `https://megalab.pythonanywhere.com/post/?tag=${action}`,
+    // `https://megalab.pythonanywhere.com/post/?tag=${tag}`,
     "https://megalab.pythonanywhere.com/post/",
     {
       headers: {

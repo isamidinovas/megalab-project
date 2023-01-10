@@ -30,6 +30,7 @@ export const News = ({ item }) => {
       dispatch(getPostLike());
     }
   };
+  useEffect(() => {}, [dispatch]);
 
   return (
     <div className="post__item">

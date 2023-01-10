@@ -69,8 +69,8 @@ export const postSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(postCreate.fulfilled, (state, action) => {
-      const payload = action.payload;
-      state.push(action.payload);
+      // const payload = action.payload;
+      // state.push(action.payload);
     });
   },
 });

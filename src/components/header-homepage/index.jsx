@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Logo from "../../assets/img/header-logo.png";
 import MenuIcon from "../../assets/img/menu.png";
@@ -32,6 +32,7 @@ function Header({ getSearchText }) {
     setSearch(e.target.value);
     getSearchText(e.target.value);
   };
+
   return (
     <>
       <header className="header">

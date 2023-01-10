@@ -14,21 +14,18 @@ import axios from "axios";
 //   return response.data;
 // });
 
-export const getPostList = createAsyncThunk(
-  "postList/get",
-  async ({ search, tag, author }) => {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(
-      `https://megalab.pythonanywhere.com/post/?search=${search}&tag=${tag}&author=${author}`,
-      {
-        headers: {
-          Authorization: `token ${token}`,
-        },
-      }
-    );
-    return response.data;
-  }
-);
+export const getPostList = createAsyncThunk("postList/get", async (tag) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.get(
+    `https://megalab.pythonanywhere.com/post/?tag=${tag}`,
+    {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  );
+  return response.data;
+});
 export const searchSlice = createSlice({
   name: "search",
   initialState: {
