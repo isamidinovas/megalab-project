@@ -4,7 +4,7 @@ import "../Registration/style.css";
 import logo from "../../assets/img/logo.png";
 import { loginUser } from "../../store/Profile/profile.slice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
   const userToken = useSelector((state) => state.profile.userToken);
@@ -17,10 +17,8 @@ export const Login = ({ setIsLoggendIn, isLoggendIn, setUserNickname }) => {
 
   useEffect(() => {
     if (userToken) navigate("/");
-  }, [userToken]);
+  }, [userToken, navigate]);
 
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
   function onChange(e) {
     const { name, value } = e.target;
 

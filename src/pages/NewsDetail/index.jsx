@@ -14,6 +14,7 @@ import { getPostDetail } from "../../store/News/newsDetails.slice";
 import { createComment } from "../../store/News/newsDetails.slice";
 import { getPostLike, likePost } from "../../store/Post/postLike.slice";
 import { unLikePost } from "../../store/Post/postLike.slice";
+import { getNewsThunk } from "../../store/News/news.slice";
 export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
@@ -39,19 +40,28 @@ export const NewsDetail = () => {
     dispatch(createComment(newComment));
     setCommentData("");
   };
-  useEffect(() => {
-    dispatch(getPostLike());
-  }, []);
-  const likePostClick = () => {
+  // useEffect(() => {
+  //   dispatch(getPostLike());
+  // }, []);
+  const likePostClick = (e) => {
+    e.stopPropagation();
     const postID = {
       post: postId,
     };
-    if (newsDetail.is_liked == false) {
+    if (newsDetail.is_liked === false) {
       dispatch(likePost(postID));
+      dispatch(getNewsThunk());
+      dispatch(getPostLike());
     } else {
       dispatch(unLikePost(postID));
+      dispatch(getNewsThunk());
+      dispatch(getPostLike());
     }
   };
+  useEffect(() => {
+    getNewsThunk();
+  }, [dispatch]);
+
   return (
     <>
       <Header />

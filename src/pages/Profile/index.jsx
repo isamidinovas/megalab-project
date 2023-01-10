@@ -5,7 +5,7 @@ import { Modal } from "../../components/addPostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { NewPost } from "../../components/NewPostItem";
 import Footer from "../../components/footer/Footer";
-import { getNewsThunk, postCreate } from "../../store/News/news.slice";
+import { getNewsThunk } from "../../store/News/news.slice";
 import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 
 export const Profile = () => {
@@ -15,7 +15,7 @@ export const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNewsThunk());
-  }, []);
+  }, [dispatch, newsList.length]);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -39,7 +39,7 @@ export const Profile = () => {
               {newsList.length ? (
                 <div className="post__block">
                   {newsList
-                    .filter((elem) => myPostsIds.indexOf(elem.id) != -1)
+                    .filter((elem) => myPostsIds.indexOf(elem.id) !== -1)
                     .map((post, index) => (
                       <NewPost key={index} post={post} />
                     ))}

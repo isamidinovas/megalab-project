@@ -9,10 +9,11 @@ import { getNewsThunk } from "../../store/News/news.slice";
 
 export const Modal = ({ setIsOpen }) => {
   const { tagList } = useSelector((state) => state.tags);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTagList());
-  }, []);
+  }, [dispatch]);
   const [postData, setPostData] = useState({
     title: "",
     text: "",
@@ -37,7 +38,7 @@ export const Modal = ({ setIsOpen }) => {
       };
     });
   };
-  const dispatch = useDispatch();
+
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(false);

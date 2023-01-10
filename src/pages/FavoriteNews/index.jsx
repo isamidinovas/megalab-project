@@ -12,9 +12,8 @@ export const FavoriteNews = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPostLike());
-  }, []);
+  }, [dispatch]);
 
-  
   return (
     <div className="favorite__block">
       <SecondHeader />

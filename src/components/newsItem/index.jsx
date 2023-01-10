@@ -1,36 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
-import styles from "./style.css";
 import { getPostLike, likePost } from "../../store/Post/postLike.slice";
 import { unLikePost } from "../../store/Post/postLike.slice";
 import LikeIcon from "../../assets/img/like-icon.png";
-import RedLikeIcon from "../../assets/img/redLike-icon.png";
-import Rectangle from "../../assets/img/Rectangle.png";
 import ShareIcon from "../../assets/img/share.png";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ShareModal } from "../shareModal";
 import { useDispatch, useSelector } from "react-redux";
+import { getNewsThunk } from "../../store/News/news.slice";
 export const News = ({ item }) => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
+  const likedPost = useSelector((state) => state.postLike.likedPosts);
   const img = `https://megalab.pythonanywhere.com${item.image}`;
   const dispatch = useDispatch();
 
-  const likePostClick = () => {
+  const likePostClick = (e) => {
+    e.stopPropagation();
     const postID = {
       post: item.id,
     };
-    if (newsDetail.is_liked == false) {
+    if (newsDetail.is_liked === false) {
       dispatch(likePost(postID));
-      console.log("Liked", item.is_liked);
+      dispatch(getNewsThunk());
       dispatch(getPostLike());
     } else {
       dispatch(unLikePost(postID));
-      console.log("UNliked", item.is_liked);
+      dispatch(getNewsThunk());
       dispatch(getPostLike());
     }
   };
-  useEffect(() => {}, [dispatch]);
+  useEffect(() => {
+    getNewsThunk();
+  }, [dispatch, likedPost.length, item.is_liked]);
 
   return (
     <div className="post__item">
@@ -71,34 +73,5 @@ export const News = ({ item }) => {
         />
       </div>
     </div>
-    // <div className="news__item">
-    //   <div className="news__img">
-    //     <img className="news__img" src={Rectangle} alt="" />
-    //   </div>
-    //   <div className="news__info">
-    //     <div className="to__favorites">
-    //       <p>27.12.22</p>
-    //       <button className="btn">
-    //         <img onClick={likePostClick} src={LikeIcon} alt="" />
-    //       </button>
-    //     </div>
-    //     <h2>{item.title}</h2>
-    //     <p>{item.text}</p>
-    //     <NavLink to={`/${item.id}`}>
-    //       Читать дальше<span>&gt;&gt;</span>
-    //     </NavLink>
-    //     <button className="share__btn ">
-    //       <img
-    //         className="share__icon"
-    //         src={ShareIcon}
-    //         alt=""
-    //         onClick={() => {
-    //           setShowShare(!showShare);
-    //         }}
-    //       />
-    //     </button>
-    //     {showShare && <ShareModal setShowShare={setShowShare} />}
-    //   </div>
-    // </div>
   );
 };

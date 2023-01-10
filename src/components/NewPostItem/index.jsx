@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
@@ -17,6 +17,7 @@ export const NewPost = ({ post }) => {
   const dispatch = useDispatch();
   const img = `https://megalab.pythonanywhere.com${post.image}`;
   const [showShare, setShowShare] = useState(false);
+  useEffect(() => {}, [dispatch]);
   return (
     <div className="post__item">
       <div className="post__inner">

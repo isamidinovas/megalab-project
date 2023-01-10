@@ -14,6 +14,7 @@ export const HomePage = () => {
   const userToken = useSelector((state) => state.profile.userToken);
   const { tagList } = useSelector((state) => state.tags);
   const { postList } = useSelector((state) => state.search);
+  const dispatch = useDispatch();
   // const [search, setSearch] = useState({
   //   search: "",
   //   tag: "",
@@ -24,13 +25,12 @@ export const HomePage = () => {
   const handleSearch = (value) => {
     setSearch(value);
   };
-  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getNewsThunk());
-  }, [dispatch]);
-  useEffect(() => {
     dispatch(getTagList());
-  }, []);
+  }, [dispatch]);
+
   return (
     <>
       <Header getSearchText={handleSearch} />

@@ -49,16 +49,11 @@ export const postLikeSlice = createSlice({
       state.likedPosts = action.payload;
     });
     builder.addCase(likePost.fulfilled, (state, action) => {
-      state.likedPosts = state.likedPosts;
+      state.likedPosts = true;
     });
     builder.addCase(unLikePost.fulfilled, (state, action) => {
-      state.likedPosts = state.likedPosts;
+      state.likedPosts = false;
     });
-    // builder.addCase(unLikePost.fulfilled, (state, action) => {
-    //   state.likePosts = state.likePosts.filter(
-    //     (item) => item.id !== action.payload
-    //   );
-    // });
   },
 });
 
