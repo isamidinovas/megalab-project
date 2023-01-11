@@ -33,7 +33,6 @@ export const News = ({ item }) => {
   useEffect(() => {
     getNewsThunk();
   }, [dispatch, likedPost.length, item.is_liked]);
-
   return (
     <div className="post__item">
       <div className="post__inner">

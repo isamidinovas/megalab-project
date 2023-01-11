@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-export const postCreate = createAsyncThunk("post/create", async (data) => {
+export const postCreate = createAsyncThunk("post/create", async (formData) => {
   const token = localStorage.getItem("token");
   const postIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const response = await axios.post(
     "https://megalab.pythonanywhere.com/post/",
-    data,
+    formData,
     {
       headers: {
         Authorization: `token ${token}`,

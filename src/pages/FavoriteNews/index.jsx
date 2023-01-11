@@ -7,12 +7,11 @@ import { News } from "../../components/newsItem";
 import { getPostLike } from "../../store/Post/postLike.slice";
 
 export const FavoriteNews = () => {
-  const news = useSelector((state) => state.news);
   const { likedPosts } = useSelector((state) => state.postLike);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPostLike());
-  }, [dispatch]);
+  }, [dispatch, likedPosts.length]);
 
   return (
     <div className="favorite__block">
@@ -27,7 +26,9 @@ export const FavoriteNews = () => {
               ))}
             </div>
           ) : (
-            <h2 style={{ margin: "30px auto" }}>Идет загрузка...</h2>
+            <h2 style={{ margin: "30px auto" }}>
+              Пока избранных новостей нету!
+            </h2>
           )}
         </div>
       </div>

@@ -5,7 +5,6 @@ import Header from "../../components/header-homepage/index";
 import { Comment } from "../../components/comment";
 import arrowLeftIcon from "../../assets/img/arrow-left-icon.png";
 import ShareIcon from "../../assets/img/share.png";
-import Rectangle from "../../assets/img/Rectangle.png";
 import LikeIcon from "../../assets/img/like-icon.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { ShareModal } from "../../components/shareModal";
@@ -14,7 +13,7 @@ import { getPostDetail } from "../../store/News/newsDetails.slice";
 import { createComment } from "../../store/News/newsDetails.slice";
 import { getPostLike, likePost } from "../../store/Post/postLike.slice";
 import { unLikePost } from "../../store/Post/postLike.slice";
-import { getNewsThunk } from "../../store/News/news.slice";
+
 export const NewsDetail = () => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
@@ -23,9 +22,7 @@ export const NewsDetail = () => {
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
   const img = `https://megalab.pythonanywhere.com${newsDetail.image}`;
-  useEffect(() => {
-    dispatch(getPostDetail(postId));
-  }, []);
+  const likedPost = useSelector((state) => state.postLike.likedPosts);
 
   const onChange = (e) => {
     setCommentData(e.target.value);
@@ -40,9 +37,6 @@ export const NewsDetail = () => {
     dispatch(createComment(newComment));
     setCommentData("");
   };
-  // useEffect(() => {
-  //   dispatch(getPostLike());
-  // }, []);
   const likePostClick = (e) => {
     e.stopPropagation();
     const postID = {
@@ -50,18 +44,15 @@ export const NewsDetail = () => {
     };
     if (newsDetail.is_liked === false) {
       dispatch(likePost(postID));
-      dispatch(getNewsThunk());
       dispatch(getPostLike());
     } else {
       dispatch(unLikePost(postID));
-      dispatch(getNewsThunk());
       dispatch(getPostLike());
     }
   };
   useEffect(() => {
-    getNewsThunk();
-  }, [dispatch]);
-
+    dispatch(getPostDetail(postId));
+  }, [dispatch, likedPost.length, postId.is_liked]);
   return (
     <>
       <Header />
