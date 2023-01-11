@@ -30,6 +30,7 @@ justify-content:space-between;
 }
 .favorite.active {
 background-color: red
+
 }
 .favorite.hidden {
     background-color:rgb(255, 255, 255);
