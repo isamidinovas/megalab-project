@@ -5,18 +5,18 @@ import { Modal } from "../../components/addPostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { NewPost } from "../../components/NewPostItem";
 import Footer from "../../components/footer/Footer";
-import { getNewsThunk } from "../../store/News/news.slice";
 import { ProfileEditBlock } from "../../components/ProfileEditBlock";
+import { getMyPosts } from "../../store/Post/post.slice";
 
 export const Profile = () => {
-  const myPostsIds = JSON.parse(localStorage.getItem("myPosts")) || [];
-
   const [isOpen, setIsOpen] = useState(false);
-  const { newsList } = useSelector((state) => state.news);
+  const { myPostsList } = useSelector((state) => state.post);
+  const { userInfo } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getNewsThunk());
-  }, [dispatch, newsList.length]);
+    dispatch(getMyPosts(userInfo.nickname));
+  }, [userInfo.nickname, myPostsList.length]);
 
   return (
     <>
@@ -36,13 +36,11 @@ export const Profile = () => {
             </div>
 
             <div className="content">
-              {newsList.length ? (
+              {myPostsList.length ? (
                 <div className="post__block">
-                  {newsList
-                    .filter((elem) => myPostsIds.indexOf(elem.id) !== -1)
-                    .map((post, index) => (
-                      <NewPost key={index} post={post} />
-                    ))}
+                  {myPostsList.map((post, index) => (
+                    <NewPost key={index} post={post} />
+                  ))}
                 </div>
               ) : (
                 <h2 style={{ margin: "30px auto" }}>Идёт загрузка...</h2>

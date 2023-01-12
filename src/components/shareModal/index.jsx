@@ -15,7 +15,7 @@ export const ShareModal = ({ setShowShare, url }) => {
   useOnClickOutside(modalRef, onClickOutside);
 
   return (
-    <div className="share__block share__block-newpage" ref={modalRef}>
+    <div className="share__block" ref={modalRef}>
       <div className="share__header">
         <p>Поделиться</p>
         <button className="closeBtn" onClick={() => setShowShare(false)}>

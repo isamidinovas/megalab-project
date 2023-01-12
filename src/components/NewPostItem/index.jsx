@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal";
-import { postDelete } from "../../store/Post/post.slice";
+import { getMyPosts, postDelete } from "../../store/Post/post.slice";
 import { useDispatch } from "react-redux";
-import { getNewsThunk } from "../../store/News/news.slice";
 
 export const NewPost = ({ post }) => {
   const dispatch = useDispatch();
   const img = `https://megalab.pythonanywhere.com${post.image}`;
   let url = `https://megalab.pythonanywhere.com/post/${post.id}`;
   const [showShare, setShowShare] = useState(false);
+
   const handleClick = () => {
     dispatch(postDelete(post.id));
-    dispatch(getNewsThunk());
+    dispatch(getMyPosts());
   };
 
-  useEffect(() => {}, [dispatch]);
   return (
     <div className="post__item">
       <div className="post__inner">

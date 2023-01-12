@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 export const postCreate = createAsyncThunk("post/create", async (formData) => {
   const token = localStorage.getItem("token");
-  const postIds = JSON.parse(localStorage.getItem("myPosts")) || [];
   const response = await axios.post(
     "https://megalab.pythonanywhere.com/post/",
     formData,
@@ -13,23 +12,29 @@ export const postCreate = createAsyncThunk("post/create", async (formData) => {
       },
     }
   );
-
-  if (response.data.id) {
-    localStorage.setItem(
-      "myPosts",
-      JSON.stringify([...postIds, response.data.id])
-    );
-  }
-
   return response.data;
 });
 
-export const postDelete = createAsyncThunk(
-  "post/postDelete",
-  async (id, { dispatch }) => {
+export const postDelete = createAsyncThunk("post/postDelete", async (id) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.delete(
+    `https://megalab.pythonanywhere.com/post/${id}/`,
+    {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  );
+  return response.data;
+});
+
+export const getMyPosts = createAsyncThunk(
+  "get/myPosts",
+  async (author_nickname) => {
     const token = localStorage.getItem("token");
-    const response = await axios.delete(
-      `https://megalab.pythonanywhere.com/post/${id}/`,
+    const response = await axios.get(
+      `https://megalab.pythonanywhere.com/post/?author=${author_nickname}`,
+
       {
         headers: {
           Authorization: `token ${token}`,
@@ -59,7 +64,10 @@ export const getTagList = createAsyncThunk("taglist/get", async () => {
 export const postSlice = createSlice({
   name: "post",
   userId: "",
-  initialState: [],
+
+  initialState: {
+    myPostsList: {},
+  },
 
   // reducers: {
   //   removePost(state, action) {
@@ -71,6 +79,9 @@ export const postSlice = createSlice({
     builder.addCase(postCreate.fulfilled, (state, action) => {
       // const payload = action.payload;
       // state.push(action.payload);
+    });
+    builder.addCase(getMyPosts.fulfilled, (state, action) => {
+      state.myPostsList = action.payload;
     });
   },
 });
