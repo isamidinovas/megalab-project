@@ -8,11 +8,13 @@ import { NavLink } from "react-router-dom";
 import { ShareModal } from "../shareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewsThunk } from "../../store/News/news.slice";
+import redLikeIcon from "../../assets/img/redLike-icon.png";
 export const News = ({ item }) => {
   const [showShare, setShowShare] = useState(false);
   const { newsDetail } = useSelector((state) => state.newsDetail);
   const likedPost = useSelector((state) => state.postLike.likedPosts);
   const img = `https://megalab.pythonanywhere.com${item.image}`;
+  let url = `https://megalab.pythonanywhere.com/post/${item.id}`;
   const dispatch = useDispatch();
 
   const likePostClick = (e) => {
@@ -59,16 +61,15 @@ export const News = ({ item }) => {
               }}
             />
           </button>
-          {showShare && <ShareModal setShowShare={setShowShare} />}
+          {showShare && <ShareModal url={url} setShowShare={setShowShare} />}
         </div>
       </div>
 
       <div className="like__icon">
         <img
           onClick={likePostClick}
-          src={LikeIcon}
-          alt=""
-          className={`favorite ${item.is_liked ? "active" : "hidden"} `}
+          src={item.is_liked ? redLikeIcon : LikeIcon}
+          alt="img"
         />
       </div>
     </div>

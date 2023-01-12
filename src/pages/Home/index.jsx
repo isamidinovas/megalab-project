@@ -32,7 +32,7 @@ export const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="home">
       <Header getSearchText={handleSearch} />
       <div className="container container__favorite">
         <div className="content__inner">
@@ -61,6 +61,6 @@ export const HomePage = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };

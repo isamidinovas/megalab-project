@@ -14,7 +14,7 @@ import axios from "axios";
 //   return response.data;
 // });
 
-export const getPostList = createAsyncThunk("postList/get", async (tag) => {
+export const getPostList = createAsyncThunk("postList/get", async ({tag, search,}) => {
   const token = localStorage.getItem("token");
   const response = await axios.get(
     `https://megalab.pythonanywhere.com/post/?tag=${tag}`,

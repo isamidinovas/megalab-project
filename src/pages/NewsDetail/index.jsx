@@ -5,6 +5,7 @@ import Header from "../../components/header-homepage/index";
 import { Comment } from "../../components/comment";
 import arrowLeftIcon from "../../assets/img/arrow-left-icon.png";
 import ShareIcon from "../../assets/img/share.png";
+import redLikeIcon from "../../assets/img/redLike-icon.png";
 import LikeIcon from "../../assets/img/like-icon.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { ShareModal } from "../../components/shareModal";
@@ -53,6 +54,8 @@ export const NewsDetail = () => {
   useEffect(() => {
     dispatch(getPostDetail(postId));
   }, [dispatch, likedPost.length, postId.is_liked]);
+
+  let url = `https://megalab.pythonanywhere.com/post/${postId}`;
   return (
     <>
       <Header />
@@ -70,11 +73,8 @@ export const NewsDetail = () => {
               <div className="like__icon">
                 <img
                   onClick={likePostClick}
-                  src={LikeIcon}
-                  alt=""
-                  className={`favorite ${
-                    newsDetail.is_liked ? "active" : "hidden"
-                  } `}
+                  src={newsDetail.is_liked ? redLikeIcon : LikeIcon}
+                  alt="img"
                 />
               </div>
             </div>
@@ -96,7 +96,9 @@ export const NewsDetail = () => {
                   }}
                 />
               </button>
-              {showShare && <ShareModal setShowShare={setShowShare} />}
+              {showShare && (
+                <ShareModal url={url} setShowShare={setShowShare} />
+              )}
 
               <div className="comment__block">
                 <h2 className="comment__text">Комментарии</h2>

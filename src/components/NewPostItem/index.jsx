@@ -9,14 +9,15 @@ import { useDispatch } from "react-redux";
 import { getNewsThunk } from "../../store/News/news.slice";
 
 export const NewPost = ({ post }) => {
+  const dispatch = useDispatch();
+  const img = `https://megalab.pythonanywhere.com${post.image}`;
+  let url = `https://megalab.pythonanywhere.com/post/${post.id}`;
+  const [showShare, setShowShare] = useState(false);
   const handleClick = () => {
     dispatch(postDelete(post.id));
     dispatch(getNewsThunk());
   };
 
-  const dispatch = useDispatch();
-  const img = `https://megalab.pythonanywhere.com${post.image}`;
-  const [showShare, setShowShare] = useState(false);
   useEffect(() => {}, [dispatch]);
   return (
     <div className="post__item">
@@ -42,7 +43,7 @@ export const NewPost = ({ post }) => {
               }}
             />
           </button>
-          {showShare && <ShareModal setShowShare={setShowShare} />}
+          {showShare && <ShareModal url={url} setShowShare={setShowShare} />}
         </div>
       </div>
 

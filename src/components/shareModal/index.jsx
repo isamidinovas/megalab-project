@@ -6,13 +6,14 @@ import Telegram from "../../assets/img/telegram-icon.png";
 import TwitterIcon from "../../assets/img/twitter-icon.png";
 import WhatSappIcon from "../../assets/img/whatsapp-icon.png";
 import { useOnClickOutside } from "../../hooks/useOutsideCliks";
-export const ShareModal = ({ setShowShare }) => {
+export const ShareModal = ({ setShowShare, url }) => {
   const modalRef = useRef(null);
 
   const onClickOutside = () => {
     setShowShare(false);
   };
   useOnClickOutside(modalRef, onClickOutside);
+
   return (
     <div className="share__block share__block-newpage" ref={modalRef}>
       <div className="share__header">
@@ -23,29 +24,37 @@ export const ShareModal = ({ setShowShare }) => {
       </div>
       <div className="social_networks">
         <div className="social_network">
-          <a href="https://xn--80affa3aj0al.xn--80asehdb/">
+          <a href="https://xn--80affa3aj0al.xn--80asehdb/" target="blank">
             <img src={Telegram} alt="" />
           </a>
         </div>
         <div className="social_network">
-          <a href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+          <a
+            href="https://twitter.com/Twitter?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+            target="blank"
+          >
             <img src={TwitterIcon} alt="" />
           </a>
         </div>
         <div className="social_network">
-          <a href="https://ru-ru.facebook.com/">
+          <a href="https://ru-ru.facebook.com/" target="blank">
             <img src={FacebookIcon} alt="" />
           </a>
         </div>
         <div className="social_network">
-          <a href="https://web.whatsapp.com/">
+          <a href="https://web.whatsapp.com/" target="blank">
             <img src={WhatSappIcon} alt="" />
           </a>
         </div>
       </div>
       <div className="link__block">
         <p>Короткая ссылка</p>
-        <input className="copy__input" type="text" placeholder="Текст ссылки" />
+        <input
+          className="copy__input"
+          type="text"
+          placeholder="Текст ссылки"
+          defaultValue={url}
+        />
       </div>
     </div>
   );

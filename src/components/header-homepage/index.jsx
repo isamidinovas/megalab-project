@@ -25,7 +25,7 @@ function Header({ getSearchText }) {
   };
   const [search, setSearch] = useState("");
   const click = () => {
-    dispatch(getPostList(search));
+    dispatch(getPostList(search, ));
   };
 
   const handleSearch = (e) => {

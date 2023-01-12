@@ -10,6 +10,7 @@ import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 
 export const Profile = () => {
   const myPostsIds = JSON.parse(localStorage.getItem("myPosts")) || [];
+
   const [isOpen, setIsOpen] = useState(false);
   const { newsList } = useSelector((state) => state.news);
   const dispatch = useDispatch();
