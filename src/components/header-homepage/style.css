@@ -21,7 +21,7 @@
 .icon{
 padding-right: 27px;
 }
-.title{
+.header__title{
     text-transform: uppercase;
     color:#fff;
     font-size: 50px;
@@ -29,7 +29,7 @@ padding-right: 27px;
 }
 .search__input{
     background-color: #fff;
-    padding: 19px 20px;
+    padding: 19px 50px;
     border-radius: 5px;
     font-size: 16px;
     border: none

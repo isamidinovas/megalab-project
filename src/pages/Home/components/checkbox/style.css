@@ -30,3 +30,42 @@
     border-radius: 5px;
     background-color: #fff;
   }
+  .checkboxs{
+    margin-left: 48px;
+}
+
+.checkbox-text {
+    text-align: left;
+}
+.checkboxWrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+
+  .checkboxWrap input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkboxWrap input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .checkboxWrap .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

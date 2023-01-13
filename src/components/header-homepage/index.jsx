@@ -8,7 +8,7 @@ import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../store/Profile/profile.slice";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { getPostList } from "../../store/News/newsSearch.slice";
+import { getNewsThunk } from "../../store/News/news.slice";
 function Header({ getSearchText }) {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
@@ -23,13 +23,13 @@ function Header({ getSearchText }) {
       .then(() => dispatch(logoutUser()))
       .then(() => navigate("/registration"));
   };
-  const [search, setSearch] = useState("");
-  const click = () => {
-    dispatch(getPostList(search, ));
-  };
+  const [author, setAuthor] = useState({
+    // search: "",
+    author: "",
+  });
 
   const handleSearch = (e) => {
-    setSearch(e.target.value);
+    setAuthor(e.target.value);
     getSearchText(e.target.value);
   };
 
@@ -82,12 +82,6 @@ function Header({ getSearchText }) {
                     type="text"
                     placeholder="search"
                   />
-                  <img
-                    onClick={click}
-                    className="search__img"
-                    src={SearchIcon}
-                    alt=""
-                  />
                 </div>
               )}
               {showProfile && (
@@ -122,7 +116,7 @@ function Header({ getSearchText }) {
               )}
             </div>
           </div>
-          <h1 className="title">Новости</h1>
+          <h1 className="header__title">Новости</h1>
         </div>
       </header>
     </>

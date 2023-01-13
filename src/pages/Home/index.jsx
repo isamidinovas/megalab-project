@@ -13,21 +13,22 @@ export const HomePage = () => {
   const { newsList } = useSelector((state) => state.news);
   const userToken = useSelector((state) => state.profile.userToken);
   const { tagList } = useSelector((state) => state.tags);
-  const { postList } = useSelector((state) => state.search);
+  const likedPost = useSelector((state) => state.postLike.likedPosts);
+  // const { postList } = useSelector((state) => state.search);
   const dispatch = useDispatch();
   // const [search, setSearch] = useState({
   //   search: "",
-  //   tag: "",
   //   author: "",
   // });
-  const [search, setSearch] = useState("");
+  const [author, setAuthor] = useState("");
 
   const handleSearch = (value) => {
-    setSearch(value);
+    setAuthor(value);
   };
-
   useEffect(() => {
-    dispatch(getNewsThunk());
+    dispatch(getNewsThunk(author));
+  }, [author, likedPost.length]);
+  useEffect(() => {
     dispatch(getTagList());
   }, [dispatch]);
 

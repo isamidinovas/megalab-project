@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { getPostLike, likePost } from "../../store/Post/postLike.slice";
 import { unLikePost } from "../../store/Post/postLike.slice";
@@ -24,11 +24,9 @@ export const News = ({ item }) => {
     };
     if (newsDetail.is_liked === false) {
       dispatch(likePost(postID));
-      dispatch(getNewsThunk());
       dispatch(getPostLike());
     } else {
       dispatch(unLikePost(postID));
-      dispatch(getNewsThunk());
       dispatch(getPostLike());
     }
   };
