@@ -25,19 +25,6 @@ export const likePost = createAsyncThunk("post/like", async (data) => {
   return response.data;
 });
 
-export const unLikePost = createAsyncThunk("post/unLike", async (data) => {
-  const token = localStorage.getItem("token");
-  const response = await axios.post(
-    "https://megalab.pythonanywhere.com/like/",
-    data,
-    {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  );
-  return response.data;
-});
 
 export const postLikeSlice = createSlice({
   name: "postLike",
@@ -51,9 +38,7 @@ export const postLikeSlice = createSlice({
     builder.addCase(likePost.fulfilled, (state, action) => {
       state.likedPosts = true;
     });
-    builder.addCase(unLikePost.fulfilled, (state, action) => {
-      state.likedPosts = false;
-    });
+ 
   },
 });
 

@@ -129,12 +129,10 @@ export const RegistrationPage = () => {
                 <p>Пароль</p>
                 <input
                   id="pswrd"
-                  // onChange={(e) => onChange(e)}
                   onChange={(e) => checkPassword(e)}
-                  // onChange={(e)=> onChange(e)}
                   value={password}
                   name="password"
-                  // type="password"
+                  type="password"
                   required
                   // pattern="\d [0-9]+[A-Za-z]"
                   className="registration__input"
@@ -149,7 +147,7 @@ export const RegistrationPage = () => {
                   onChange={(e) => checkPassword2(e)}
                   value={password2}
                   name="password2"
-                  type="text"
+                  type="password"
                   required
                   pattern="\d [0-9]+[A-Za-z]"
                   className="registration__input"

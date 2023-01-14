@@ -22,13 +22,10 @@ export const News = ({ item }) => {
     const postID = {
       post: item.id,
     };
-    if (newsDetail.is_liked === false) {
-      dispatch(likePost(postID));
-      dispatch(getPostLike());
-    } else {
-      dispatch(unLikePost(postID));
-      dispatch(getPostLike());
-    }
+
+    dispatch(likePost(postID));
+    dispatch(getPostLike());
+    dispatch(getNewsThunk());
   };
   useEffect(() => {
     getNewsThunk();

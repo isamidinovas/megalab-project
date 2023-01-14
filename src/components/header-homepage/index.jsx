@@ -24,12 +24,13 @@ function Header({ getSearchText }) {
       .then(() => navigate("/registration"));
   };
   const [author, setAuthor] = useState({
-    // search: "",
+    search: "",
     author: "",
   });
 
   const handleSearch = (e) => {
     setAuthor(e.target.value);
+    console.log(e.target.value);
     getSearchText(e.target.value);
   };
 

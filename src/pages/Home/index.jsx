@@ -18,16 +18,21 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   // const [search, setSearch] = useState({
   //   search: "",
-  //   author: "",
+  //   tag: "",
   // });
-  const [author, setAuthor] = useState("");
+  const [search, setSearch] = useState("");
+  const [tag, setTag] = useState("");
 
   const handleSearch = (value) => {
-    setAuthor(value);
+    setSearch(value);
+  };
+  const handleTegFilter = (value) => {
+    setTag(value);
+    console.log();
   };
   useEffect(() => {
-    dispatch(getNewsThunk(author));
-  }, [author, likedPost.length]);
+    dispatch(getNewsThunk({ search, tag }));
+  }, [search, tag]);
   useEffect(() => {
     dispatch(getTagList());
   }, [dispatch]);
@@ -39,13 +44,18 @@ export const HomePage = () => {
         <div className="content__inner">
           <div className="content__filter">
             <p className="filter__text">Фильтрация</p>
-            {tagList.length > 0 ? (
+            {tagList.length > 0 && (
               <div className="checkboxs">
                 {tagList.map((tag, index) => (
-                  <Checkbox key={index} tag={tag} />
+                  <Checkbox
+                    setSearch={setSearch}
+                    getTegFilter={handleTegFilter}
+                    key={index}
+                    tag={tag}
+                  />
                 ))}
               </div>
-            ) : null}
+            )}
             <div className="registration_btn">
               <button className="registration__button">Применить</button>
             </div>

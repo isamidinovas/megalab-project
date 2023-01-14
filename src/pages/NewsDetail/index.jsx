@@ -43,13 +43,8 @@ export const NewsDetail = () => {
     const postID = {
       post: postId,
     };
-    if (newsDetail.is_liked === false) {
-      dispatch(likePost(postID));
-      dispatch(getPostLike());
-    } else {
-      dispatch(unLikePost(postID));
-      dispatch(getPostLike());
-    }
+    dispatch(likePost(postID));
+    dispatch(getPostLike());
   };
   useEffect(() => {
     dispatch(getPostDetail(postId));
