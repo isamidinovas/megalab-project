@@ -30,10 +30,10 @@ export const postDelete = createAsyncThunk("post/postDelete", async (id) => {
 
 export const getMyPosts = createAsyncThunk(
   "get/myPosts",
-  async (author_nickname) => {
+  async ({ author, search }) => {
     const token = localStorage.getItem("token");
     const response = await axios.get(
-      `https://megalab.pythonanywhere.com/post/?author=${author_nickname}`,
+      `https://megalab.pythonanywhere.com/post/?search=${search}&author=${author}`,
 
       {
         headers: {
@@ -67,21 +67,16 @@ export const postSlice = createSlice({
 
   initialState: {
     myPostsList: {},
+    loading: false,
   },
 
-  // reducers: {
-  //   removePost(state, action) {
-  //     state.post = state.post.filter((post) => post.id !== action.payload.id);
-  //   },
-  // },
-
   extraReducers: (builder) => {
-    builder.addCase(postCreate.fulfilled, (state, action) => {
-      // const payload = action.payload;
-      // state.push(action.payload);
+    builder.addCase(getMyPosts.pending, (state, action) => {
+      state.loading = true;
     });
     builder.addCase(getMyPosts.fulfilled, (state, action) => {
       state.myPostsList = action.payload;
+      state.loading = false;
     });
   },
 });

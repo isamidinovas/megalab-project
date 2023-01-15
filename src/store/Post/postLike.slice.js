@@ -25,20 +25,23 @@ export const likePost = createAsyncThunk("post/like", async (data) => {
   return response.data;
 });
 
-
 export const postLikeSlice = createSlice({
   name: "postLike",
   initialState: {
-    likedPosts: {},
+    likedPosts: [],
+    loading: false,
   },
   extraReducers: (builder) => {
+    builder.addCase(getPostLike.pending, (state, action) => {
+      state.loading = true;
+    });
     builder.addCase(getPostLike.fulfilled, (state, action) => {
       state.likedPosts = action.payload;
+      state.loading = false;
     });
     builder.addCase(likePost.fulfilled, (state, action) => {
       state.likedPosts = true;
     });
- 
   },
 });
 

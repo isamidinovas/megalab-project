@@ -6,12 +6,16 @@ import SearchIcon from "../../assets/img/search-second.png";
 import ProfileIcon from "../../assets/img/profile-second.png";
 import MegalabLogo from "../../assets/img/megalab-logo.png";
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-export const SecondHeader = () => {
+export const SecondHeader = ({ getSearchText }) => {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchText, setSearchText] = useState({
+    search: "",
+  });
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,6 +25,11 @@ export const SecondHeader = () => {
     Swal.fire("Вы точно хотите выйти из аккаунта?")
       .then(() => dispatch(logoutUser()))
       .then(() => navigate("/registration"));
+  };
+
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+    getSearchText(e.target.value);
   };
 
   return (
@@ -33,11 +42,21 @@ export const SecondHeader = () => {
             </Link>
           </div>
           <div className="header__icons">
-            <img className="icon" src={SearchIcon} alt="" />
+            <img
+              className="icon"
+              src={SearchIcon}
+              onClick={() => {
+                if (showProfile) SetShowProfile(false);
+                else if (showMenu) SetShowMenu(false);
+                setShowSearch(!showSearch);
+              }}
+              alt="search-icon"
+            />
             <img
               className="icon"
               onClick={() => {
                 if (showMenu) SetShowMenu(false);
+                else if (showSearch) setShowSearch(false);
                 SetShowProfile(!showProfile);
               }}
               src={ProfileIcon}
@@ -47,14 +66,25 @@ export const SecondHeader = () => {
               className="icon"
               onClick={() => {
                 if (showProfile) SetShowProfile(false);
+                else if (showSearch) setShowSearch(false);
                 SetShowMenu(!showMenu);
               }}
               src={MenuIcon}
               alt=""
             />
+            {showSearch && (
+              <div className="favorites_news">
+                <input
+                  onChange={handleSearch}
+                  className="search__input"
+                  type="text"
+                  placeholder="search"
+                />
+              </div>
+            )}
             {showProfile && (
               <div className="modal__menu">
-                <Link
+                <NavLink
                   className="profile"
                   onClick={() => {
                     navigate("profile");
@@ -63,7 +93,7 @@ export const SecondHeader = () => {
                   to={`/profile/${userId}`}
                 >
                   Мой профиль
-                </Link>
+                </NavLink>
 
                 <Link className="exit__btn" onClick={handleClick}>
                   Выйти

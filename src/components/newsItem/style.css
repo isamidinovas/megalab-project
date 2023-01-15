@@ -35,7 +35,3 @@ background-color: red
 .favorite.hidden {
     background-color:rgb(255, 255, 255);
 }
-.like__icon{
-    width: 40px;
-    height: 40px;
-}

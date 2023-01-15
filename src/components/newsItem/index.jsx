@@ -22,7 +22,6 @@ export const News = ({ item }) => {
     const postID = {
       post: item.id,
     };
-
     dispatch(likePost(postID));
     dispatch(getPostLike());
     dispatch(getNewsThunk());

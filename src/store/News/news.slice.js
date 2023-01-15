@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { likePost } from "../Post/postLike.slice";
 
 export const getNewsThunk = createAsyncThunk(
   "getNews",
@@ -23,11 +22,16 @@ export const newsSlice = createSlice({
   name: "news",
   initialState: {
     newsList: [],
+    loading: false,
   },
 
   extraReducers: (builder) => {
+    builder.addCase(getNewsThunk.pending, (state, action) => {
+      state.loading = true;
+    });
     builder.addCase(getNewsThunk.fulfilled, (state, action) => {
       state.newsList = action.payload;
+      state.loading = false;
     });
   },
 });

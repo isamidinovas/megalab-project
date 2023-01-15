@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import "./style.css";
-export const Checkbox = ({ tag, getTegFilter, setSearch }) => {
+
+export const Checkbox = ({ tag, getTagFilter, setSearch }) => {
   const [checkboxType, setCheckboxType] = useState(false);
-  // const [tagFilter, setTagFilter] = useState("");
-  const [author, setTagFilter] = useState({
-    tag: "",
+  const [tagFilter, setTagFilter] = useState({
+    tags: tag.name,
+    search: "",
   });
-  const handleSearch = (e) => {
+  const onSelectTag = (e) => {
     setCheckboxType(!checkboxType);
-    setTagFilter(e.target.value);
-    console.log("ee", e.target.value);
-    console.log("check", checkboxType);
-    getTegFilter(e.target.value);
+    getTagFilter(tagFilter.tags);
   };
+
   return (
     <label className="checkboxWrap">
       {tag.name}
-      <input
-        type="checkbox"
-        value={author}
-        checked={checkboxType}
-        onChange={handleSearch}
-      />
+      <input type="checkbox" checked={checkboxType} onChange={onSelectTag} />
       <span className="checkmark"></span>
     </label>
   );

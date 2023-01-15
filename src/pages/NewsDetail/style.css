@@ -5,6 +5,7 @@
 .news__content{
     margin-right: 22px;
     width: 75%;
+  
     flex-direction: column;
     display: flex;
     justify-content: space-between;

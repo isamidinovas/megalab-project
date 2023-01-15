@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { newsReducer } from "./News/news.slice";
 import { newsDetailReducer } from "./News/newsDetails.slice";
-import { searchReducer } from "./News/newsSearch.slice";
 import { postReducer } from "./Post/post.slice";
 import { postLikeReducer } from "./Post/postLike.slice";
 import { tagsReducer } from "./Post/tag.slice";
@@ -15,6 +14,5 @@ export const store = configureStore({
     profile: profileReducer,
     postLike: postLikeReducer,
     tags: tagsReducer,
-    search: searchReducer,
   },
 });

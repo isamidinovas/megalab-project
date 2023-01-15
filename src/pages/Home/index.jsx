@@ -1,5 +1,5 @@
 import "./style.css";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header-homepage/index";
@@ -7,32 +7,36 @@ import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";
 import { getTagList } from "../../store/Post/tag.slice";
 import { Checkbox } from "./components/checkbox";
-import { getPostList } from "../../store/News/newsSearch.slice";
+import Spinner from "../../assets/img/Spinner.svg";
+import { getPostLike } from "../../store/Post/postLike.slice";
 
 export const HomePage = () => {
-  const { newsList } = useSelector((state) => state.news);
-  const userToken = useSelector((state) => state.profile.userToken);
+  const { newsList, loading } = useSelector((state) => state.news);
   const { tagList } = useSelector((state) => state.tags);
   const likedPost = useSelector((state) => state.postLike.likedPosts);
-  // const { postList } = useSelector((state) => state.search);
   const dispatch = useDispatch();
-  // const [search, setSearch] = useState({
-  //   search: "",
-  //   tag: "",
-  // });
   const [search, setSearch] = useState("");
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState([]);
 
   const handleSearch = (value) => {
     setSearch(value);
   };
-  const handleTegFilter = (value) => {
-    setTag(value);
-    console.log();
+  const handleTagFilter = (value) => {
+    if (tag.includes(value)) {
+      const newTags = tag.filter((item) => {
+        return item !== value;
+      });
+      setTag(newTags);
+    } else {
+      setTag((previousValue) => [...previousValue, value]);
+    }
   };
+
   useEffect(() => {
-    dispatch(getNewsThunk({ search, tag }));
-  }, [search, tag]);
+    const tags = tag.join();
+    dispatch(getNewsThunk({ search, tag: tags }));
+    dispatch(getPostLike());
+  }, [search, tag, likedPost.length]);
   useEffect(() => {
     dispatch(getTagList());
   }, [dispatch]);
@@ -49,7 +53,7 @@ export const HomePage = () => {
                 {tagList.map((tag, index) => (
                   <Checkbox
                     setSearch={setSearch}
-                    getTegFilter={handleTegFilter}
+                    getTagFilter={handleTagFilter}
                     key={index}
                     tag={tag}
                   />
@@ -60,15 +64,17 @@ export const HomePage = () => {
               <button className="registration__button">Применить</button>
             </div>
           </div>
-          {newsList.length > 0 ? (
+          {loading ? (
+            <div className="loaded__block">
+              <img src={Spinner} alt="" />
+            </div>
+          ) : newsList.length ? (
             <div className="news__content">
               {newsList.map((item, index) => (
                 <News key={index} item={item} />
               ))}
             </div>
-          ) : (
-            <h2 className="loaded">Идет загрузка...</h2>
-          )}
+          ) : null}
         </div>
       </div>
       <Footer />

@@ -1,6 +1,10 @@
 
-.loaded{
+
+.loaded__block{
     margin: 30px auto;
+}
+.loaded__spinner{
+    
 }
 .main{
     margin-top: 30px;

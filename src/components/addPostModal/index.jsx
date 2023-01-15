@@ -24,17 +24,18 @@ export const Modal = ({ setIsOpen }) => {
     dispatch(getTagList());
   }, [dispatch]);
 
-  let formData = new FormData();
   const handleSelectImage = (image) => {
-    formData.set("image", image);
-    formData.set("title", postData.title);
-    formData.set("text", postData.text);
-    formData.set("short_desc", postData.short_desc);
-    formData.set("tag", postData.tag);
+    setPostData((previousValue) => {
+      return {
+        ...previousValue,
+        image,
+      };
+    });
   };
 
   const onChange = (e) => {
     const { name, value } = e.target;
+
     setPostData((previousValue) => {
       return {
         ...previousValue,
@@ -46,7 +47,14 @@ export const Modal = ({ setIsOpen }) => {
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(false);
-    dispatch(postCreate(postData));
+    let formData = new FormData();
+    formData.set("image", postData.image);
+    formData.set("title", postData.title);
+    formData.set("text", postData.text);
+    formData.set("short_desc", postData.short_desc);
+    formData.set("tag", postData.tag);
+
+    dispatch(postCreate(formData));
     dispatch(getMyPosts());
   };
   return (
