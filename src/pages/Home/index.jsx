@@ -46,10 +46,11 @@ export const HomePage = () => {
     <div className="d">
       <Header getSearchText={handleSearch} />
       <div className="content__block">
+        {" "}
+        <div className="filter__slider">
+          <img className="slider__img" src={FilterSlider} alt="" />
+        </div>
         <div className="container container__favorite">
-          <div className="filter__slider">
-            <img className="slider__img" src={FilterSlider} alt="" />
-          </div>
           <div className="content__inner">
             <div className="content__filter">
               <p className="filter__text">Фильтрация</p>

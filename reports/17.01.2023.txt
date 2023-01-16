@@ -1,0 +1,6 @@
+yesterday:
+-search закончила 
+today: 
+-адавтивку буду делать
+problems:
+-нет
