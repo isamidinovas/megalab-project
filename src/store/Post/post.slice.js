@@ -45,22 +45,6 @@ export const getMyPosts = createAsyncThunk(
   }
 );
 
-export const getTagList = createAsyncThunk("taglist/get", async () => {
-  const token = localStorage.getItem("token");
-  const response = await axios.get(
-    "https://megalab.pythonanywhere.com/logout/",
-    {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  );
-  if (!response.status) {
-    throw new Error("Server error");
-  }
-  return response.data;
-});
-
 export const postSlice = createSlice({
   name: "post",
   userId: "",

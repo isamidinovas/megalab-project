@@ -5,7 +5,7 @@ import download from "../../assets/img/download.png";
 import CloseIcon from "../../assets/img/x.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getTagList } from "../../store/Post/tag.slice";
-import { getNewsThunk } from "../../store/News/news.slice";
+
 
 export const Modal = ({ setIsOpen }) => {
   const [postData, setPostData] = useState({

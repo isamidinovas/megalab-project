@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 import Logo from "../../assets/img/header-logo.png";
 import MenuIcon from "../../assets/img/menu.png";
@@ -8,6 +8,7 @@ import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../store/Profile/profile.slice";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { useOnClickOutside } from "../../hooks/useOutsideCliks";
 
 function Header({ getSearchText }) {
   const [showProfile, SetShowProfile] = useState(false);
@@ -27,7 +28,14 @@ function Header({ getSearchText }) {
     search: "",
     tag: "",
   });
+  const modalRef = useRef(null);
 
+  const onClickOutside = () => {
+    SetShowMenu(false);
+    SetShowMenu(false);
+    SetShowProfile(false);
+  };
+  useOnClickOutside(modalRef, onClickOutside);
   const handleSearch = (e) => {
     setSearchText(e.target.value);
     getSearchText(e.target.value);
@@ -74,7 +82,7 @@ function Header({ getSearchText }) {
               alt=""
             />
             {showSearch && (
-              <div className="favorites_news">
+              <div className="header__icon" ref={modalRef}>
                 <input
                   onChange={handleSearch}
                   className="search__input"
@@ -84,7 +92,7 @@ function Header({ getSearchText }) {
               </div>
             )}
             {showProfile && (
-              <div className="modal__menu">
+              <div className="header__icon--modal" ref={modalRef}>
                 <NavLink
                   className="profile"
                   onClick={() => {
@@ -102,7 +110,8 @@ function Header({ getSearchText }) {
             )}
             {showMenu && (
               <div
-                className="favorites_news"
+                className="header__icon"
+                ref={modalRef}
                 onClick={() => SetShowMenu(!showMenu)}
               >
                 <Link

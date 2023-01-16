@@ -5,10 +5,11 @@ import MenuIcon from "../../assets/img/menu-second.png";
 import SearchIcon from "../../assets/img/search-second.png";
 import ProfileIcon from "../../assets/img/profile-second.png";
 import MegalabLogo from "../../assets/img/megalab-logo.png";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { useOnClickOutside } from "../../hooks/useOutsideCliks";
 export const SecondHeader = ({ getSearchText }) => {
   const [showProfile, SetShowProfile] = useState(false);
   const [showMenu, SetShowMenu] = useState(false);
@@ -20,7 +21,7 @@ export const SecondHeader = ({ getSearchText }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
-
+  const modalRef = useRef(null);
   const handleClick = () => {
     Swal.fire("Вы точно хотите выйти из аккаунта?")
       .then(() => dispatch(logoutUser()))
@@ -31,6 +32,13 @@ export const SecondHeader = ({ getSearchText }) => {
     setSearchText(e.target.value);
     getSearchText(e.target.value);
   };
+
+  const onClickOutside = () => {
+    SetShowMenu(false);
+    SetShowMenu(false);
+    SetShowProfile(false);
+  };
+  useOnClickOutside(modalRef, onClickOutside);
 
   return (
     <header className="header__favorite">
@@ -73,7 +81,7 @@ export const SecondHeader = ({ getSearchText }) => {
               alt=""
             />
             {showSearch && (
-              <div className="favorites_news">
+              <div className="header__icon" ref={modalRef}>
                 <input
                   onChange={handleSearch}
                   className="search__input"
@@ -83,7 +91,7 @@ export const SecondHeader = ({ getSearchText }) => {
               </div>
             )}
             {showProfile && (
-              <div className="modal__menu">
+              <div className="header__icon--modal" ref={modalRef}>
                 <NavLink
                   className="profile"
                   onClick={() => {
@@ -103,7 +111,8 @@ export const SecondHeader = ({ getSearchText }) => {
 
             {showMenu && (
               <div
-                className="favorites_news"
+                ref={modalRef}
+                className="header__icon"
                 onClick={() => SetShowMenu(!showMenu)}
               >
                 <Link

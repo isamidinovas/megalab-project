@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
 
 export const authenticateUser = createAsyncThunk(
   "user/authenticate",

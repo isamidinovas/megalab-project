@@ -1,4 +1,6 @@
-
+.favorite__block{
+    min-height: calc(100vh - 275px);
+}
 .news__info--favorite_block{
 width: 75%;
 }

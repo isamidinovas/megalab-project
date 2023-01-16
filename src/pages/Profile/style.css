@@ -1,4 +1,6 @@
-
+.profile__page{
+    min-height: calc(100vh - 292px);
+}
 .title__button {
     margin-top: 26px;
     display: flex;
