@@ -1,5 +1,6 @@
 .favorite__block{
     min-height: calc(100vh - 275px);
+    font-size: calc(var(--index) * .7);
 }
 .news__info--favorite_block{
 width: 75%;
@@ -10,6 +11,14 @@ width: 75%;
     text-align: left;
 }
 .favorite__content{
-        margin-top: 30px;
-        margin-right: 25px;
+   margin-top: 30px;
 }
+
+@media screen and (max-width: 990px){
+.favorite__content{
+    display: flex;
+    margin-left: 15px;
+    flex-wrap: wrap;
+    justify-content:space-between ;
+    }
+    } 

@@ -1,0 +1,19 @@
+
+.filter__text{
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 12px;        
+}
+@media screen and (max-width: 990px){
+.filter__modal{
+    overflow: auto;
+    height: 426px;
+    position: absolute;
+    z-index: 1;
+    left: 32px;
+    top: 126px;
+    background-color: white;
+    box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
+    } 
+  }
+    

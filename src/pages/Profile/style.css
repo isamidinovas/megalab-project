@@ -1,8 +1,17 @@
 .profile__page{
     min-height: calc(100vh - 292px);
 }
+.profile__post{
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile__posts{
+    width: 100%;
+
+}
 .title__button {
     margin-top: 26px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }

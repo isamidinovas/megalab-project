@@ -1,10 +1,12 @@
 
 .container{
     margin: 0 auto;
-    max-width: 408px;
+    max-width: 800px;
     width: 100%;
 }
 .registration__modal{
+    width: 52%;
+    margin: 0 auto;
     border-radius: 12px;
     padding: 24px 60px 20px 40px;
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
@@ -79,4 +81,11 @@
     left: 95px;
     color: red;
     font-size: 9px;
+}
+
+
+@media screen and (max-width: 990px){
+    .registration__modal {
+        max-width: 890px;       
+}
 }

@@ -21,33 +21,34 @@ export const NewPost = ({ post }) => {
   return (
     <div className="post__item">
       <div className="post__inner">
-        <div className="post__img">
-          <img className="post__img" src={img} alt="" />
+        <div className="post__image">
+          <img className="post__img" src={img} alt="img" />
         </div>
         <div className="post__info">
-          <div className="to__favorites">
+          <div className="info__block">
             <p>29.11.2022</p>
+            <h2>{post.title}</h2>
+            <p>{post.text}</p>
+            <Link to={`/${post.id}`}>
+              Читать дальше<span>&gt;&gt;</span>
+            </Link>
+            <button className="share__btn ">
+              <img
+                className="share__icon"
+                src={ShareIcon}
+                alt=""
+                onClick={() => {
+                  setShowShare(!showShare);
+                }}
+              />
+            </button>
+            {showShare && <ShareModal url={url} setShowShare={setShowShare} />}
           </div>
-          <h2>{post.title}</h2>
-          <p>{post.text}</p>
 
-          <Link to={`/${post.id}`}> Читать дальше</Link>
-          <button className="share__btn ">
-            <img
-              className="share__icon"
-              src={ShareIcon}
-              alt=""
-              onClick={() => {
-                setShowShare(!showShare);
-              }}
-            />
-          </button>
-          {showShare && <ShareModal url={url} setShowShare={setShowShare} />}
+          <div className="like__icon">
+            <img onClick={handleClick} src={deleteIcon} alt="" />
+          </div>
         </div>
-      </div>
-
-      <div className="like__icon">
-        <img onClick={handleClick} src={deleteIcon} alt="" />
       </div>
     </div>
   );

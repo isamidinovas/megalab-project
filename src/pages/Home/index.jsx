@@ -10,6 +10,7 @@ import { Checkbox } from "./components/checkbox";
 import Spinner from "../../assets/img/spinner.svg";
 import FilterSlider from "../../assets/img/sliders-icon.png";
 import { getPostLike } from "../../store/Post/postLike.slice";
+import { FilterModal } from "./components/filterModal";
 
 export const HomePage = () => {
   const { newsList, loading } = useSelector((state) => state.news);
@@ -18,7 +19,7 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [tag, setTag] = useState([]);
-
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const handleSearch = (value) => {
     setSearch(value);
   };
@@ -42,36 +43,51 @@ export const HomePage = () => {
     dispatch(getTagList());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getPostLike());
+  }, [likedPost.length]);
+
   return (
-    <div className="d">
+    <div className="wrapper">
       <Header getSearchText={handleSearch} />
       <div className="content__block">
-        {" "}
         <div className="filter__slider">
-          <img className="slider__img" src={FilterSlider} alt="" />
+          <img
+            className="slider__img"
+            src={FilterSlider}
+            alt=""
+            onClick={() => {
+              setShowFilterModal(!showFilterModal);
+            }}
+          />
         </div>
+        {showFilterModal && (
+          <FilterModal setShowFilterModal={setShowFilterModal} />
+        )}
         <div className="container container__favorite">
           <div className="content__inner">
-            <div className="content__filter">
-              <p className="filter__text">Фильтрация</p>
-              {tagList.length > 0 && (
-                <div className="checkboxs">
-                  {tagList.map((tag, index) => (
-                    <Checkbox
-                      setSearch={setSearch}
-                      getTagFilter={handleTagFilter}
-                      key={index}
-                      tag={tag}
-                    />
-                  ))}
+            {
+              <div className="content__filter ">
+                <p className="filter__text">Фильтрация</p>
+                {tagList.length > 0 && (
+                  <div className="checkboxs">
+                    {tagList.map((tag, index) => (
+                      <Checkbox
+                        setSearch={setSearch}
+                        getTagFilter={handleTagFilter}
+                        key={index}
+                        tag={tag}
+                      />
+                    ))}
+                  </div>
+                )}
+                <div className="registration_btn">
+                  <button className="registration__button">Применить</button>
                 </div>
-              )}
-              <div className="registration_btn">
-                <button className="registration__button">Применить</button>
               </div>
-            </div>
+            }
             {loading ? (
-              <div className="loaded__block">
+              <div className="loading__block">
                 <img src={Spinner} alt="" />
               </div>
             ) : newsList.length ? (

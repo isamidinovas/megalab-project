@@ -52,7 +52,7 @@ export const NewsDetail = () => {
 
   let url = `https://megalab.pythonanywhere.com/post/${postId}`;
   return (
-    <>
+    <div className="wrapper">
       <Header />
       <main className="main">
         <div className="container container__favorite">
@@ -74,11 +74,11 @@ export const NewsDetail = () => {
               </div>
             </div>
 
-            <div className="news__content">
-              <h2 className="news__title">{newsDetail.title}</h2>
-              <p className="news__description">{newsDetail.short_desc}</p>
-              <div className="news__img">
-                <img className="news__image" src={img} alt="" />
+            <div className="new__content">
+              <h2 className="new__title">{newsDetail.title}</h2>
+              <p className="new__description">{newsDetail.short_desc}</p>
+              <div className="new__img">
+                <img className="new__image" src={img} alt="" />
               </div>
               <p className="text__info">{newsDetail.text}</p>
               <button className="share__btn ">
@@ -127,6 +127,6 @@ export const NewsDetail = () => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };

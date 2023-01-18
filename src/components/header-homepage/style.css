@@ -7,7 +7,7 @@
     height:  200px;
 }
 .container.container__favorite{
-    max-width: 1140px;
+    max-width: 1250px;
     margin: 0 auto;
 
 }
@@ -40,4 +40,10 @@ padding-right: 27px;
     filter: invert(100%); 
     -webkit-filter: invert(100%);
     position: absolute;
+}
+
+@media screen and (max-width: 990px){
+    .header {
+      height: 155px;   
+}
 }

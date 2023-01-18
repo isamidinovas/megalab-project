@@ -22,31 +22,30 @@ export const FavoriteNews = () => {
     return post.title.toLowerCase().includes(search.toLowerCase());
   });
   return (
-    <>
+    <div className="wrapper">
       <SecondHeader getSearchText={handleSearch} />
       <div className="favorite__block">
         <div className="container container__favorite">
           <h2 className="title__favorite-new">Избранные новости</h2>
-          <div className="favorite__content">
-            {loading ? (
-              <div className="loaded__block">
-                <img src={Spinner} alt="" />
-              </div>
-            ) : likedPosts.length ? (
-              <div className="news__block">
-                {filterLikedPosts.map((item, index) => (
-                  <News key={index} item={item} />
-                ))}
-              </div>
-            ) : (
-              <h2 style={{ margin: "30px auto" }}>
-                Пока избранных новостей нету!
-              </h2>
-            )}
-          </div>
+
+          {loading ? (
+            <div className="loading__block">
+              <img src={Spinner} alt="" />
+            </div>
+          ) : likedPosts.length ? (
+            <div className="favorite__content">
+              {filterLikedPosts.map((item, index) => (
+                <News key={index} item={item} />
+              ))}
+            </div>
+          ) : (
+            <h2 style={{ margin: "30px auto" }}>
+              Пока избранных новостей нету!
+            </h2>
+          )}
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };

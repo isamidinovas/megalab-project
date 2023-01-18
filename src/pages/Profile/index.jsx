@@ -22,7 +22,7 @@ export const Profile = () => {
   }, [myPostsList.length, search]);
 
   return (
-    <>
+    <div className="wrapper">
       <SecondHeader getSearchText={handleSearch} />
       <div className="profile__page">
         <div className="container container__favorite">
@@ -42,11 +42,11 @@ export const Profile = () => {
                 {isOpen && <Modal setIsOpen={setIsOpen} />}
               </div>
               {loading ? (
-                <div className="loaded__block">
+                <div className="loading__block">
                   <img src={Spinner} alt="" />
                 </div>
               ) : myPostsList.length ? (
-                <div className="post__block">
+                <div className="profile__post">
                   {myPostsList.map((post, index) => (
                     <NewPost key={index} post={post} />
                   ))}
@@ -59,6 +59,6 @@ export const Profile = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };

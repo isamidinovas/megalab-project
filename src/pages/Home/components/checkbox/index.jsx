@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 
-export const Checkbox = ({ tag, getTagFilter, setSearch }) => {
+export const Checkbox = ({ tag, getTagFilter }) => {
   const [checkboxType, setCheckboxType] = useState(false);
   const [tagFilter, setTagFilter] = useState({
     tags: tag.name,

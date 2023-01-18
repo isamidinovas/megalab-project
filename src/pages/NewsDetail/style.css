@@ -1,8 +1,10 @@
-
+  
 .news__block{
+    min-height: calc(100vh - 346px);
     text-align: left;
+    width: 98%;
 }
-.news__content{
+.new__content{
     margin-right: 22px;
     width: 75%;
   
@@ -10,14 +12,15 @@
     display: flex;
     justify-content: space-between;
 }
-.news__title{
+.new__title{
+    width: 98%;
    padding: 10px 0 10px 0;
 }
-.news__image{
+.new__image{
     width: 100%;
-    height: 100vh;
+    height: auto;
 }
-.news__description{
+.new__description{
     padding: 10px 0 10px 0;
 }
 .back__btn{
@@ -62,5 +65,12 @@
     border: none;
     display: flex;
     background: none;
+}
+
+
+@media screen and (max-width: 990px){
+    .new__image{
+        width: 50%;
+    }
 }
 
