@@ -7,7 +7,7 @@ import { NewPost } from "../../components/NewPostItem";
 import Footer from "../../components/footer/index";
 import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 import { getMyPosts } from "../../store/Post/post.slice";
-import Spinner from "../../assets/img/spinner.svg";
+import Spinner from "../../assets/img/Spinner.svg";
 export const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { myPostsList, loading } = useSelector((state) => state.post);
@@ -20,7 +20,9 @@ export const Profile = () => {
   useEffect(() => {
     dispatch(getMyPosts({ search, author: userInfo.nickname }));
   }, [myPostsList.length, search, dispatch]);
- 
+  useEffect(() => {
+    dispatch(getMyPosts(userInfo.nickname));
+  }, [ ]);
   return (
     <div className="wrapper">
       <SecondHeader getSearchText={handleSearch} />

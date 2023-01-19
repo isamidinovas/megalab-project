@@ -9,9 +9,7 @@
 .container.container__favorite{
     max-width: 1250px;
     margin: 0 auto;
-
 }
-
 .header__inner{
     display: flex;
     justify-content: space-between;
@@ -31,10 +29,8 @@ padding-right: 27px;
     background-color: #fff;
     padding: 19px 50px;
     border-radius: 5px;
-    font-size: 16px;
-   
+    font-size: 16px;  
 }
-
 .search__img{
     right: 4px;
     filter: invert(100%); 

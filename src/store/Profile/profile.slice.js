@@ -18,7 +18,7 @@ export const authenticateUser = createAsyncThunk(
     if (!response.status) {
       throw new Error("Server error");
     }
-    return response.data;
+    return response;
   }
 );
 
@@ -100,16 +100,20 @@ export const profileSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(authenticateUser.fulfilled, (state, action) => {
-      const { id } = action.payload;
-      localStorage.setItem("userId", id);
+      if (action.payload.data.id) {
+        localStorage.setItem("userId", action.payload.data.id);
+      }
       state.user = action.payload;
-      state.userId = id;
+      state.userId = action.payload?.id;
       state.registrationErrMessage = "";
       state.status = "resolved";
+      console.log("some error from fulfilled", action);
     });
     builder.addCase(authenticateUser.rejected, (state, action) => {
       state.status = "rejected";
-      state.registrationErrMessage = "Ошибка";
+      state.registrationErrMessage =
+        "Ошибка вожможно такой никнейм уже существует";
+      console.log("some error from rejected", action);
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       localStorage.setItem("token", action.payload.token);
@@ -121,12 +125,7 @@ export const profileSlice = createSlice({
       state.errorMessage = "Пароль или никнейм неправильно ввели !";
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
-      state.userInfo.name = null;
-      state.userToken = null;
-      state.userInfo.last_name = null;
-      state.userInfo.nickname = null;
-      state.userInfo.password = null;
-      state.userInfo.password2 = null;
+      localStorage.removeItem("token");
     });
     builder.addCase(accountUser.fulfilled, (state, action) => {
       state.userInfo = action.payload;

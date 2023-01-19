@@ -27,15 +27,11 @@ width: 25%
     width: 204px;
     height: 211px;
 } 
-
 .btn{
     border: 0;
     background:none;
     cursor: pointer;
 }
-
-
-
 @media screen and (max-width: 990px){
 .post__block{
     width: 100%;
@@ -75,10 +71,8 @@ width: 25%
  .info__block{
      font-size: 16px;
  }
- 
  }
  
-
 @media screen and (max-width: 390px){
    .post__item{
         width: 90%;
@@ -96,7 +90,6 @@ width: 25%
 .info__block{
     font-size: 16px;
 }
-
 }
 
 

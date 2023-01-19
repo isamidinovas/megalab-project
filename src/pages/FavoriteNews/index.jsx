@@ -5,7 +5,7 @@ import { SecondHeader } from "../../components/header";
 import { useDispatch, useSelector } from "react-redux";
 import { News } from "../../components/newsItem";
 import { getPostLike } from "../../store/Post/postLike.slice";
-import Spinner from "../../assets/img/spinner.svg";
+import Spinner from "../../assets/img/Spinner.svg";
 
 export const FavoriteNews = () => {
   const { likedPosts, loading } = useSelector((state) => state.postLike);
@@ -21,14 +21,13 @@ export const FavoriteNews = () => {
   const filterLikedPosts = likedPosts.filter((post) => {
     return post.title.toLowerCase().includes(search.toLowerCase());
   });
-  console.log("posts", likedPosts);
+
   return (
     <div className="wrapper">
       <SecondHeader getSearchText={handleSearch} />
       <div className="favorite__block">
         <div className="container container__favorite">
           <h2 className="title__favorite-new">Избранные новости</h2>
-
           {loading ? (
             <div className="loading__block">
               <img src={Spinner} alt="" />

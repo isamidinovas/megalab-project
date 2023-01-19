@@ -20,9 +20,19 @@ function Header({ getSearchText }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    Swal.fire("Вы точно хотите выйти из аккаунта?")
-      .then(() => dispatch(logoutUser()))
-      .then(() => navigate("/registration"));
+    Swal.fire({
+      title: "Точно хотите выйти из аккаунта?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Да",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logoutUser());
+        navigate("/registration");
+      }
+    });
   };
   const [searchText, setSearchText] = useState({
     search: "",

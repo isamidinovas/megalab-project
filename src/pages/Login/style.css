@@ -16,17 +16,14 @@
   -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); ;
 }
-
 .registration__inner{
 display: flex;
 align-items: center; 
 height: 100vh; 
 }
-
 .registration__form{
   padding-top: 20px;
 }
-
 .registration__item{
   display: flex;
   justify-content: space-between;

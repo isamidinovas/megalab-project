@@ -39,9 +39,6 @@ export const postLikeSlice = createSlice({
       state.likedPosts = action.payload;
       state.loading = false;
     });
-    builder.addCase(likePost.fulfilled, (state, action) => {
-      state.likedPosts = true;
-    });
   },
 });
 

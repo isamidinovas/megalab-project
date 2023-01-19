@@ -8,14 +8,13 @@ import WhatSappIcon from "../../assets/img/whatsapp-icon.png";
 import { useOnClickOutside } from "../../hooks/useOutsideCliks";
 export const ShareModal = ({ setShowShare, url }) => {
   const modalRef = useRef(null);
-
   const onClickOutside = () => {
     setShowShare(false);
   };
   useOnClickOutside(modalRef, onClickOutside);
 
   return (
-    <div className="share__block" ref={modalRef}>
+    <div className="share__block share__block--new" ref={modalRef}>
       <div className="share__header">
         <p>Поделиться</p>
         <button className="closeBtn" onClick={() => setShowShare(false)}>

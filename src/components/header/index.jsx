@@ -17,17 +17,26 @@ export const SecondHeader = ({ getSearchText }) => {
   const [searchText, setSearchText] = useState({
     search: "",
   });
-  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const modalRef = useRef(null);
-  const handleClick = () => {
-    Swal.fire("Вы точно хотите выйти из аккаунта?")
-      .then(() => dispatch(logoutUser()))
-      .then(() => navigate("/registration"));
-  };
 
+  const handleClick = () => {
+    Swal.fire({
+      title: "Точно хотите выйти из аккаунта?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Да",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logoutUser());
+        navigate("/registration");
+      }
+    });
+  };
   const handleSearch = (e) => {
     setSearchText(e.target.value);
     getSearchText(e.target.value);

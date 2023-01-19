@@ -88,6 +88,8 @@ export const RegistrationPage = () => {
       setPasswordError2("");
     }
   };
+  const token = localStorage.getItem("token");
+  console.log("d", token);
   return (
     <div className="wrapper">
       <div className="registration">

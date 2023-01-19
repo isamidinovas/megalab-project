@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { getPostLike, likePost } from "../../store/Post/postLike.slice";
-import { unLikePost } from "../../store/Post/postLike.slice";
 import LikeIcon from "../../assets/img/like-icon.png";
 import ShareIcon from "../../assets/img/share.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewsThunk } from "../../store/News/news.slice";
 import redLikeIcon from "../../assets/img/redLike-icon.png";
 export const News = ({ item }) => {
   const [showShare, setShowShare] = useState(false);
-  const { newsDetail } = useSelector((state) => state.newsDetail);
   const likedPost = useSelector((state) => state.postLike.likedPosts);
-  const img = `https://megalab.pythonanywhere.com${item.image}`;
+  const img = `https://megalab.pythonanywhere.com/${item.image}`;
   let url = `https://megalab.pythonanywhere.com/post/${item.id}`;
   const dispatch = useDispatch();
 
@@ -26,6 +24,7 @@ export const News = ({ item }) => {
     dispatch(getPostLike());
     dispatch(getNewsThunk());
   };
+
   useEffect(() => {
     getNewsThunk();
   }, [dispatch, likedPost.length, item.is_liked]);

@@ -5,17 +5,18 @@ import ShareIcon from "../../assets/img/share.png";
 import { Link } from "react-router-dom";
 import { ShareModal } from "../shareModal";
 import { getMyPosts, postDelete } from "../../store/Post/post.slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const NewPost = ({ post }) => {
   const dispatch = useDispatch();
-  const img = `https://megalab.pythonanywhere.com${post.image}`;
+  const img = `https://megalab.pythonanywhere.com/${post.image}`;
   let url = `https://megalab.pythonanywhere.com/post/${post.id}`;
+  const { userInfo } = useSelector((state) => state.profile);
   const [showShare, setShowShare] = useState(false);
 
   const handleClick = () => {
     dispatch(postDelete(post.id));
-    dispatch(getMyPosts());
+    dispatch(getMyPosts(userInfo.nickname));
   };
 
   return (

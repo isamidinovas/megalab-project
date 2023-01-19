@@ -4,7 +4,6 @@
     width: 50%;
     gap: 40px;
 }
-
 .profile_img{
     border-radius: 50%;
 }
@@ -35,13 +34,13 @@
 }
 .icon__add {
     font-family: 'Ubuntu';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 16px;
-cursor: pointer;
-padding-right: 5px;
-color: #000000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    cursor: pointer;
+    padding-right: 5px;
+    color: #000000;
 }
 .info__input {
     width: 272px;
@@ -59,7 +58,25 @@ color: #000000;
 }
 
 
-
+@media screen and (max-width: 490px){
+    .profile__block{
+        width: 100%;
+    }
+    .info__edit{
+      margin-right: 18px;
+      width: 47%;
+    }
+    .profile__edit{
+      width: 100%;
+    }
+    .profile__avatar{
+        width: 23%;
+    }
+    .profile_img{
+      width: 120px;
+      height: 120px;
+    }
+  }
 
 @media screen and (max-width: 390px){
     .profile__block{
@@ -78,8 +95,7 @@ color: #000000;
         width: 30%;
     }
     .info__edit{
-        width: 70%;
-        padding-left: 57px;
+        width: 53%;
     }
     .title__favorite-new {
         font-size: 24px;
@@ -99,23 +115,3 @@ color: #000000;
         flex-direction: column;
     }
 }
-
-@media screen and (max-width: 490px){
-    .profile__block{
-        width: 100%;
-    }
-    .info__edit{
-      margin-right: 18px;
-      width: 60%;
-    }
-    .profile__edit{
-      width: 100%;
-    }
-    .profile__avatar{
-        width: 23%;
-    }
-    .profile_img{
-      width: 120px;
-      height: 120px;
-    }
-  }

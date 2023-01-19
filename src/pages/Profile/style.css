@@ -1,13 +1,11 @@
 
-
 :root{
     --gap: 1em;
     --index: calc(1vw + 1vh);
     --color-dark: #000;
   } .profile__page{
-    min-height: calc(100vh - 292px);
-    font-size: calc(var(--index) * .7);
-    
+    min-height: calc(100vh - 270px);
+    font-size: calc(var(--index) * .7);   
 }
 .wrapper{
     display: flex;
@@ -21,7 +19,6 @@
 }
 .profile__posts{
     width: 100%;
-
 }
 .title__button {
     margin-top: 26px;

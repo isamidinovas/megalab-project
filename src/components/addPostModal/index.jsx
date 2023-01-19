@@ -6,7 +6,6 @@ import CloseIcon from "../../assets/img/x.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getTagList } from "../../store/Post/tag.slice";
 
-
 export const Modal = ({ setIsOpen }) => {
   const [postData, setPostData] = useState({
     title: "",
@@ -55,7 +54,7 @@ export const Modal = ({ setIsOpen }) => {
     formData.set("tag", postData.tag);
 
     dispatch(postCreate(formData));
-    dispatch(getMyPosts());
+    dispatch(getMyPosts(userInfo.nickname));
   };
   return (
     <div className="darkBG">

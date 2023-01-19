@@ -7,7 +7,7 @@ import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";
 import { getTagList } from "../../store/Post/tag.slice";
 import { Checkbox } from "./components/checkbox";
-import Spinner from "../../assets/img/spinner.svg";
+import Spinner from "../../assets/img/Spinner.svg";
 import FilterSlider from "../../assets/img/sliders-icon.png";
 import { getPostLike } from "../../store/Post/postLike.slice";
 import { FilterModal } from "./components/filterModal";
@@ -42,10 +42,6 @@ export const HomePage = () => {
   useEffect(() => {
     dispatch(getTagList());
   }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getPostLike());
-  }, [likedPost.length]);
 
   return (
     <div className="wrapper">

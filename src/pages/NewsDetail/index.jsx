@@ -22,7 +22,7 @@ export const NewsDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentData, setCommentData] = useState("");
-  const img = `https://megalab.pythonanywhere.com${newsDetail.image}`;
+  const img = `https://megalab.pythonanywhere.com/${newsDetail.image}`;
   const likedPost = useSelector((state) => state.postLike.likedPosts);
 
   const onChange = (e) => {
@@ -81,7 +81,7 @@ export const NewsDetail = () => {
                 <img className="new__image" src={img} alt="" />
               </div>
               <p className="text__info">{newsDetail.text}</p>
-              <button className="share__btn ">
+              <button className="share__btn">
                 <img
                   className="share__icon"
                   src={ShareIcon}
