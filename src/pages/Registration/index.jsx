@@ -89,91 +89,94 @@ export const RegistrationPage = () => {
     }
   };
   return (
-    <div className="registration">
-      <div className="container">
-        <div className="registration__inner">
-          <div className="registration__modal">
-            <img className="logo" src={logo} alt="logo" />
-            <form className="registration__form">
-              <div className="registration__item">
-                <p>Фамилия</p>
-                <input
-                  onChange={(e) => onChange(e)}
-                  name="last_name"
-                  type="text"
-                  required
-                  className="registration__input"
-                />
-              </div>
-              <div className="registration__item">
-                <p>Имя</p>
-                <input
-                  onChange={(e) => onChange(e)}
-                  name="name"
-                  type="text"
-                  required
-                  className="registration__input"
-                />
-              </div>
-              <div className="registration__item">
-                <p>Никнейм</p>
-                <input
-                  onChange={(e) => onChange(e)}
-                  name="nickname"
-                  type="text"
-                  required
-                  className="registration__input"
-                />
-              </div>
-              <div className="registration__item">
-                <p>Пароль</p>
-                <input
-                  id="pswrd"
-                  onChange={(e) => checkPassword(e)}
-                  value={password}
-                  name="password"
-                  type="password"
-                  required
-                  // pattern="\d [0-9]+[A-Za-z]"
-                  className="registration__input"
-                />
-              </div>
-              {passwordError && password && (
-                <p className="check__password">{passwordError}</p>
-              )}
-              <div className="registration__item">
-                <p className="registration__name">Подтверждение пароля</p>
-                <input
-                  onChange={(e) => checkPassword2(e)}
-                  value={password2}
-                  name="password2"
-                  type="password"
-                  required
-                  pattern="\d [0-9]+[A-Za-z]"
-                  className="registration__input"
-                />
-              </div>
-              {password2Error && password2 && (
-                <p className="check__password">{password2Error}</p>
-              )}
-              <div className="registration__btn">
-                <button
-                  onClick={handleClick}
-                  className="registration__button"
-                  type="submit"
-                >
-                  Регистрация
-                </button>
-                <p className="registration__err">{registrationErrMessage}</p>
-                {status === "resolved" &&
-                  Swal.fire("вы успешно зарегистрированы", "", "success").then(
-                    navigate("/login")
-                  )}
-              </div>
-              <p className="sign__in">
-                Уже есть логин? <Link to="/login">Войти</Link>
-              </p>
-            </form>
+    <div className="wrapper">
+      <div className="registration">
+        <div className="container">
+          <div className="registration__inner">
+            <div className="registration__modal">
+              <img className="logo" src={logo} alt="logo" />
+              <form className="registration__form">
+                <div className="registration__item">
+                  <p>Фамилия</p>
+                  <input
+                    onChange={(e) => onChange(e)}
+                    name="last_name"
+                    type="text"
+                    required
+                    className="registration__input"
+                  />
+                </div>
+                <div className="registration__item">
+                  <p>Имя</p>
+                  <input
+                    onChange={(e) => onChange(e)}
+                    name="name"
+                    type="text"
+                    required
+                    className="registration__input"
+                  />
+                </div>
+                <div className="registration__item">
+                  <p>Никнейм</p>
+                  <input
+                    onChange={(e) => onChange(e)}
+                    name="nickname"
+                    type="text"
+                    required
+                    className="registration__input"
+                  />
+                </div>
+                <div className="registration__item">
+                  <p>Пароль</p>
+                  <input
+                    id="pswrd"
+                    onChange={(e) => checkPassword(e)}
+                    value={password}
+                    name="password"
+                    type="password"
+                    required
+                    className="registration__input"
+                  />
+                </div>
+                {passwordError && password && (
+                  <p className="check__password">{passwordError}</p>
+                )}
+                <div className="registration__item">
+                  <p className="registration__name">Подтверждение пароля</p>
+                  <input
+                    onChange={(e) => checkPassword2(e)}
+                    value={password2}
+                    name="password2"
+                    type="password"
+                    required
+                    pattern="\d [0-9]+[A-Za-z]"
+                    className="registration__input"
+                  />
+                </div>
+                {password2Error && password2 && (
+                  <p className="check__password">{password2Error}</p>
+                )}
+                <div className="registration__btn">
+                  <button
+                    onClick={handleClick}
+                    className="registration__button"
+                    type="submit"
+                  >
+                    Регистрация
+                  </button>
+                  <p className="registration__err">{registrationErrMessage}</p>
+                  {status === "resolved" &&
+                    Swal.fire(
+                      "вы успешно зарегистрированы",
+                      "",
+                      "success"
+                    ).then(navigate("/login"))}
+                </div>
+                <p className="sign__in">
+                  Уже есть логин? <Link to="/login">Войти</Link>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>

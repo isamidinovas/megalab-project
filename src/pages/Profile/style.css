@@ -9,6 +9,12 @@
     font-size: calc(var(--index) * .7);
     
 }
+.wrapper{
+    display: flex;
+    min-height: 100%;
+    overflow: hidden;
+    flex-direction: column;
+}
 .profile__post{
     display: flex;
     flex-wrap: wrap;
@@ -24,6 +30,17 @@
     justify-content: space-between;
 }
 
+.save__button {
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    width: 168px;
+    height: 30px;
+    background-color: #7E5BC2;
+    border-radius: 10px;
+  }
 
 @media screen and (max-width: 390px){
     .title__button {

@@ -1,4 +1,9 @@
-
+.wrapper{
+  display: flex;
+  min-height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+}
 .container{
   margin: 0 auto;
   max-width: 408px;

@@ -99,3 +99,23 @@ color: #000000;
         flex-direction: column;
     }
 }
+
+@media screen and (max-width: 490px){
+    .profile__block{
+        width: 100%;
+    }
+    .info__edit{
+      margin-right: 18px;
+      width: 60%;
+    }
+    .profile__edit{
+      width: 100%;
+    }
+    .profile__avatar{
+        width: 23%;
+    }
+    .profile_img{
+      width: 120px;
+      height: 120px;
+    }
+  }

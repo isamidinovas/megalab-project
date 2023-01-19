@@ -39,6 +39,12 @@ export const Profile = () => {
                 >
                   Новая публикация
                 </button>
+                <button
+                  className="save__button--plus"
+                  onClick={() => setIsOpen(true)}
+                >
+                  +
+                </button>
                 {isOpen && <Modal setIsOpen={setIsOpen} />}
               </div>
               {loading ? (

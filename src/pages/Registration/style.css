@@ -1,11 +1,16 @@
-
+.wrapper{
+    display: flex;
+    min-height: 100%;
+    overflow: hidden;
+    flex-direction: column;
+}
 .container{
     margin: 0 auto;
     max-width: 800px;
     width: 100%;
 }
 .registration__modal{
-    width: 52%;
+    width: 60%;
     margin: 0 auto;
     border-radius: 12px;
     padding: 24px 60px 20px 40px;
@@ -27,6 +32,7 @@
 .registration__item{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
     padding-bottom: 20px;
@@ -40,8 +46,8 @@
 
 .registration__input{
     padding-left: 7px;
-    max-width: 230px;
-    height: 25px;
+    width: 231px;
+    height: 39px;
     border-radius: 10px;
     border: 1px solid #E4DFDC;
 }
@@ -86,6 +92,19 @@
 
 @media screen and (max-width: 990px){
     .registration__modal {
-        max-width: 890px;       
+        /* max-width: 890px;        */
 }
 }
+@media screen and (max-width: 725px){
+    .registration__item{
+        display: block;
+        text-align: left;
+    }
+    }
+
+@media screen and (max-width: 390px){
+    .registration__input {
+
+}
+}
+

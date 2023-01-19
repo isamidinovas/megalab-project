@@ -137,7 +137,7 @@ export const Modal = ({ setIsOpen }) => {
               ></input>
             </div>
             <div className="button-wrap2">
-              <button className="save__button" onClick={handleClick}>
+              <button className="create__button" onClick={handleClick}>
                 Создать
               </button>
             </div>

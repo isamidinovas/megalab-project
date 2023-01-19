@@ -24,10 +24,8 @@ width: 25%
 }
 .post__img{
     display: block;
-    width: 100%;
-    height: auto;
-    /* min-height: 211px; */
-    max-width: 255px;
+    width: 204px;
+    height: 211px;
 } 
 
 .btn{
@@ -60,6 +58,27 @@ width: 25%
     }
 } 
 
+@media screen and (max-width: 590px){
+    .post__item{
+         width: 90%;
+  }  
+    .post__info{
+       width: 100%;
+       }
+ .post__img{
+     height: 319px;
+     max-width: 317px;
+  }
+ .infos__title{
+     font-size: 24px;
+  }
+ .info__block{
+     font-size: 16px;
+ }
+ 
+ }
+ 
+
 @media screen and (max-width: 390px){
    .post__item{
         width: 90%;
@@ -79,3 +98,5 @@ width: 25%
 }
 
 }
+
+
