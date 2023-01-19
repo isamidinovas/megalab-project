@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import deleteIcon from "../../assets/img/delete-icon.png";
 import ShareIcon from "../../assets/img/share.png";

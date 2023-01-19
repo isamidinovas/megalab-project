@@ -4,7 +4,7 @@ import { SecondHeader } from "../../components/header";
 import { Modal } from "../../components/addPostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { NewPost } from "../../components/NewPostItem";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/index";
 import { ProfileEditBlock } from "../../components/ProfileEditBlock";
 import { getMyPosts } from "../../store/Post/post.slice";
 import Spinner from "../../assets/img/spinner.svg";
@@ -19,8 +19,8 @@ export const Profile = () => {
   };
   useEffect(() => {
     dispatch(getMyPosts({ search, author: userInfo.nickname }));
-  }, [myPostsList.length, search]);
-
+  }, [myPostsList.length, search, dispatch]);
+ 
   return (
     <div className="wrapper">
       <SecondHeader getSearchText={handleSearch} />

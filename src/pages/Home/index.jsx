@@ -1,7 +1,7 @@
 import "./style.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/index";
 import Header from "../../components/header-homepage/index";
 import { News } from "../../components/newsItem";
 import { getNewsThunk } from "../../store/News/news.slice";

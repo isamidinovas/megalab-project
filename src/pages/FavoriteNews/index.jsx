@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/index";
 import { SecondHeader } from "../../components/header";
 import { useDispatch, useSelector } from "react-redux";
 import { News } from "../../components/newsItem";
@@ -21,6 +21,7 @@ export const FavoriteNews = () => {
   const filterLikedPosts = likedPosts.filter((post) => {
     return post.title.toLowerCase().includes(search.toLowerCase());
   });
+  console.log("posts", likedPosts);
   return (
     <div className="wrapper">
       <SecondHeader getSearchText={handleSearch} />

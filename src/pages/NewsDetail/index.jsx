@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/index";
 import Header from "../../components/header-homepage/index";
 import { Comment } from "../../components/comment";
 import arrowLeftIcon from "../../assets/img/arrow-left-icon.png";

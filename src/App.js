@@ -7,6 +7,7 @@ import { NewsDetail } from "./pages/NewsDetail/index";
 import { RegistrationPage } from "./pages/Registration";
 import { Profile } from "./pages/Profile";
 import { useState } from "react";
+import PrivatRoute from "./hooks/router/privatRoute";
 function App() {
   const [isLoggendIn, setIsLoggendIn] = useState(() => {
     if (localStorage.getItem("isLoggedIn") === "true") return true;
@@ -18,8 +19,12 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/:id" element={<NewsDetail />} />
+          <Route element={<PrivatRoute />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:id" element={<NewsDetail />} />
+            <Route path="/favoritenews" element={<FavoriteNews />} />
+            <Route path={`/profile/${userId}`} element={<Profile />} />
+          </Route>
           <Route path="/registration" element={<RegistrationPage />} />
           <Route
             path="/login"
@@ -31,8 +36,6 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/favoritenews" element={<FavoriteNews />} />
-          <Route path={`/profile/${userId}`} element={<Profile />} />
         </Routes>
       </div>
     </Router>
