@@ -44,6 +44,22 @@ padding-right: 27px;
 
 @media screen and (max-width: 990px){
     .header {
-      height: 155px;   
+        height: 155px;   
+  }
 }
+
+@media screen and (max-width: 390px){
+ .header {
+    height: 163px;   
+  }
+  .header__title{
+font-size: 42px;
+padding-top: 25px;
+  }
+  .header__logo{
+    width: 38%;
+  }
+  .icon{
+    width: 17%;
+  }
 }

@@ -38,11 +38,10 @@ width: 25%
 
 
 
-
 @media screen and (max-width: 990px){
 .post__block{
     width: 100%;
-}
+     }
 .post__img{
     display: block;
     width: 100%;
@@ -51,12 +50,32 @@ width: 25%
     }
 .post__item{
     width: 49%;
-     }  
+ }  
 .post__info{
     width: 88%;
-      }
+  }
 .post__inner{
     flex-wrap: wrap;
     width: 96%;
     }
-    } 
+} 
+
+@media screen and (max-width: 390px){
+   .post__item{
+        width: 90%;
+ }  
+   .post__info{
+      width: 100%;
+      }
+.post__img{
+    height: 319px;
+    max-width: 317px;
+ }
+.infos__title{
+    font-size: 24px;
+ }
+.info__block{
+    font-size: 16px;
+}
+
+}

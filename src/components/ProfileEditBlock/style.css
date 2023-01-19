@@ -57,3 +57,45 @@ color: #000000;
     justify-content: flex-end;
     margin-top: 30px;
 }
+
+
+
+
+@media screen and (max-width: 390px){
+    .profile__block{
+        margin-top: 0;
+    }
+    .info__item{
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+    .profile_img{
+        width: 135px;
+        height: 135px;
+    }
+    .profile__avatar{
+        width: 30%;
+    }
+    .info__edit{
+        width: 70%;
+        padding-left: 57px;
+    }
+    .title__favorite-new {
+        font-size: 24px;
+       
+    }
+    .save__button.save__button--plus{
+        width: 20px;
+
+    }
+    .info__input{
+        height: 35px;
+    }
+    .profile__edit{
+        width: 120px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}

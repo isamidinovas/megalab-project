@@ -32,9 +32,9 @@ export const Profile = () => {
           <div className="profile__posts">
             <div className="container container__favorite ">
               <div className="title__button">
-                <h2 className="title__favorite-new">Мои публикации</h2>
+                <h2 className="title__favorite-new ">Мои публикации</h2>
                 <button
-                  className="save__button"
+                  className="save__button "
                   onClick={() => setIsOpen(true)}
                 >
                   Новая публикация

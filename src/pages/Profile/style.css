@@ -1,5 +1,13 @@
-.profile__page{
+
+
+:root{
+    --gap: 1em;
+    --index: calc(1vw + 1vh);
+    --color-dark: #000;
+  } .profile__page{
     min-height: calc(100vh - 292px);
+    font-size: calc(var(--index) * .7);
+    
 }
 .profile__post{
     display: flex;
@@ -14,4 +22,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+@media screen and (max-width: 390px){
+    .title__button {
+        width: 100%;
+    }
 }

@@ -3,7 +3,7 @@
     font-size: calc(var(--index) * .7);
 }
 .news__info--favorite_block{
-width: 75%;
+    width: 75%;
 }
 .title__favorite-new{
     font-size: 35px;
@@ -21,4 +21,11 @@ width: 75%;
     flex-wrap: wrap;
     justify-content:space-between ;
     }
-    } 
+} 
+
+
+@media screen and (max-width: 390px){
+.favorite__content {
+    margin-top: 0px;
+}
+}

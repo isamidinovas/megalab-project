@@ -11,11 +11,11 @@
     padding-top: 10px;
     border-bottom: 1px solid  #D9D9D9;
 } 
-.post__info{
+/* .post__info{
     line-height: 35px;
     width: 66%;
     text-align: left;
-}
+} */
 .post__img{
     display: block;
     width: 100%;

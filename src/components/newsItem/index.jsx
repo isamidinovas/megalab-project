@@ -38,8 +38,8 @@ export const News = ({ item }) => {
         <div className="post__info">
           <div className="info__block">
             <p>29.11.2022</p>
-            <h2>{item.title}</h2>
-            <p>{item.text}</p>
+            <h2 className="infos__title">{item.title}</h2>
+            <p className="infos__text">{item.text}</p>
             <Link to={`/${item.id}`}>
               Читать дальше<span>&gt;&gt;</span>
             </Link>

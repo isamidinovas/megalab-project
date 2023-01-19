@@ -51,8 +51,7 @@ export const ProfileEditBlock = () => {
   };
   return (
     <>
-      {" "}
-      <div>
+      <div className="profile__avatar">
         <img
           className="profile_img"
           src={img}
@@ -60,7 +59,7 @@ export const ProfileEditBlock = () => {
           height="199px"
           alt=""
         />
-        <div>
+        <div className="profile__edit">
           <div className="icon-add">
             <label htmlFor="filePicker">
               Добавить фото <img src={download} />
@@ -112,7 +111,7 @@ export const ProfileEditBlock = () => {
           />
         </div>
         <div className="button__wrap">
-          <button onClick={handleClick} className="save__button">
+          <button onClick={handleClick} className="save__button ">
             Сохранить
           </button>
         </div>

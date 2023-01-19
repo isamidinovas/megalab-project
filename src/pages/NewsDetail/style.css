@@ -74,3 +74,16 @@
     }
 }
 
+@media screen and (max-width: 390px){
+    .new__content{
+        width: 98%;
+    }
+    .new__image {
+        width: 98%;
+    }
+    .to__favorites {
+      
+        margin-right: 9px;
+      
+    }
+}

@@ -16,4 +16,12 @@
     box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
     } 
   }
-    
+
+  @media screen and (max-width: 390px){
+    .filter__modal{
+        height: 333px;
+        left: 7px;
+        top: 147px;
+    }
+
+  }
