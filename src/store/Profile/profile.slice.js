@@ -107,13 +107,11 @@ export const profileSlice = createSlice({
       state.userId = action.payload?.id;
       state.registrationErrMessage = "";
       state.status = "resolved";
-      console.log("some error from fulfilled", action);
     });
     builder.addCase(authenticateUser.rejected, (state, action) => {
       state.status = "rejected";
       state.registrationErrMessage =
         "Ошибка вожможно такой никнейм уже существует";
-      console.log("some error from rejected", action);
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       localStorage.setItem("token", action.payload.token);

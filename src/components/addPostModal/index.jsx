@@ -11,7 +11,7 @@ export const Modal = ({ setIsOpen }) => {
     title: "",
     text: "",
     tag: "",
-    image: null,
+    image: "",
     short_desc: "",
   });
 
@@ -43,15 +43,28 @@ export const Modal = ({ setIsOpen }) => {
     });
   };
 
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   setIsOpen(false);
+  //   let formData = new FormData();
+  //   formData.set("image", postData.image);
+  //   formData.set("title", postData.title);
+  //   formData.set("text", postData.text);
+  //   formData.set("short_desc", postData.short_desc);
+  //   formData.set("tag", postData.tag);
+
+  //   dispatch(postCreate(formData));
+  //   dispatch(getMyPosts(userInfo.nickname));
+  // };
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(false);
     let formData = new FormData();
-    formData.set("image", postData.image);
-    formData.set("title", postData.title);
-    formData.set("text", postData.text);
-    formData.set("short_desc", postData.short_desc);
-    formData.set("tag", postData.tag);
+    formData.append("image", postData.image);
+    formData.append("title", postData.title);
+    formData.append("text", postData.text);
+    formData.append("short_desc", postData.short_desc);
+    formData.append("tag", postData.tag);
 
     dispatch(postCreate(formData));
     dispatch(getMyPosts(userInfo.nickname));
